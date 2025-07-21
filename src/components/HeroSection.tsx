@@ -74,8 +74,9 @@ export function HeroSection() {
         </h1>
         {/* Subheading */}
         <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          Hi, I'm a Software Engineer who builds systems and solutions that
-          solve real-world problems and make a tangible impact
+          Hi, I'm Prosper — a Fullstack Software Engineer with 3+ years of
+          experience, specializing in Node.js and building systems that solve
+          real-world problems
         </p>
         {/* CTA Button */}
         <div className="flex justify-center">
