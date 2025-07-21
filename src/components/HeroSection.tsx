@@ -3,12 +3,12 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 import { cn } from "@/lib/utils";
 
 const images = [
-  { src: require("@/app/assets/technologies/3D/docker-3d.png"), alt: "Docker" },
   {
     src: require("@/app/assets/technologies/3D/nextjs-3d.png"),
     alt: "Next.js",
   },
-  { src: require("@/app/assets/technologies/3D/reacat-3d.png"), alt: "React" },
+  { src: require("@/app/assets/technologies/3D/docker-3d.png"), alt: "Docker" },
+  { src: require("@/app/assets/technologies/3D/react-3d.png"), alt: "React" },
   {
     src: require("@/app/assets/technologies/3D/postgres-3d.png"),
     alt: "Postgres",
@@ -19,7 +19,7 @@ const images = [
   },
   { src: require("@/app/assets/technologies/3D/node-3d.png"), alt: "Node.js" },
   {
-    src: require("@/app/assets/technologies/3D/typescript-3d.jpg"),
+    src: require("@/app/assets/technologies/3D/typescript-3d.png"),
     alt: "TypeScript",
   },
 ];
