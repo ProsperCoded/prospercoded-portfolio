@@ -10,16 +10,6 @@ export function AboutSection() {
       <GridBackground spacing={40} className="min-h-screen">
         {/* Decorative Braces */}
         <DecorativeGlowBraces
-          type="curly"
-          size="3xl"
-          glowColor="rgb(168, 85, 247)"
-          glowIntensity="low"
-          rotation={15}
-          opacity={0.3}
-          glow={true}
-          className="top-20 left-10"
-        />
-        <DecorativeGlowBraces
           type="square"
           size="2xl"
           glowColor="rgb(34, 197, 94)"
@@ -48,6 +38,17 @@ export function AboutSection() {
           glow={false}
           className="bottom-20 left-20"
         />
+        {/* Decorative brace near "introducing" */}
+        <DecorativeGlowBraces
+          type="curly"
+          size="2xl"
+          glowColor="rgb(168, 85, 247)"
+          glowIntensity="medium"
+          rotation={25}
+          opacity={0.4}
+          glow={true}
+          className="top-16 right-32"
+        />
 
         <div className="container mx-auto px-4 py-20">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-16 max-w-7xl mx-auto">
@@ -55,7 +56,7 @@ export function AboutSection() {
             <div className="flex-shrink-0 relative">
               <div className="relative">
                 {/* Profile Picture */}
-                <div className="relative w-80 h-96 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative h-[600px] w-[400px] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src="/assets/profile-picture.jpg"
                     alt="Profile Picture"
@@ -65,28 +66,29 @@ export function AboutSection() {
                   />
                 </div>
 
-                {/* Location Badge */}
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+                {/* Location Badge - extends out of image */}
+                <div className="absolute -top-3 -left-6 bg-white/95 backdrop-blur-sm rounded-full px-4 py-3 shadow-xl border border-gray-200">
                   <div className="flex items-center gap-2 text-sm font-medium text-gray-800">
                     <MapPin className="w-4 h-4" />
                     Based in Ibadan, Nigeria
                   </div>
                 </div>
 
-                {/* QR Code */}
-                <div className="absolute bottom-4 left-4 w-20 h-20 bg-white rounded-lg p-2 shadow-lg">
-                  <div className="w-full h-full bg-gray-900 rounded grid grid-cols-4 gap-0.5">
-                    {/* Simple QR code pattern */}
-                    {Array.from({ length: 16 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className={`${
-                          [0, 1, 2, 4, 6, 7, 8, 9, 11, 13, 14, 15].includes(i)
-                            ? "bg-gray-900"
-                            : "bg-white"
-                        }`}
-                      />
-                    ))}
+                {/* QR Code with Resume */}
+                <div className="absolute -bottom-8 -right-6 bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl p-3 shadow-xl border border-orange-200">
+                  <div className="relative size-32 mb-2">
+                    <Image
+                      src="/assets/resume-qrcode.png"
+                      alt="Resume QR Code"
+                      fill
+                      className="object-contain rounded-lg"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-red-400 mx-auto mb-1 rounded-full"></div>
+                    <p className="text-xs font-medium text-gray-800">
+                      Scan to see my CV
+                    </p>
                   </div>
                 </div>
               </div>
@@ -96,8 +98,11 @@ export function AboutSection() {
             <div className="flex-1 max-w-2xl">
               {/* Introduction */}
               <div className="mb-8">
-                <h2 className="text-6xl md:text-7xl font-bold mb-4">
-                  <span className="text-gray-400">introducing</span>
+                <h2 className="text-7xl md:text-8xl lg:text-8xl font-bold mb-4 text-shadow-white">
+                  <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                    Intro
+                  </span>
+                  ducing
                 </h2>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
                   hello, I'm{" "}
@@ -105,8 +110,9 @@ export function AboutSection() {
                     type="square"
                     size="xl"
                     glowColor="rgb(168, 85, 247)"
+                    className="text-4xl md:text-5xl"
                   >
-                    <span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    <span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
                       Prosper
                     </span>
                   </GlowBraces>
@@ -116,16 +122,14 @@ export function AboutSection() {
                 <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
                   <p>
                     <span className="text-white font-semibold">
-                      Prosper Enwerem Tochukwu
+                      Prosper Enwerem
                     </span>{" "}
                     here, a{" "}
-                    <GlowBraces type="curly" glowColor="rgb(251, 191, 36)">
-                      <span className="text-yellow-400 font-semibold">
-                        Fullstack Software Engineer
-                      </span>
-                    </GlowBraces>{" "}
+                    <span className="text-yellow-400 font-semibold mr-2">
+                      Backend Software Engineer
+                    </span>
                     with over three years of experience specializing in the{" "}
-                    <span className="text-yellow-400 font-semibold">
+                    <span className="text-yellow-400 font-semibold mr-2">
                       Node.js ecosystem
                     </span>
                     . I'm currently a student at the University of Ibadan, where
@@ -161,18 +165,6 @@ export function AboutSection() {
                   <Phone className="w-5 h-5" />
                   <span className="font-medium">+234 915 500 4456</span>
                 </a>
-
-                {/* Twitter */}
-                <a
-                  href="https://twitter.com/prospercoded"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-blue-600/20 border border-blue-600/30 rounded-lg px-4 py-3 text-blue-400 hover:bg-blue-600/30 transition-colors"
-                >
-                  <Twitter className="w-5 h-5" />
-                  <span className="font-medium">@prospercoded</span>
-                </a>
-
                 {/* LinkedIn */}
                 <a
                   href="https://linkedin.com/in/prospercoded/"
@@ -183,7 +175,6 @@ export function AboutSection() {
                   <Linkedin className="w-5 h-5" />
                   <span className="font-medium">@prospercoded</span>
                 </a>
-
                 {/* Email */}
                 <a
                   href="mailto:prospercoded@gmail.com"
@@ -191,6 +182,17 @@ export function AboutSection() {
                 >
                   <Mail className="w-5 h-5" />
                   <span className="font-medium">prospercoded@gmail.com</span>
+                </a>
+
+                {/* Twitter */}
+                <a
+                  href="https://twitter.com/prospercoded"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-blue-600/20 border border-blue-600/30 rounded-lg px-4 py-3 text-blue-400 hover:bg-blue-600/30 transition-colors"
+                >
+                  <Twitter className="w-5 h-5" />
+                  <span className="font-medium">@prospercoded</span>
                 </a>
 
                 {/* GitHub */}
