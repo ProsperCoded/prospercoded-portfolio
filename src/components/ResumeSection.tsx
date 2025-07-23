@@ -133,9 +133,9 @@ export function ResumeSection() {
 
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative">
           {/* Vertical "resume" text - Desktop only */}
-          <div className="hidden lg:block fixed left-8 top-1/2 -translate-y-1/2 z-30">
+          <div className="hidden lg:block absolute -left-28 xl:-left-40 top-1/2 -translate-y-1/2 z-30">
             <div className="transform -rotate-90 origin-center">
-              <h1 className="text-6xl xl:text-7xl font-bold">
+              <h1 className="text-6xl xl:text-7xl font-bold whitespace-nowrap">
                 <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
                   resume
                 </span>
@@ -153,7 +153,7 @@ export function ResumeSection() {
           </div>
 
           {/* Resume Content */}
-          <div className="max-w-7xl mx-auto lg:ml-32 bg-gray-900/50 backdrop-blur-sm rounded-3xl border border-gray-700/50 overflow-hidden">
+          <div className="max-w-7xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-3xl border border-gray-700/50 overflow-hidden">
             {/* Header - Hidden on mobile */}
             <div className="hidden sm:block bg-gradient-to-r from-gray-800/80 to-gray-900/80 px-8 py-8 border-b border-gray-700/50">
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -197,23 +197,6 @@ export function ResumeSection() {
                     </div>
                     <div className="text-gray-300 text-sm">
                       B.Sc Computer Science
-                    </div>
-                  </div>
-
-                  {/* Languages */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Languages
-                    </h2>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-white">English</span>
-                        <span className="text-gray-400">Advanced</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-white">Igbo</span>
-                        <span className="text-gray-400">Native</span>
-                      </div>
                     </div>
                   </div>
 
