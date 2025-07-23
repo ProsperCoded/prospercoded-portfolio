@@ -6,7 +6,7 @@ import { Phone, MapPin } from "lucide-react";
 
 export function AboutSection() {
   return (
-    <section className="relative">
+    <section className="relative mt-[20rem] sm:mt-0">
       <GridBackground spacing={40} className="min-h-screen">
         {/* Decorative Braces */}
         <DecorativeGlowBraces
@@ -36,7 +36,7 @@ export function AboutSection() {
           rotation={-10}
           opacity={0.5}
           glow={false}
-          className="bottom-20 left-20"
+          className="bottom-20 left-20 hidden sm:block"
         />
         {/* Decorative brace near "introducing" */}
         <DecorativeGlowBraces
@@ -47,16 +47,16 @@ export function AboutSection() {
           rotation={25}
           opacity={0.4}
           glow={true}
-          className="top-16 right-32"
+          className="top-16 right-32 hidden sm:block"
         />
 
-        <div className="container mx-auto px-4 py-20">
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-16 max-w-7xl mx-auto">
+        <div className="container mx-auto px-4 py-20 sm:py-20">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-16 max-w-7xl mx-auto">
             {/* Profile Picture Side */}
-            <div className="flex-shrink-0 relative">
-              <div className="relative">
+            <div className="flex-shrink-0 relative mt-8 sm:mt-0">
+              <div className="relative mx-4 sm:mx-0">
                 {/* Profile Picture */}
-                <div className="relative h-[600px] w-[400px] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative h-[500px] w-[320px] sm:h-[600px] sm:w-[400px] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src="/assets/profile-picture.jpg"
                     alt="Profile Picture"
@@ -67,7 +67,7 @@ export function AboutSection() {
                 </div>
 
                 {/* Location Badge - extends out of image */}
-                <div className="absolute -top-3 -left-6 bg-white/95 backdrop-blur-sm rounded-full px-4 py-3 shadow-xl border border-gray-200">
+                <div className="absolute -top-1 -left-2 sm:-top-3 sm:-left-6 bg-white/95 backdrop-blur-sm rounded-full px-4 py-3 shadow-xl border border-gray-200">
                   <div className="flex items-center gap-2 text-sm font-medium text-gray-800">
                     <MapPin className="w-4 h-4" />
                     Based in Ibadan, Nigeria
@@ -231,15 +231,15 @@ export function AboutSection() {
                     className="w-8 h-8 sm:w-5 sm:h-5 flex-shrink-0"
                   />
                   <span className="font-medium hidden sm:block">
-                    prosperCoded
+                    ProsperCoded
                   </span>
                 </a>
-                {/* GitHub: full width on desktop, last in grid on mobile */}
+                {/* GitHub: full width on desktop, regular grid item on mobile */}
                 <a
                   href="https://github.com/prospercoded"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-gray-600/20 border border-gray-600/30 rounded-lg px-4 py-3 text-gray-300 hover:bg-gray-600/30 transition-colors col-span-3 sm:col-span-6"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-gray-600/20 border border-gray-600/30 rounded-lg px-4 py-3 text-gray-300 hover:bg-gray-600/30 transition-colors col-span-1 sm:col-span-6"
                 >
                   <Image
                     src="/assets/github.svg"
