@@ -2,7 +2,7 @@ import Image from "next/image";
 import GridBackground from "@/components/ui/grid-background";
 import { GlowBraces } from "@/components/ui/glow-braces";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
-import { Mail, Phone, MapPin, Twitter, Linkedin, Github } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
 
 export function AboutSection() {
   return (
@@ -156,55 +156,107 @@ export function AboutSection() {
               </div>
 
               {/* Contact Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
+                {/* First Row: Phone, LinkedIn, X */}
                 {/* Phone */}
                 <a
                   href="tel:+2349155004456"
-                  className="flex items-center gap-3 bg-green-600/20 border border-green-600/30 rounded-lg px-4 py-3 text-green-400 hover:bg-green-600/30 transition-colors"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-green-600/20 border border-green-600/30 rounded-lg px-4 py-3 text-green-400 hover:bg-green-600/30 transition-colors"
                 >
-                  <Phone className="w-5 h-5" />
-                  <span className="font-medium">+234 915 500 4456</span>
+                  <Phone className="w-5 h-5 flex-shrink-0" />
+                  <span className="font-medium hidden sm:block">+234 915 500 4456</span>
                 </a>
+
                 {/* LinkedIn */}
                 <a
                   href="https://linkedin.com/in/prospercoded/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-blue-600/20 border border-blue-600/30 rounded-lg px-4 py-3 text-blue-400 hover:bg-blue-600/30 transition-colors"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-blue-600/20 border border-blue-600/30 rounded-lg px-4 py-3 text-blue-400 hover:bg-blue-600/30 transition-colors"
                 >
-                  <Linkedin className="w-5 h-5" />
-                  <span className="font-medium">@prospercoded</span>
-                </a>
-                {/* Email */}
-                <a
-                  href="mailto:prospercoded@gmail.com"
-                  className="flex items-center gap-3 bg-orange-600/20 border border-orange-600/30 rounded-lg px-4 py-3 text-orange-400 hover:bg-orange-600/30 transition-colors"
-                >
-                  <Mail className="w-5 h-5" />
-                  <span className="font-medium">prospercoded@gmail.com</span>
+                  <Image
+                    src="/assets/linkedIn.svg"
+                    alt="LinkedIn"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 flex-shrink-0"
+                  />
+                  <span className="font-medium hidden sm:block">@prospercoded</span>
                 </a>
 
-                {/* Twitter */}
+                {/* Twitter/X */}
                 <a
                   href="https://twitter.com/prospercoded"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-blue-600/20 border border-blue-600/30 rounded-lg px-4 py-3 text-blue-400 hover:bg-blue-600/30 transition-colors"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-gray-800/20 border border-gray-600/30 rounded-lg px-4 py-3 text-white hover:bg-gray-800/30 transition-colors"
                 >
-                  <Twitter className="w-5 h-5" />
-                  <span className="font-medium">@prospercoded</span>
+                  <Image
+                    src="/assets/x.svg"
+                    alt="X (Twitter)"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 flex-shrink-0"
+                  />
+                  <span className="font-medium hidden sm:block">@prospercoded</span>
                 </a>
 
+                {/* Second Row: Email, LeetCode */}
+                {/* Email */}
+                <a
+                  href="mailto:prospercoded@gmail.com"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-red-600/20 border border-red-600/30 rounded-lg px-4 py-3 text-red-400 hover:bg-red-600/30 transition-colors"
+                >
+                  <Image
+                    src="/assets/gmail.svg"
+                    alt="Gmail"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 flex-shrink-0"
+                  />
+                  <span className="font-medium hidden sm:block">prospercoded@gmail.com</span>
+                </a>
+
+                {/* LeetCode */}
+                <a
+                  href="https://leetcode.com/u/prosperCoded/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-orange-600/20 border border-orange-600/30 rounded-lg px-4 py-3 text-orange-400 hover:bg-orange-600/30 transition-colors"
+                >
+                  <Image
+                    src="/assets/leetcode.svg"
+                    alt="LeetCode"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 flex-shrink-0"
+                  />
+                  <span className="font-medium hidden sm:block">prosperCoded</span>
+                </a>
+
+                {/* Empty space for alignment */}
+                <div></div>
+
+                {/* Third Row: GitHub (centered) */}
                 {/* GitHub */}
                 <a
                   href="https://github.com/prospercoded"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-gray-600/20 border border-gray-600/30 rounded-lg px-4 py-3 text-gray-300 hover:bg-gray-600/30 transition-colors md:col-span-2"
+                  className="col-start-2 flex items-center justify-center sm:justify-start gap-3 bg-gray-600/20 border border-gray-600/30 rounded-lg px-4 py-3 text-gray-300 hover:bg-gray-600/30 transition-colors"
                 >
-                  <Github className="w-5 h-5" />
-                  <span className="font-medium">github.com/prospercoded</span>
+                  <Image
+                    src="/assets/github.svg"
+                    alt="GitHub"
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 flex-shrink-0"
+                  />
+                  <span className="font-medium hidden sm:block">github.com/prospercoded</span>
                 </a>
+
+                {/* Empty space for alignment */}
+                <div></div>
               </div>
             </div>
           </div>

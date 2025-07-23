@@ -41,4 +41,4 @@ This document outlines the core context and design principles for the Fullstack 
 
 As you generate content, you can insert dumy data, i'll enter the accurate information later.
 
-<!-- If you notice i am using redish theme from the nestjs site you can use that as insperation as well. -->
+Most important, please implement mobile friendly implementations for everything you are doing, ensure that all designs still have a good mobile version that is pleasing
