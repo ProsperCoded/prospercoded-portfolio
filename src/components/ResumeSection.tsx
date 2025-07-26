@@ -1,9 +1,52 @@
+"use client";
 import Image from "next/image";
 import GridBackground from "@/components/ui/grid-background";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
 import { Phone, MapPin, ExternalLink } from "lucide-react";
+import { useRef, useEffect, useState } from "react";
 
 export function ResumeSection() {
+  // Add state to track if scrolling is needed
+  const [certScrollable, setCertScrollable] = useState(false);
+  const [compScrollable, setCompScrollable] = useState(false);
+  const [orgScrollable, setOrgScrollable] = useState(false);
+
+  // Refs for the scroll containers
+  const certContainerRef = useRef<HTMLDivElement>(null);
+  const compContainerRef = useRef<HTMLDivElement>(null);
+  const orgContainerRef = useRef<HTMLDivElement>(null);
+
+  // Check if scrolling is needed on mount and resize
+  useEffect(() => {
+    const checkScrollable = () => {
+      if (certContainerRef.current) {
+        setCertScrollable(
+          certContainerRef.current.scrollHeight >
+            certContainerRef.current.clientHeight
+        );
+      }
+      if (compContainerRef.current) {
+        setCompScrollable(
+          compContainerRef.current.scrollHeight >
+            compContainerRef.current.clientHeight
+        );
+      }
+      if (orgContainerRef.current) {
+        setOrgScrollable(
+          orgContainerRef.current.scrollHeight >
+            orgContainerRef.current.clientHeight
+        );
+      }
+    };
+
+    checkScrollable();
+    window.addEventListener("resize", checkScrollable);
+
+    return () => {
+      window.removeEventListener("resize", checkScrollable);
+    };
+  }, []);
+
   const skillCategories = {
     "FRONTEND FRAMEWORKS": [
       { name: "React", icon: "⚛️", color: "text-blue-400" },
@@ -56,33 +99,131 @@ export function ResumeSection() {
       icon: "🏆",
       link: "#",
     },
+    {
+      title: "2nd Place in Code Jam - GoalFund",
+      event: "Google Code Jam 2024",
+      icon: "🥈",
+      link: "#",
+    },
+    {
+      title: "Finalist in AI Challenge - SmartAssist",
+      event: "Microsoft AI Challenge 2023",
+      icon: "🤖",
+      link: "#",
+    },
+    {
+      title: "3rd Place in Backend Challenge - DataSync",
+      event: "AWS Hackathon 2023",
+      icon: "🥉",
+      link: "#",
+    },
+  ];
+
+  const organizations = [
+    {
+      period: "April 2025 - Present",
+      role: "Co-Lead Backend Engineer",
+      company: "ATC Africa",
+      link: "https://atcafrica.com",
+      description:
+        "Led a team of 5 Backend Engineers to integrate an event management system, optimizing performance and ensuring scalable architecture.",
+    },
+    {
+      period: "Jan 2024 - Feb 2025",
+      role: "Lead Fullstack Developer",
+      company: "9jaMarkets",
+      link: "https://9jamarkets.com",
+      description:
+        "Developed interactive e-commerce platforms and payment systems, improving user experience and checkout efficiency.",
+    },
+    {
+      period: "May 2022 - Feb 2023",
+      role: "Technical Operator Manager",
+      company: "Indiana Ventures",
+      link: "#",
+      description:
+        "Led a team of 2-Technical Operators and 5-Desktop Publishers, 3-Designers to deliver high-quality typesetting, editing, graphic design, and printing services without supervision, ensuring client satisfaction.",
+    },
+    {
+      period: "Jan 2022 - May 2022",
+      role: "Frontend Developer Intern",
+      company: "TechCorp Solutions",
+      link: "#",
+      description:
+        "Collaborated with senior developers to build responsive web applications using React and TypeScript.",
+    },
+    {
+      period: "Aug 2021 - Dec 2021",
+      role: "Junior Web Developer",
+      company: "StartupLab Nigeria",
+      link: "#",
+      description:
+        "Developed landing pages and basic web applications for various startup clients using HTML, CSS, and JavaScript.",
+    },
+    {
+      period: "May 2021 - Aug 2021",
+      role: "Code Instructor",
+      company: "Youth Tech Academy",
+      link: "#",
+      description:
+        "Taught programming fundamentals to high school students, focusing on Python and web development basics.",
+    },
   ];
 
   const certifications = [
     {
       title: "ADVANCED DATA MANIPULATION IN SQL",
       org: "DataCamp",
+      date: "March 2024",
       link: "https://www.datacamp.com/completed/statement-of-accomplishment/course/2b164b59ab39258db288cdaa226854c6f338d02a",
     },
     {
       title: "INTERMEDIATE SQL",
       org: "DataCamp",
+      date: "February 2024",
       link: "https://www.datacamp.com/statement-of-accomplishment/course/0c22408c4c008894f6b5cd75ea015d632e32a221?raw=1",
     },
     {
       title: "JOINING DATA IN SQL",
       org: "DataCamp",
+      date: "January 2024",
       link: "https://www.datacamp.com/statement-of-accomplishment/course/cd25065c15b57bb66d07ad38c13f842f073f3005?raw=1",
     },
     {
       title: "AUTOMATE DEVELOPMENT TASK BY USING GITHUB ACTIONS",
       org: "Microsoft",
+      date: "December 2023",
       link: "https://learn.microsoft.com/api/achievements/share/en-us/ProsperEnwerem-1949/VD2JJFEM?sharingId=FA476B06016BDDDF",
     },
     {
       title: " FUNDAMENTAL AI CONCEPTS",
       org: "Microsoft",
+      date: "November 2023",
       link: "https://learn.microsoft.com/api/achievements/share/en-us/ProsperEnwerem-1949/UYLWEHK3?sharingId=FA476B06016BDDDF",
+    },
+    {
+      title: "The Ultimate Docker Course",
+      org: "Mosh Hamedani",
+      date: "October 2023",
+      link: "#",
+    },
+    {
+      title: "The Ultimate Git Course",
+      org: "Mosh Hamedani",
+      date: "September 2023",
+      link: "#",
+    },
+    {
+      title: "Advanced Node.js",
+      org: "Udemy",
+      date: "August 2023",
+      link: "#",
+    },
+    {
+      title: "React Performance Optimization",
+      org: "Frontend Masters",
+      date: "July 2023",
+      link: "#",
     },
   ];
 
@@ -184,6 +325,65 @@ export function ResumeSection() {
               <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
                 {/* Left Column */}
                 <div className="space-y-6 lg:space-y-8">
+                  {/* Professional Summary */}
+                  <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-xl p-4 border border-purple-500/20">
+                    <h3 className="text-lg font-semibold text-white mb-3">
+                      Professional Summary
+                    </h3>
+                    <p className="text-sm text-gray-300 leading-relaxed">
+                      Experienced Backend Engineer specializing in Node.js,
+                      excelling in designing and implementing scalable
+                      server-side applications. Proficient in essential
+                      development tools like Git, caching strategies,
+                      Kubernetes, and various architectural patterns. Passionate
+                      about building systems that make the world easier and
+                      create real impact.
+                    </p>
+                  </div>
+
+                  {/* Organizations - Updated with scrollable container */}
+                  <div>
+                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
+                      Organizations
+                    </h2>
+                    <div className="relative">
+                      <div
+                        ref={orgContainerRef}
+                        className="max-h-[400px] overflow-y-auto pr-2 space-y-4 scrollbar-custom"
+                      >
+                        {organizations.map((org, idx) => (
+                          <div key={idx} className="group">
+                            <div className="text-purple-400 font-semibold mb-1">
+                              {org.period}
+                            </div>
+                            <div className="text-white font-medium mb-1">
+                              {org.role}
+                            </div>
+                            <a
+                              href={org.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-medium text-sm mb-2 transition-colors"
+                            >
+                              {org.company}
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                            <div className="text-sm text-gray-300 leading-relaxed">
+                              {org.description}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Fade-out effect at the bottom */}
+                      {orgScrollable && (
+                        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-900/90 to-transparent pointer-events-none"></div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column */}
+                <div className="space-y-6 lg:space-y-8">
                   {/* Education */}
                   <div>
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
@@ -200,110 +400,81 @@ export function ResumeSection() {
                     </div>
                   </div>
 
-                  {/* Organizations */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Organizations
-                    </h2>
-                    <div className="space-y-4">
-                      <div>
-                        <div className="text-purple-400 font-semibold mb-1">
-                          2023 - 2024
-                        </div>
-                        <div className="text-white font-medium mb-1">
-                          Lead Backend Engineer
-                        </div>
-                        <div className="text-sm text-gray-300 leading-relaxed">
-                          Led a team of 5 Backend Engineers to integrate an
-                          event management system, optimizing performance and
-                          ensuring scalable architecture.
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-purple-400 font-semibold mb-1">
-                          2022 - 2023
-                        </div>
-                        <div className="text-white font-medium mb-1">
-                          Lead Fullstack Developer
-                        </div>
-                        <div className="text-sm text-gray-300 leading-relaxed">
-                          Developed interactive e-commerce platforms and payment
-                          systems, improving user experience and checkout
-                          efficiency.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Competitions */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Competitions
-                    </h2>
-                    <div className="space-y-3">
-                      {competitions.map((comp, idx) => (
-                        <a
-                          key={idx}
-                          href={comp.link}
-                          className="block group hover:bg-gray-800/50 rounded-lg p-2 transition-colors"
-                        >
-                          <div className="flex items-start gap-2">
-                            <span className="text-lg mt-0.5">{comp.icon}</span>
-                            <div className="flex-1">
-                              <div className="text-white font-medium text-sm group-hover:text-purple-400 transition-colors flex items-center gap-1">
-                                {comp.title}
-                                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                              </div>
-                              <div className="text-gray-400 text-xs">
-                                {comp.event}
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Column */}
-                <div className="space-y-6 lg:space-y-8">
-                  {/* Professional Summary - Moved to top */}
-                  <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-xl p-4 border border-purple-500/20">
-                    <h3 className="text-lg font-semibold text-white mb-3">
-                      Professional Summary
-                    </h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      Experienced Backend Engineer specializing in Node.js,
-                      excelling in designing and implementing scalable
-                      server-side applications. Proficient in essential
-                      development tools like Git, caching strategies,
-                      Kubernetes, and various architectural patterns. Passionate
-                      about building systems that make the world easier and
-                      create real impact.
-                    </p>
-                  </div>
-
-                  {/* Certifications */}
+                  {/* Certifications - Updated with scrollable container */}
                   <div>
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
                       Certifications
                     </h2>
-                    <div className="space-y-3">
-                      {certifications.map((cert, idx) => (
-                        <a
-                          key={idx}
-                          href={cert.link}
-                          className="block group hover:bg-gray-800/50 rounded-lg p-3 transition-colors border border-gray-700/30 hover:border-purple-500/50"
-                        >
-                          <div className="text-white font-medium text-sm group-hover:text-purple-400 transition-colors flex items-center gap-1 mb-1">
-                            {cert.title}
-                            <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </div>
-                          <div className="text-emerald-400 text-xs font-medium">
-                            {cert.org}
-                          </div>
-                        </a>
-                      ))}
+                    <div className="relative">
+                      <div
+                        ref={certContainerRef}
+                        className="max-h-[280px] overflow-y-auto pr-2 space-y-3 scrollbar-custom"
+                      >
+                        {certifications.map((cert, idx) => (
+                          <a
+                            key={idx}
+                            href={cert.link}
+                            className="block group hover:bg-gray-800/50 rounded-lg p-3 transition-colors border border-gray-700/30 hover:border-purple-500/50"
+                          >
+                            <div className="text-white font-medium text-sm group-hover:text-purple-400 transition-colors flex items-center gap-1 mb-1">
+                              {cert.title}
+                              <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <div className="text-emerald-400 text-xs font-medium">
+                                {cert.org}
+                              </div>
+                              <div className="text-purple-400 text-xs font-medium">
+                                {cert.date}
+                              </div>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                      {/* Fade-out effect at the bottom */}
+                      {certScrollable && (
+                        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-900/90 to-transparent pointer-events-none"></div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Competitions - Moved under certifications with limited height */}
+                  <div>
+                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
+                      Competitions
+                    </h2>
+                    <div className="relative">
+                      <div
+                        ref={compContainerRef}
+                        className="max-h-[200px] overflow-y-auto pr-2 space-y-3 scrollbar-custom"
+                      >
+                        {competitions.map((comp, idx) => (
+                          <a
+                            key={idx}
+                            href={comp.link}
+                            className="block group hover:bg-gray-800/50 rounded-lg p-2 transition-colors"
+                          >
+                            <div className="flex items-start gap-2">
+                              <span className="text-lg mt-0.5">
+                                {comp.icon}
+                              </span>
+                              <div className="flex-1">
+                                <div className="text-white font-medium text-sm group-hover:text-purple-400 transition-colors flex items-center gap-1">
+                                  {comp.title}
+                                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </div>
+                                <div className="text-gray-400 text-xs">
+                                  {comp.event}
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                      {/* Fade-out effect at the bottom */}
+                      {compScrollable && (
+                        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-900/90 to-transparent pointer-events-none"></div>
+                      )}
                     </div>
                   </div>
                 </div>
