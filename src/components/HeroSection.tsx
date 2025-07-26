@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import SplitText from "@/components/ui/split-text";
 import { cn } from "@/lib/utils";
 
 const images = [
@@ -63,7 +64,20 @@ export function HeroSection() {
         {/* Badge */}
         <div className="mb-8 inline-flex items-center rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground">
           <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-          Prosper Coded
+          <SplitText
+            text="Prosper Coded"
+            className="font-medium text-muted-foreground"
+            splitType="chars"
+            delay={10}
+            duration={1}
+            from={{ opacity: 0, y: 20, rotateX: -90 }}
+            to={{ opacity: 1, y: 0, rotateX: 0 }}
+            ease="back.out(1.7)"
+            // The `threshold` prop in SplitText determines how much of the element must be visible in the viewport
+            // before the animation triggers. A value of 0.8 means 80% of the element should be visible before animating.
+            threshold={0.1}
+            rootMargin="0px"
+          />
         </div>
         {/* Main Heading */}
         <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
