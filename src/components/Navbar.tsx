@@ -38,21 +38,24 @@ export const Navbar = () => {
         </Link>
         <div className="hidden md:flex items-center gap-x-2">
           <div className="h-6 w-px bg-border/80" />
-          <ul className="flex items-center gap-x-2">
+          <ul
+            className="flex items-center gap-x-2"
+            onMouseLeave={() => setActiveLink(null)}
+          >
             {navLinks.map((link) => (
               <li
                 key={link.name}
                 onMouseEnter={() => setActiveLink(link.name)}
-                onMouseLeave={() => setActiveLink(null)}
                 className="relative"
               >
                 {activeLink === link.name && (
                   <motion.div
                     layoutId="active-link-indicator"
-                    className="absolute inset-0 bg-red-600/80 rounded-full"
+                    className="absolute inset-0 bg-red-600/80 rounded-full scale-125"
                     style={{
                       boxShadow: "0 0 10px 2px rgba(255, 0, 0, 0.8)",
                     }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   />
                 )}
                 <Link
