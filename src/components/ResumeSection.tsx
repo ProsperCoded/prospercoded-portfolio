@@ -213,23 +213,11 @@ export function ResumeSection() {
       date: "September 2023",
       link: "#",
     },
-    {
-      title: "Advanced Node.js",
-      org: "Udemy",
-      date: "August 2023",
-      link: "#",
-    },
-    {
-      title: "React Performance Optimization",
-      org: "Frontend Masters",
-      date: "July 2023",
-      link: "#",
-    },
   ];
 
   return (
     <section className="relative">
-      <GridBackground spacing={30} className="min-h-screen mt-[25rem]">
+      <div className="min-h-screen mt-[18rem] md:mt-[2rem]">
         {/* Decorative Glow Braces */}
         <DecorativeGlowBraces
           type="square"
@@ -274,7 +262,7 @@ export function ResumeSection() {
 
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative">
           {/* Vertical "resume" text - Desktop only */}
-          <div className="hidden lg:block absolute -left-28 xl:-left-40 top-1/2 -translate-y-1/2 z-30">
+          <div className="hidden lg:block absolute -left-20 xl:-left-20 top-1/2 -translate-y-1/2 z-30">
             <div className="transform -rotate-90 origin-center">
               <h1 className="text-6xl xl:text-7xl font-bold whitespace-nowrap">
                 <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
@@ -551,7 +539,7 @@ export function ResumeSection() {
             </div>
           </div>
         </div>
-      </GridBackground>
+      </div>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import SplitText from "@/components/ui/split-text";
+import RippleGrid from "@/components/ui/ripple-grid";
 import { cn } from "@/lib/utils";
 
 const images = [
@@ -28,14 +29,23 @@ const images = [
 export function HeroSection() {
   return (
     <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
-      {/* Grid Background */}
-      <div
-        className={cn(
-          "absolute inset-0",
-          "[background-size:20px_20px]",
-          "[background-image:linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)]"
-        )}
-      />
+      {/* Ripple Grid Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <RippleGrid
+          enableRainbow={true}
+          gridColor="#ec4899"
+          rippleIntensity={0.03}
+          gridSize={30}
+          gridThickness={10}
+          mouseInteraction={true}
+          mouseInteractionRadius={0.9}
+          opacity={0.5}
+          fadeDistance={3}
+          vignetteStrength={5}
+          glowIntensity={0.1}
+          gridRotation={0}
+        />
+      </div>
       {/* Radial gradient overlay for fade effect */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       {/* 3D Images - positioned around the hero section */}
@@ -87,10 +97,14 @@ export function HeroSection() {
           </span>
         </h1>
         {/* Subheading */}
-        <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          Hi, I'm Prosper — a Fullstack Software Engineer with 3+ years of
-          experience, specializing in Node.js and building systems that solve
-          real-world problems
+        <p className="mx-auto mb-8 max-w-2xl text-base text-zinc-100 md:text-xl relative">
+          <span className="relative text-shadow-2xl z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
+            Hi, I'm Prosper a Fullstack Software Engineer with 3+ years of
+            experience, specializing in Node.js and building systems that solve
+            real-world problems
+          </span>
+          {/* Subtle background blur for better readability */}
+          <span className="absolute inset-0 -z-10 bg-black/20 backdrop-blur-[2px] rounded-lg"></span>
         </p>
         {/* CTA Button */}
         <div className="flex justify-center">
