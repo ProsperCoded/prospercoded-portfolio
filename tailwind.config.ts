@@ -71,32 +71,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    function ({ addUtilities }: { addUtilities: any }) {
-      const newUtilities = {
-        ".scrollbar-custom": {
-          /* WebKit browsers */
-          "&::-webkit-scrollbar": {
-            width: "6px",
-          },
-          "&::-webkit-scrollbar-track": {
-            background: "transparent",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            background: "rgba(107, 114, 128, 0.5)",
-            borderRadius: "3px",
-          },
-          "&::-webkit-scrollbar-thumb:hover": {
-            background: "rgba(107, 114, 128, 0.7)",
-          },
-          /* Firefox */
-          scrollbarWidth: "thin",
-          scrollbarColor: "rgba(107, 114, 128, 0.5) transparent",
-        },
-      };
-      addUtilities(newUtilities);
-    },
-  ],
+  plugins: [],
 };
 
 export default config;

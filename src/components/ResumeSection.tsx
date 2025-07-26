@@ -349,7 +349,7 @@ export function ResumeSection() {
                     <div className="relative">
                       <div
                         ref={orgContainerRef}
-                        className="max-h-[400px] overflow-y-auto pr-2 space-y-4 scrollbar-custom"
+                        className="max-h-[400px] overflow-y-auto pr-2 space-y-4 custom-scrollbar"
                       >
                         {organizations.map((org, idx) => (
                           <div key={idx} className="group">
@@ -408,7 +408,7 @@ export function ResumeSection() {
                     <div className="relative">
                       <div
                         ref={certContainerRef}
-                        className="max-h-[280px] overflow-y-auto pr-2 space-y-3 scrollbar-custom"
+                        className="max-h-[280px] overflow-y-auto pr-2 space-y-3 custom-scrollbar"
                       >
                         {certifications.map((cert, idx) => (
                           <a
@@ -446,7 +446,7 @@ export function ResumeSection() {
                     <div className="relative">
                       <div
                         ref={compContainerRef}
-                        className="max-h-[200px] overflow-y-auto pr-2 space-y-3 scrollbar-custom"
+                        className="max-h-[200px] overflow-y-auto pr-2 space-y-3 custom-scrollbar"
                       >
                         {competitions.map((comp, idx) => (
                           <a
