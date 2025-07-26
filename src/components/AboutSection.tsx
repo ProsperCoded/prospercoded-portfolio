@@ -231,7 +231,7 @@ export function AboutSection() {
                     className="w-8 h-8 sm:w-5 sm:h-5 flex-shrink-0"
                   />
                   <span className="font-medium hidden sm:block">
-                    ProsperCoded
+                    leetcode.com/u/prospercoded
                   </span>
                 </a>
                 {/* GitHub: full width on desktop, regular grid item on mobile */}
