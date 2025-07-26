@@ -341,7 +341,7 @@ export function ResumeSection() {
                     </p>
                   </div>
 
-                  {/* Organizations - Updated with scrollable container */}
+                  {/* Organizations - Updated with new scroll effects */}
                   <div>
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
                       Organizations
@@ -349,7 +349,8 @@ export function ResumeSection() {
                     <div className="relative">
                       <div
                         ref={orgContainerRef}
-                        className="max-h-[400px] overflow-y-auto pr-2 space-y-4 custom-scrollbar"
+                        className="max-h-[400px] overflow-y-auto pr-2 space-y-4 custom-scrollbar masked-overflow"
+                        style={{ paddingBottom: "24px" }}
                       >
                         {organizations.map((org, idx) => (
                           <div key={idx} className="group">
@@ -374,9 +375,19 @@ export function ResumeSection() {
                           </div>
                         ))}
                       </div>
-                      {/* Fade-out effect at the bottom */}
+                      {/* Enhanced visual indicators */}
                       {orgScrollable && (
-                        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-900/90 to-transparent pointer-events-none"></div>
+                        <>
+                          <div className="gradient-fade-overlay"></div>
+                          <div className="scroll-indicator scroll-indicator-organizations">
+                            <div className="scroll-dots">
+                              <div className="scroll-dot"></div>
+                              <div className="scroll-dot"></div>
+                              <div className="scroll-dot"></div>
+                            </div>
+                            <div className="scroll-chevron"></div>
+                          </div>
+                        </>
                       )}
                     </div>
                   </div>
@@ -400,7 +411,7 @@ export function ResumeSection() {
                     </div>
                   </div>
 
-                  {/* Certifications - Updated with scrollable container */}
+                  {/* Certifications - Updated with new scroll effects */}
                   <div>
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
                       Certifications
@@ -408,7 +419,8 @@ export function ResumeSection() {
                     <div className="relative">
                       <div
                         ref={certContainerRef}
-                        className="max-h-[280px] overflow-y-auto pr-2 space-y-3 custom-scrollbar"
+                        className="max-h-[280px] overflow-y-auto pr-2 space-y-3 custom-scrollbar masked-overflow"
+                        style={{ paddingBottom: "24px" }}
                       >
                         {certifications.map((cert, idx) => (
                           <a
@@ -431,14 +443,19 @@ export function ResumeSection() {
                           </a>
                         ))}
                       </div>
-                      {/* Fade-out effect at the bottom */}
+                      {/* Enhanced visual indicators */}
                       {certScrollable && (
-                        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-900/90 to-transparent pointer-events-none"></div>
+                        <>
+                          <div className="gradient-fade-overlay"></div>
+                          <div className="scroll-indicator scroll-indicator-certifications">
+                            <div className="scroll-progress"></div>
+                          </div>
+                        </>
                       )}
                     </div>
                   </div>
 
-                  {/* Competitions - Moved under certifications with limited height */}
+                  {/* Competitions - Updated with new scroll effects */}
                   <div>
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
                       Competitions
@@ -446,7 +463,8 @@ export function ResumeSection() {
                     <div className="relative">
                       <div
                         ref={compContainerRef}
-                        className="max-h-[200px] overflow-y-auto pr-2 space-y-3 custom-scrollbar"
+                        className="max-h-[200px] overflow-y-auto pr-2 space-y-3 custom-scrollbar masked-overflow"
+                        style={{ paddingBottom: "24px" }}
                       >
                         {competitions.map((comp, idx) => (
                           <a
@@ -471,9 +489,18 @@ export function ResumeSection() {
                           </a>
                         ))}
                       </div>
-                      {/* Fade-out effect at the bottom */}
+                      {/* Enhanced visual indicators */}
                       {compScrollable && (
-                        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-900/90 to-transparent pointer-events-none"></div>
+                        <>
+                          <div className="gradient-fade-overlay"></div>
+                          <div className="scroll-indicator scroll-indicator-competitions">
+                            <div className="scroll-dots">
+                              <div className="scroll-dot"></div>
+                              <div className="scroll-dot"></div>
+                            </div>
+                            <div className="scroll-chevron"></div>
+                          </div>
+                        </>
                       )}
                     </div>
                   </div>
