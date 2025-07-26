@@ -54,6 +54,7 @@ const config: Config = {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-up": "slideUp 0.3s ease-out",
         "rainbow-pulse": "rainbow-pulse 2s ease-in-out infinite",
+        gradient: "gradient 8s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -67,6 +68,11 @@ const config: Config = {
         "rainbow-pulse": {
           "0%, 100%": { transform: "scale(1)", opacity: "0.75" },
           "50%": { transform: "scale(1.05)", opacity: "1" },
+        },
+        gradient: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
         },
       },
     },
