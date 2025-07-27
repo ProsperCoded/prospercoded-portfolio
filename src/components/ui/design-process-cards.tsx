@@ -3,25 +3,45 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
-import { Lightbulb, Code, Rocket } from "lucide-react";
+import { Lightbulb, Code, Rocket, MousePointer2 } from "lucide-react";
 
 const Card = ({
   title,
+  label,
   description,
   icon,
   children,
 }: {
   title: string;
+  label: string;
   description: string;
   icon: React.ReactNode;
   children?: React.ReactNode;
 }) => {
   const [hovered, setHovered] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="border border-border/20 group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-sm w-full mx-auto p-6 relative h-[300px] rounded-xl bg-card/30 backdrop-blur-sm hover:border-primary/30 transition-all duration-300"
+      onMouseEnter={() => !isMobile && setHovered(true)}
+      onMouseLeave={() => !isMobile && setHovered(false)}
+      onClick={() => isMobile && setHovered(!hovered)}
+      className={`border border-border/20 group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-sm w-full mx-auto p-6 relative h-[280px] lg:h-[300px] rounded-xl bg-card/30 backdrop-blur-sm transition-all duration-300 cursor-pointer lg:cursor-default ${
+        hovered
+          ? "border-primary/50 shadow-lg shadow-primary/10"
+          : "hover:border-primary/30"
+      }`}
     >
       {/* Corner decorations */}
       <Icon className="absolute h-4 w-4 -top-2 -left-2 text-primary/60" />
@@ -43,15 +63,52 @@ const Card = ({
       </AnimatePresence>
 
       <div className="relative z-20 text-center">
-        <div className="group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0 transition duration-200 w-full mx-auto flex items-center justify-center">
+        {/* Default state - always visible */}
+        <div
+          className={`transition duration-200 w-full mx-auto flex flex-col items-center justify-center ${
+            hovered ? "-translate-y-4 opacity-0" : ""
+          }`}
+        >
           {icon}
+          <h3 className="text-lg font-bold text-foreground mt-3 mb-1">
+            {label}
+          </h3>
+          <p className="text-xs text-muted-foreground/80">{title}</p>
+          {/* Hover indicator for desktop */}
+          {!isMobile && (
+            <div className="flex items-center gap-1 mt-2 text-xs text-muted-foreground/60 opacity-60 group-hover/canvas-card:opacity-100 transition-opacity duration-200">
+              <MousePointer2 className="h-3 w-3" />
+              <span>Hover to explore</span>
+            </div>
+          )}
+          {/* Tap indicator for mobile */}
+          {isMobile && (
+            <div className="flex items-center gap-1 mt-2 text-xs text-muted-foreground/60">
+              <div className="w-3 h-3 rounded-full border border-current flex items-center justify-center">
+                <div className="w-1 h-1 rounded-full bg-current"></div>
+              </div>
+              <span>Tap to explore</span>
+            </div>
+          )}
         </div>
-        <h3 className="dark:text-white text-xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-foreground mt-4 font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
-          {title}
-        </h3>
-        <p className="dark:text-white/80 text-sm opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-muted-foreground mt-2 group-hover/canvas-card:text-white/80 group-hover/canvas-card:-translate-y-1 transition duration-200 leading-relaxed">
-          {description}
-        </p>
+
+        {/* Hover state content */}
+        <div
+          className={`absolute inset-0 flex flex-col items-center justify-center transition duration-200 px-6 py-8 ${
+            hovered
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-2 pointer-events-none"
+          }`}
+        >
+          <h3 className="text-white text-xl font-bold mb-4">{label}</h3>
+          <p className="text-white/90 text-sm leading-relaxed text-center min-w-xs">
+            {description}
+          </p>
+          {/* Close indicator for mobile */}
+          {isMobile && hovered && (
+            <div className="mt-4 text-xs text-white/70">Tap again to close</div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -84,10 +141,14 @@ export const DesignProcessCards = () => {
           From ideation to deployment, here's how I approach building innovative
           solutions
         </p>
+        <p className="text-xs text-muted-foreground/70 mt-3 lg:hidden">
+          Tap cards to explore each phase
+        </p>
       </div>
 
       <div className="flex flex-col lg:flex-row items-center justify-center gap-6 max-w-6xl mx-auto">
         <Card
+          label="Plan"
           title="Planning & Strategy"
           description="I start by understanding the problem, researching user needs, and mapping out technical requirements to build a solid foundation."
           icon={
@@ -106,6 +167,7 @@ export const DesignProcessCards = () => {
         </Card>
 
         <Card
+          label="Execute"
           title="Development & Testing"
           description="With a clear plan, I code iteratively, implement features with clean architecture, and ensure robust testing throughout the process."
           icon={
@@ -125,6 +187,7 @@ export const DesignProcessCards = () => {
         </Card>
 
         <Card
+          label="Deploy"
           title="Deploy & Optimize"
           description="Finally, I deploy with confidence, monitor performance, gather feedback, and continuously optimize for better user experience."
           icon={
