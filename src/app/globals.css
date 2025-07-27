@@ -1,6 +1,31 @@
 @import "tailwindcss";
 
 :root {
+  --halomot-button-background: #fff;
+  --halomot-button-foreground: #0a0a0a;
+  --project-showcase-name-color: #0a0a0a;
+  --project-showcase-position-color: #454545;
+  --project-showcase-testimony-color: #171717;
+  --project-showcase-name-size: 28px;
+  --project-showcase-position-size: 20px;
+  --project-showcase-testimony-size: 20px;
+  --project-showcase-name-top: 0;
+  --project-showcase-name-bottom: 10px;
+  --project-showcase-position-top: 0;
+  --project-showcase-position-bottom: 0.5em;
+  --project-showcase-testimony-top: 1.24em;
+  --project-showcase-testimony-bottom: 1em;
+  --project-showcase-line-height: 1.56;
+  --project-showcase-button-gradient: linear-gradient(
+    to right,
+    #603dec,
+    #a123f4
+  );
+  --project-showcase-button-background: #eee;
+  --project-showcase-button-text-color: #111;
+  --project-showcase-button-outer-radius: 16.2px;
+  --project-showcase-button-inner-radius: 15px;
+  --project-showcase-button-hover-text-color: #fff;
   --background: 0 0% 100%;
   --foreground: 240 10% 3.9%;
   --card: 0 0% 100%;
@@ -24,32 +49,33 @@
   --pink: 330, 100%, 50%;
 }
 
-@theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --radius: var(--radius);
-  --color-pink: hsl(var(--pink));
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
+    --halomot-button-background: #0a0a0a;
+    --halomot-button-foreground: #fff;
+    --project-showcase-name-color: #fff;
+    --project-showcase-position-color: #aaa;
+    --project-showcase-testimony-color: #eee;
+    --project-showcase-name-size: 28px;
+    --project-showcase-position-size: 20px;
+    --project-showcase-testimony-size: 20px;
+    --project-showcase-name-top: 0;
+    --project-showcase-name-bottom: 10px;
+    --project-showcase-position-top: 0;
+    --project-showcase-position-bottom: 0.5em;
+    --project-showcase-testimony-top: 1.24em;
+    --project-showcase-testimony-bottom: 1em;
+    --project-showcase-line-height: 1.56;
+    --project-showcase-button-gradient: linear-gradient(
+      to right,
+      #603dec,
+      #a123f4
+    );
+    --project-showcase-button-background: #161616;
+    --project-showcase-button-text-color: #fff;
+    --project-showcase-button-outer-radius: 6.34px;
+    --project-showcase-button-inner-radius: 6px;
+    --project-showcase-button-hover-text-color: #fff;
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
