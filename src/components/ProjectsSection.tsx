@@ -4,6 +4,7 @@ import { ProjectShowcase } from "./ui/project-showcase";
 import { Code, Braces } from "lucide-react";
 import GridBackground from "@/components/ui/grid-background";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
+import { DesignProcessCards } from "@/components/ui/design-process-cards";
 
 function openInNewTab(link: string) {
   window.open(link, "_blank", "noopener,noreferrer");
@@ -114,6 +115,9 @@ export const ProjectsSection = () => {
             </div>
           </div>
 
+          {/* Design Process Cards */}
+          <DesignProcessCards />
+
           <div className="max-w-6xl mx-auto relative">
             {/* Subtle glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-pink/5 rounded-3xl blur-3xl -z-10"></div>
@@ -165,17 +169,6 @@ export const ProjectsSection = () => {
                   openWebAppButton: "View Project",
                 }}
               />
-            </div>
-
-            {/* Bottom accent */}
-            <div className="flex justify-center mt-8">
-              <div className="flex items-center gap-2 text-muted-foreground/50">
-                <div className="text-xs">[</div>
-                <div className="text-xs font-mono tracking-wider">
-                  interactive_showcase
-                </div>
-                <div className="text-xs">]</div>
-              </div>
             </div>
           </div>
         </div>

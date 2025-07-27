@@ -42,3 +42,5 @@ This document outlines the core context and design principles for the Fullstack 
 As you generate content, you can insert dumy data, i'll enter the accurate information later.
 
 Most important, please implement mobile friendly implementations for everything you are doing, ensure that all designs still have a good mobile version that is pleasing
+
+Also important this project uses pnpm, always install packages with pnpm

@@ -26,10 +26,12 @@ export default function GridBackground({
         )}
         style={{
           backgroundSize: `${spacing}px ${spacing}px`,
+          maskImage:
+            "radial-gradient(circle at center, black 0%, black 40%, transparent 80%)",
+          WebkitMaskImage:
+            "radial-gradient(circle at center, black 0%, black 40%, transparent 80%)",
         }}
       />
-      {/* Radial gradient for the container to give a faded look */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       {children && <div className="relative z-10">{children}</div>}
     </div>
   );
