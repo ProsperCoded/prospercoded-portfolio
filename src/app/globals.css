@@ -1,6 +1,8 @@
-@import "tailwindcss";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-:root {
+/* :root {
   --halomot-button-background: #fff;
   --halomot-button-foreground: #0a0a0a;
   --project-showcase-name-color: #0a0a0a;
@@ -47,57 +49,57 @@
   --ring: 354, 100%, 50%;
   --radius: 0.5rem;
   --pink: 330, 100%, 50%;
-}
+} */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --halomot-button-background: #0a0a0a;
-    --halomot-button-foreground: #fff;
-    --project-showcase-name-color: #fff;
-    --project-showcase-position-color: #aaa;
-    --project-showcase-testimony-color: #eee;
-    --project-showcase-name-size: 28px;
-    --project-showcase-position-size: 20px;
-    --project-showcase-testimony-size: 20px;
-    --project-showcase-name-top: 0;
-    --project-showcase-name-bottom: 10px;
-    --project-showcase-position-top: 0;
-    --project-showcase-position-bottom: 0.5em;
-    --project-showcase-testimony-top: 1.24em;
-    --project-showcase-testimony-bottom: 1em;
-    --project-showcase-line-height: 1.56;
-    --project-showcase-button-gradient: linear-gradient(
-      to right,
-      #603dec,
-      #a123f4
-    );
-    --project-showcase-button-background: #161616;
-    --project-showcase-button-text-color: #fff;
-    --project-showcase-button-outer-radius: 6.34px;
-    --project-showcase-button-inner-radius: 6px;
-    --project-showcase-button-hover-text-color: #fff;
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 354, 100%, 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0, 100%, 50%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 354, 100%, 50%;
-    --pink: 330, 100%, 50%;
-  }
+/* @media (prefers-color-scheme: dark) { */
+:root {
+  --halomot-button-background: #0a0a0a;
+  --halomot-button-foreground: #fff;
+  --project-showcase-name-color: #fff;
+  --project-showcase-position-color: #aaa;
+  --project-showcase-testimony-color: #eee;
+  --project-showcase-name-size: 28px;
+  --project-showcase-position-size: 20px;
+  --project-showcase-testimony-size: 20px;
+  --project-showcase-name-top: 0;
+  --project-showcase-name-bottom: 10px;
+  --project-showcase-position-top: 0;
+  --project-showcase-position-bottom: 0.5em;
+  --project-showcase-testimony-top: 1.24em;
+  --project-showcase-testimony-bottom: 1em;
+  --project-showcase-line-height: 1.56;
+  --project-showcase-button-gradient: linear-gradient(
+    to right,
+    #603dec,
+    #a123f4
+  );
+  --project-showcase-button-background: #161616;
+  --project-showcase-button-text-color: #fff;
+  --project-showcase-button-outer-radius: 6.34px;
+  --project-showcase-button-inner-radius: 6px;
+  --project-showcase-button-hover-text-color: #fff;
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 354, 100%, 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0, 100%, 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 354, 100%, 50%;
+  --pink: 330, 100%, 50%;
 }
+/* } */
 
 * {
   border-color: hsl(var(--border));
