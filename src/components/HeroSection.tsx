@@ -90,14 +90,14 @@ export function HeroSection() {
           />
         </div>
         {/* Main Heading */}
-        <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl font-sans">
           Powering Innovations through{" "}
           <span className="bg-gradient-to-r from-primary via-pink-500 to-primary bg-clip-text text-transparent">
             Scalable Solutions
           </span>
         </h1>
         {/* Subheading */}
-        <p className="mx-auto mb-8 max-w-2xl text-base text-zinc-100 md:text-xl relative">
+        <p className="mx-auto mb-8 max-w-2xl text-base text-zinc-100 md:text-xl relative font-sans">
           <span className="relative text-shadow-2xl z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
             Hi, I'm Prosper a Fullstack Software Engineer with 3+ years of
             experience, specializing in Node.js and building systems that solve

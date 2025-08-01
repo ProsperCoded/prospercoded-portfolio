@@ -63,7 +63,7 @@ export const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="relative">
+    <section id="projects" className="relative md:mt-[4rem]">
       <GridBackground spacing={20}>
         {/* Decorative Background Elements */}
 
@@ -97,8 +97,8 @@ export const ProjectsSection = () => {
           className="bottom-20 right-20 hidden sm:block"
         />
 
-        <div className="container mx-auto px-4 py-20 overflow-hidden">
-          <div className="text-center mb-16 relative">
+        <div className="min-w-[70vw] mx-auto px-4 py-10 overflow-hidden">
+          <div className="text-center mb-8 relative">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-pink to-primary bg-clip-text text-transparent">
               Featured Projects
             </h2>
@@ -117,62 +117,61 @@ export const ProjectsSection = () => {
 
           {/* Design Process Cards */}
           <DesignProcessCards />
-
-          <div className="max-w-6xl mx-auto relative">
-            {/* Subtle glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-pink/5 rounded-3xl blur-3xl -z-10"></div>
-
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-8">
-              <ProjectShowcase
-                testimonials={projects}
-                colors={{
-                  name: "var(--project-showcase-name-color)",
-                  position: "var(--project-showcase-position-color)",
-                  testimony: "var(--project-showcase-testimony-color)",
-                }}
-                fontSizes={{
-                  name: "var(--project-showcase-name-size)",
-                  position: "var(--project-showcase-position-size)",
-                  testimony: "var(--project-showcase-testimony-size)",
-                }}
-                spacing={{
-                  nameTop: "var(--project-showcase-name-top)",
-                  nameBottom: "var(--project-showcase-name-bottom)",
-                  positionTop: "var(--project-showcase-position-top)",
-                  positionBottom: "var(--project-showcase-position-bottom)",
-                  testimonyTop: "var(--project-showcase-testimony-top)",
-                  testimonyBottom: "var(--project-showcase-testimony-bottom)",
-                  lineHeight: "var(--project-showcase-line-height)",
-                }}
-                halomotButtonGradient="var(--project-showcase-button-gradient)"
-                halomotButtonBackground="var(--project-showcase-button-background)"
-                halomotButtonTextColor="var(--project-showcase-button-text-color)"
-                halomotButtonOuterBorderRadius="var(--project-showcase-button-outer-radius)"
-                halomotButtonInnerBorderRadius="var(--project-showcase-button-inner-radius)"
-                halomotButtonHoverTextColor="var(--project-showcase-button-hover-text-color)"
-                onItemClick={openInNewTab}
-                autoplay={true}
-                mobile={{
-                  fontSizes: {
-                    name: "24px",
-                    position: "16px",
-                    testimony: "18px",
-                  },
-                  spacing: {
-                    testimonyTop: "1em",
-                    testimonyBottom: "1.5em",
-                  },
-                }}
-                buttonInscriptions={{
-                  previousButton: "Previous",
-                  nextButton: "Next",
-                  openWebAppButton: "View Project",
-                }}
-              />
-            </div>
-          </div>
         </div>
       </GridBackground>
+      <div className="max-w-6xl mx-auto relative">
+        {/* Subtle glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-pink/5 rounded-3xl blur-3xl -z-10"></div>
+
+        <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-8">
+          <ProjectShowcase
+            testimonials={projects}
+            colors={{
+              name: "var(--project-showcase-name-color)",
+              position: "var(--project-showcase-position-color)",
+              testimony: "var(--project-showcase-testimony-color)",
+            }}
+            fontSizes={{
+              name: "var(--project-showcase-name-size)",
+              position: "var(--project-showcase-position-size)",
+              testimony: "var(--project-showcase-testimony-size)",
+            }}
+            spacing={{
+              nameTop: "var(--project-showcase-name-top)",
+              nameBottom: "var(--project-showcase-name-bottom)",
+              positionTop: "var(--project-showcase-position-top)",
+              positionBottom: "var(--project-showcase-position-bottom)",
+              testimonyTop: "var(--project-showcase-testimony-top)",
+              testimonyBottom: "var(--project-showcase-testimony-bottom)",
+              lineHeight: "var(--project-showcase-line-height)",
+            }}
+            halomotButtonGradient="var(--project-showcase-button-gradient)"
+            halomotButtonBackground="var(--project-showcase-button-background)"
+            halomotButtonTextColor="var(--project-showcase-button-text-color)"
+            halomotButtonOuterBorderRadius="var(--project-showcase-button-outer-radius)"
+            halomotButtonInnerBorderRadius="var(--project-showcase-button-inner-radius)"
+            halomotButtonHoverTextColor="var(--project-showcase-button-hover-text-color)"
+            onItemClick={openInNewTab}
+            autoplay={true}
+            mobile={{
+              fontSizes: {
+                name: "24px",
+                position: "16px",
+                testimony: "18px",
+              },
+              spacing: {
+                testimonyTop: "1em",
+                testimonyBottom: "1.5em",
+              },
+            }}
+            buttonInscriptions={{
+              previousButton: "Previous",
+              nextButton: "Next",
+              openWebAppButton: "View Project",
+            }}
+          />
+        </div>
+      </div>
     </section>
   );
 };

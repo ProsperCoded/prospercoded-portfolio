@@ -101,7 +101,7 @@ const Card = ({
           }`}
         >
           <h3 className="text-white text-xl font-bold mb-4">{label}</h3>
-          <p className="text-white/90 text-sm leading-relaxed text-center min-w-xs">
+          <p className="text-white/90 text-sm font-sansSerif leading-relaxed text-center min-w-[12rem]">
             {description}
           </p>
           {/* Close indicator for mobile */}

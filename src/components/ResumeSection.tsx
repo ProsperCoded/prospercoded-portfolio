@@ -260,7 +260,7 @@ export function ResumeSection() {
           className="bottom-16 right-24 hidden lg:block"
         />
 
-        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative">
+        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative font-sansSerif">
           {/* Vertical "resume" text - Desktop only */}
           <div className="hidden lg:block absolute -left-20 xl:-left-20 top-1/2 -translate-y-1/2 z-30">
             <div className="transform -rotate-90 origin-center">

@@ -47,8 +47,16 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["var(--font-titillium-web)", "system-ui", "sans-serif"],
+        sans: [
+          "var(--font-titillium-web)",
+          "var(--font-geist-sans)",
+          "system-ui",
+          "sans-serif",
+        ],
+        geist: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        sansSerif: ["sans-serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
+        titillium: ["var(--font-titillium-web)", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
@@ -79,4 +87,3 @@ export default {
   },
   plugins: [],
 } satisfies Config;
-

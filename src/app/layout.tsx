@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Prosper Enwerem Tochukwu - Fullstack Software Engineer Portfolio",
+  title: "Prosper Enwerem Tochukwu - Backend Software Engineer Portfolio",
   description:
     "Prosper Enwerem Tochukwu's portfolio showcasing fullstack software engineering projects, Node.js expertise, and real-world solutions at University of Ibadan.",
 };
@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${titilliumWeb.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${titilliumWeb.variable} antialiased font-sans`}
       >
         {children}
       </body>
