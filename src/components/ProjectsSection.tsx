@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { ProjectShowcase } from "./ui/project-showcase";
 import { projects as projectsData } from "@/data/ProjectsData";
 import GridBackground from "@/components/ui/grid-background";
@@ -113,6 +114,32 @@ export const ProjectsSection = () => {
                 openWebAppButton: "View Project",
               }}
             />
+          </div>
+
+          {/* View More Button */}
+          <div className="flex justify-center mt-8">
+            <Link
+              href="/projects"
+              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 ease-out bg-gradient-to-r from-primary via-pink to-primary bg-size-200 bg-pos-0 hover:bg-pos-100 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1"
+            >
+              <span className="relative z-10">View All Projects</span>
+              <svg
+                className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-pink/20 to-primary/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary via-pink to-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </Link>
           </div>
         </div>
       </div>

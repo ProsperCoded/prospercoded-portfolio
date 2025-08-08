@@ -37,6 +37,8 @@ This document outlines the core context and design principles for the Fullstack 
 
 - **Animation:** Integrate animation libraries (e.g., `Framer Motion`, `GSAP`) for engaging transitions and interactive elements.
 
+- **Icons:** You can use lucide icons and react-icons, use preferably react-icons to keep things unique
+
 - **MCP:** For the frontend designs, make it outstaunishing by making use of 21st dev MCP and Magic UI MCP, to fetch components and designs to use in this project, even without me asking. when designing interface don't make it simple or dull,m make it very intreasting to use.
 
 As you generate content, you can insert dumy data, i'll enter the accurate information later.
