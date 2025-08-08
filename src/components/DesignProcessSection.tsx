@@ -7,7 +7,7 @@ import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
 export const DesignProcessSection = () => {
   return (
     <section id="design-process" className="relative">
-      <GridBackground spacing={20}>
+      <GridBackground spacing={20} compact={true}>
         {/* Decorative Background Elements */}
         <DecorativeGlowBraces
           type="square"
@@ -39,7 +39,7 @@ export const DesignProcessSection = () => {
           className="bottom-20 right-20 hidden sm:block"
         />
 
-        <div className="min-w-[70vw] mx-auto px-4 py-10 overflow-hidden">
+        <div className="min-w-[70vw] mx-auto px-4 py-6 overflow-hidden">
           <DesignProcessCards />
         </div>
       </GridBackground>

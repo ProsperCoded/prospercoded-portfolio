@@ -5,17 +5,20 @@ type GridBackgroundProps = {
   spacing?: number;
   className?: string;
   children?: React.ReactNode;
+  compact?: boolean; // New prop to control height and padding
 };
 
 export default function GridBackground({
   spacing = 20,
   className = "",
   children,
+  compact = false,
 }: GridBackgroundProps) {
   return (
     <div
       className={cn(
-        "relative flex h-screen w-full items-center justify-center bg-background",
+        "relative flex w-full items-center justify-center bg-background",
+        compact ? "min-h-fit py-16" : "h-screen",
         className
       )}
     >
