@@ -3,6 +3,7 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 import SplitText from "@/components/ui/split-text";
 import RippleGrid from "@/components/ui/ripple-grid";
 import { cn } from "@/lib/utils";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 
 const images = [
   {

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ProjectShowcase } from "./ui/project-showcase";
-import { Code, Braces } from "lucide-react";
+import { projects as projectsData } from "@/data/ProjectsData";
 import GridBackground from "@/components/ui/grid-background";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
 import { DesignProcessCards } from "@/components/ui/design-process-cards";
@@ -11,56 +11,7 @@ function openInNewTab(link: string) {
 }
 
 export const ProjectsSection = () => {
-  const projects = [
-    {
-      name: "UniNav",
-      quote:
-        "A university-wide platform that helps students access and share study materials in an organized, scalable way. Built with Node.js backend and modern frontend technologies to solve real campus challenges.",
-      designation: "Full Stack Project",
-      src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-      link: "https://github.com/prospercoded/uninav",
-    },
-    {
-      name: "MedMap",
-      quote:
-        "A healthcare platform designed to help users locate nearby medical facilities and services. Features real-time data integration and user-friendly interface for emergency and routine medical needs.",
-      designation: "Healthcare Platform",
-      src: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
-      link: "https://github.com/prospercoded/medmap",
-    },
-    {
-      name: "GoalFund",
-      quote:
-        "A crowdfunding platform that connects goal-oriented individuals with supporters. Features secure payment integration, real-time progress tracking, and transparency-focused design.",
-      designation: "Fintech Platform",
-      src: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-      link: "https://github.com/prospercoded/goalfund",
-    },
-    {
-      name: "Party Currency",
-      quote:
-        "An innovative event management and payment system that streamlines party planning and expense tracking. Built with modern technologies to handle real-time transactions and event coordination.",
-      designation: "Event Management System",
-      src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop",
-      link: "https://github.com/prospercoded/party-currency",
-    },
-    {
-      name: "Faculty Payment System",
-      quote:
-        "A comprehensive payment system developed for university faculty operations. Solves real-world logistical challenges on campus with secure transaction processing and administrative features.",
-      designation: "Educational Platform",
-      src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop",
-      link: "https://github.com/prospercoded/faculty-payment",
-    },
-    {
-      name: "ATC Africa Integration",
-      quote:
-        "Led a team of 5 Backend Engineers to integrate an event management system on the official ATC Africa site. Focused on scalability, performance optimization, and seamless user experience.",
-      designation: "Team Leadership Project",
-      src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop",
-      link: "https://atcafrica.com",
-    },
-  ];
+  const projects = projectsData;
 
   return (
     <section id="projects" className="relative md:mt-[4rem]">
@@ -98,8 +49,14 @@ export const ProjectsSection = () => {
         />
 
         <div className="min-w-[70vw] mx-auto px-4 py-10 overflow-hidden">
-          <div className="text-center mb-8 relative">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-pink to-primary bg-clip-text text-transparent">
+          {/* Design Process Cards */}
+          <DesignProcessCards />
+        </div>
+      </GridBackground>
+      <div>
+        <div className="max-w-6xl mx-auto relative">
+          <div className="text-center mb-4 relative">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-pink to-primary bg-clip-text text-transparent">
               Featured Projects
             </h2>
 
@@ -115,61 +72,57 @@ export const ProjectsSection = () => {
             </div>
           </div>
 
-          {/* Design Process Cards */}
-          <DesignProcessCards />
-        </div>
-      </GridBackground>
-      <div className="max-w-6xl mx-auto relative">
-        {/* Subtle glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-pink/5 rounded-3xl blur-3xl -z-10"></div>
+          {/* Subtle glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-pink/5 rounded-3xl blur-3xl -z-10"></div>
 
-        <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-8">
-          <ProjectShowcase
-            testimonials={projects}
-            colors={{
-              name: "var(--project-showcase-name-color)",
-              position: "var(--project-showcase-position-color)",
-              testimony: "var(--project-showcase-testimony-color)",
-            }}
-            fontSizes={{
-              name: "var(--project-showcase-name-size)",
-              position: "var(--project-showcase-position-size)",
-              testimony: "var(--project-showcase-testimony-size)",
-            }}
-            spacing={{
-              nameTop: "var(--project-showcase-name-top)",
-              nameBottom: "var(--project-showcase-name-bottom)",
-              positionTop: "var(--project-showcase-position-top)",
-              positionBottom: "var(--project-showcase-position-bottom)",
-              testimonyTop: "var(--project-showcase-testimony-top)",
-              testimonyBottom: "var(--project-showcase-testimony-bottom)",
-              lineHeight: "var(--project-showcase-line-height)",
-            }}
-            halomotButtonGradient="var(--project-showcase-button-gradient)"
-            halomotButtonBackground="var(--project-showcase-button-background)"
-            halomotButtonTextColor="var(--project-showcase-button-text-color)"
-            halomotButtonOuterBorderRadius="var(--project-showcase-button-outer-radius)"
-            halomotButtonInnerBorderRadius="var(--project-showcase-button-inner-radius)"
-            halomotButtonHoverTextColor="var(--project-showcase-button-hover-text-color)"
-            onItemClick={openInNewTab}
-            autoplay={true}
-            mobile={{
-              fontSizes: {
-                name: "24px",
-                position: "16px",
-                testimony: "18px",
-              },
-              spacing: {
-                testimonyTop: "1em",
-                testimonyBottom: "1.5em",
-              },
-            }}
-            buttonInscriptions={{
-              previousButton: "Previous",
-              nextButton: "Next",
-              openWebAppButton: "View Project",
-            }}
-          />
+          <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-8">
+            <ProjectShowcase
+              testimonials={projects}
+              colors={{
+                name: "var(--project-showcase-name-color)",
+                position: "var(--project-showcase-position-color)",
+                testimony: "var(--project-showcase-testimony-color)",
+              }}
+              fontSizes={{
+                name: "var(--project-showcase-name-size)",
+                position: "var(--project-showcase-position-size)",
+                testimony: "var(--project-showcase-testimony-size)",
+              }}
+              spacing={{
+                nameTop: "var(--project-showcase-name-top)",
+                nameBottom: "var(--project-showcase-name-bottom)",
+                positionTop: "var(--project-showcase-position-top)",
+                positionBottom: "var(--project-showcase-position-bottom)",
+                testimonyTop: "var(--project-showcase-testimony-top)",
+                testimonyBottom: "var(--project-showcase-testimony-bottom)",
+                lineHeight: "var(--project-showcase-line-height)",
+              }}
+              halomotButtonGradient="var(--project-showcase-button-gradient)"
+              halomotButtonBackground="var(--project-showcase-button-background)"
+              halomotButtonTextColor="var(--project-showcase-button-text-color)"
+              halomotButtonOuterBorderRadius="var(--project-showcase-button-outer-radius)"
+              halomotButtonInnerBorderRadius="var(--project-showcase-button-inner-radius)"
+              halomotButtonHoverTextColor="var(--project-showcase-button-hover-text-color)"
+              onItemClick={openInNewTab}
+              autoplay={true}
+              mobile={{
+                fontSizes: {
+                  name: "24px",
+                  position: "16px",
+                  testimony: "18px",
+                },
+                spacing: {
+                  testimonyTop: "1em",
+                  testimonyBottom: "1.5em",
+                },
+              }}
+              buttonInscriptions={{
+                previousButton: "Previous",
+                nextButton: "Next",
+                openWebAppButton: "View Project",
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>

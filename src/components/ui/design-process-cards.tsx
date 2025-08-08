@@ -132,9 +132,9 @@ const Icon = ({ className, ...rest }: any) => {
 
 export const DesignProcessCards = () => {
   return (
-    <div className="mb-16">
-      <div className="text-center mb-12">
-        <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-pink to-primary bg-clip-text text-transparent">
+    <div className="mb-8">
+      <div className="text-center mb-6">
+        <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-pink to-primary bg-clip-text text-transparent">
           My Design Process
         </h3>
         <p className="text-muted-foreground max-w-2xl mx-auto">
