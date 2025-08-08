@@ -195,4 +195,3 @@ export const technologies = {
 } as const;
 
 // Type for technology keys
-export type TechnologyKey = keyof typeof technologies;

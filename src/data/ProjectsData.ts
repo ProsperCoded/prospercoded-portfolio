@@ -1,4 +1,4 @@
-import { technologies, type TechnologyKey } from "./TechnologiesData";
+import { technologies } from "./TechnologiesData";
 
 export type ProjectItem = {
   name: string;
@@ -8,7 +8,7 @@ export type ProjectItem = {
   link: string;
   githubLink?: string;
   webLink?: string;
-  techStack: TechnologyKey[];
+  techStack: (typeof technologies)[keyof typeof technologies][];
 };
 
 export const projects: ProjectItem[] = [
@@ -22,12 +22,14 @@ export const projects: ProjectItem[] = [
     githubLink: "https://github.com/prospercoded/uninav",
     webLink: "https://uninav-demo.vercel.app",
     techStack: [
-      "react",
-      "nodejs",
-      "typescript",
-      "postgresql",
-      "expressjs",
-      "tailwindcss",
+      technologies.react,
+      technologies.nextjs,
+      technologies.tailwindcss,
+      technologies.typescript,
+      technologies.nodejs,
+      technologies.expressjs,
+      technologies.postgresql,
+      technologies.docker,
     ],
   },
   {
@@ -40,12 +42,12 @@ export const projects: ProjectItem[] = [
     githubLink: "https://github.com/prospercoded/medmap",
     webLink: "https://medmap-app.vercel.app",
     techStack: [
-      "nextjs",
-      "typescript",
-      "mongodb",
-      "restapi",
-      "tailwindcss",
-      "vercel",
+      technologies.nextjs,
+      technologies.typescript,
+      technologies.mongodb,
+      technologies.restapi,
+      technologies.tailwindcss,
+      technologies.vercel,
     ],
   },
   {
@@ -58,12 +60,12 @@ export const projects: ProjectItem[] = [
     githubLink: "https://github.com/prospercoded/goalfund",
     webLink: "https://goalfund.vercel.app",
     techStack: [
-      "react",
-      "nodejs",
-      "postgresql",
-      "stripe",
-      "expressjs",
-      "docker",
+      technologies.react,
+      technologies.nodejs,
+      technologies.postgresql,
+      technologies.stripe,
+      technologies.expressjs,
+      technologies.docker,
     ],
   },
   {
@@ -76,12 +78,12 @@ export const projects: ProjectItem[] = [
     githubLink: "https://github.com/prospercoded/party-currency",
     webLink: "https://party-currency.vercel.app",
     techStack: [
-      "nextjs",
-      "nestjs",
-      "postgresql",
-      "websockets",
-      "prisma",
-      "typescript",
+      technologies.nextjs,
+      technologies.nestjs,
+      technologies.postgresql,
+      technologies.websockets,
+      technologies.prisma,
+      technologies.typescript,
     ],
   },
   {
@@ -93,7 +95,14 @@ export const projects: ProjectItem[] = [
     link: "https://github.com/prospercoded/faculty-payment",
     githubLink: "https://github.com/prospercoded/faculty-payment",
     webLink: "https://faculty-payment-demo.vercel.app",
-    techStack: ["react", "django", "python", "postgresql", "restapi", "aws"],
+    techStack: [
+      technologies.react,
+      technologies.django,
+      technologies.python,
+      technologies.postgresql,
+      technologies.restapi,
+      technologies.aws,
+    ],
   },
   {
     name: "ATC Africa Integration",
@@ -105,12 +114,12 @@ export const projects: ProjectItem[] = [
     githubLink: "https://github.com/atc-africa/event-management",
     webLink: "https://atcafrica.com",
     techStack: [
-      "nextjs",
-      "nodejs",
-      "typescript",
-      "mongodb",
-      "graphql",
-      "docker",
+      technologies.nextjs,
+      technologies.nodejs,
+      technologies.typescript,
+      technologies.mongodb,
+      technologies.graphql,
+      technologies.docker,
     ],
   },
 ];

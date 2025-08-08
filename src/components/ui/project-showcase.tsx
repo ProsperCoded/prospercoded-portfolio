@@ -9,16 +9,19 @@ import {
   Github,
   ExternalLink,
 } from "lucide-react";
-import { technologies, type TechnologyKey } from "@/data/TechnologiesData";
+import { technologies } from "@/data/TechnologiesData";
 
 // TechStack Component
-const TechStack = ({ techStack }: { techStack: TechnologyKey[] }) => {
+const TechStack = ({
+  techStack,
+}: {
+  techStack: (typeof technologies)[keyof typeof technologies][];
+}) => {
   return (
     <div className="mt-4">
       <h4 className="text-sm font-medium text-white/80 mb-2">Tech Stack</h4>
       <div className="flex flex-wrap gap-2">
-        {techStack.map((techKey, index) => {
-          const tech = technologies[techKey];
+        {techStack.map((tech, index) => {
           return (
             <div
               key={index}
@@ -98,7 +101,7 @@ type Testimonial = {
   link?: string;
   githubLink?: string;
   webLink?: string;
-  techStack?: TechnologyKey[];
+  techStack?: (typeof technologies)[keyof typeof technologies][];
 };
 
 type ProjectShowcaseProps = {
