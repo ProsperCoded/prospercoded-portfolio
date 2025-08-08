@@ -2,7 +2,93 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState, useCallback, useRef } from "react";
-import { HalomotButton } from "./halomot-button";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Eye,
+  Github,
+  ExternalLink,
+} from "lucide-react";
+import { technologies, type TechnologyKey } from "@/data/TechnologiesData";
+
+// TechStack Component
+const TechStack = ({ techStack }: { techStack: TechnologyKey[] }) => {
+  return (
+    <div className="mt-4">
+      <h4 className="text-sm font-medium text-white/80 mb-2">Tech Stack</h4>
+      <div className="flex flex-wrap gap-2">
+        {techStack.map((techKey, index) => {
+          const tech = technologies[techKey];
+          return (
+            <div
+              key={index}
+              className="flex items-center gap-1.5 px-2.5 py-1 bg-white/5 backdrop-blur-sm rounded-md border border-white/10 hover:bg-white/10 transition-colors"
+            >
+              {tech && "icon" in tech && tech.icon ? (
+                <img
+                  src={tech.icon}
+                  alt={tech.name}
+                  className="w-4 h-4 object-contain"
+                />
+              ) : (
+                <div
+                  className={`w-3 h-3 rounded-sm ${
+                    tech?.color || "bg-gray-400"
+                  }`}
+                />
+              )}
+              <span
+                className={`text-xs font-medium ${tech?.color || "text-white"}`}
+              >
+                {tech.name}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+// Project Links Component
+const ProjectLinks = ({
+  githubLink,
+  webLink,
+}: {
+  githubLink?: string;
+  webLink?: string;
+}) => {
+  return (
+    <div className="mt-4 flex gap-3">
+      {githubLink && (
+        <a
+          href={githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-3 py-2 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg border border-gray-600/30 hover:border-gray-500/50 transition-all group"
+        >
+          <Github className="w-4 h-4 text-gray-300 group-hover:text-white transition-colors" />
+          <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+            GitHub
+          </span>
+        </a>
+      )}
+      {webLink && (
+        <a
+          href={webLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 hover:border-primary/50 transition-all group"
+        >
+          <ExternalLink className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" />
+          <span className="text-sm text-primary group-hover:text-primary-foreground transition-colors">
+            Live Demo
+          </span>
+        </a>
+      )}
+    </div>
+  );
+};
 
 type Testimonial = {
   quote: string;
@@ -10,6 +96,9 @@ type Testimonial = {
   designation: string;
   src: string;
   link?: string;
+  githubLink?: string;
+  webLink?: string;
+  techStack?: TechnologyKey[];
 };
 
 type ProjectShowcaseProps = {
@@ -105,6 +194,7 @@ export const ProjectShowcase = ({
   const [active, setActive] = useState(0);
   const [isMobileView, setIsMobileView] = useState(false);
   const [componentWidth, setComponentWidth] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const componentRef = useRef<HTMLDivElement>(null);
 
   // Use Mobile Config (with defaults)
@@ -128,11 +218,21 @@ export const ProjectShowcase = ({
   };
 
   useEffect(() => {
-    if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
+    if (autoplay && !isHovered) {
+      const interval = setInterval(handleNext, 8000);
       return () => clearInterval(interval);
     }
-  }, [autoplay]);
+  }, [autoplay, isHovered]);
+
+  // Keyboard navigation for accessibility
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "ArrowLeft") handlePrev();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   const handleResize = useCallback(() => {
     if (componentRef.current) {
@@ -182,6 +282,8 @@ export const ProjectShowcase = ({
         backgroundColor: "transparent",
         direction: isRTL ? "rtl" : "ltr",
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div
         className="relative"
@@ -238,6 +340,12 @@ export const ProjectShowcase = ({
                         innerRounding={innerRounding}
                         outlineColor={outlineColor}
                         hoverOutlineColor={hoverOutlineColor}
+                        onClick={() =>
+                          isActive(index) &&
+                          onItemClick &&
+                          onItemClick(testimonials[active].link || "")
+                        }
+                        showViewIcon={isActive(index)}
                       />
                     </motion.div>
                   ))}
@@ -304,56 +412,18 @@ export const ProjectShowcase = ({
                     </motion.span>
                   ))}
                 </motion.p>
+
+                {/* Tech Stack */}
+                {testimonials[active].techStack && (
+                  <TechStack techStack={testimonials[active].techStack!} />
+                )}
+
+                {/* Project Links */}
+                <ProjectLinks
+                  githubLink={testimonials[active].githubLink}
+                  webLink={testimonials[active].webLink}
+                />
               </motion.div>
-              <div
-                className={`flex gap-4 ${
-                  isMobileView ? "pt-12" : "md:pt-0"
-                } w-full`}
-                style={{ justifyContent: "flex-start" }}
-              >
-                <HalomotButton
-                  inscription={buttonInscriptions.previousButton}
-                  onClick={handlePrev}
-                  fixedWidth="172px"
-                  gradient={halomotButtonGradient}
-                  backgroundColor={halomotButtonBackground}
-                  textColor={halomotButtonTextColor}
-                  innerBorderRadius={halomotButtonInnerBorderRadius}
-                  outerBorderRadius={halomotButtonOuterBorderRadius}
-                  {...(halomotButtonHoverTextColor
-                    ? { hoverTextColor: halomotButtonHoverTextColor }
-                    : {})}
-                />
-                <HalomotButton
-                  inscription={buttonInscriptions.nextButton}
-                  onClick={handleNext}
-                  fixedWidth="172px"
-                  gradient={halomotButtonGradient}
-                  backgroundColor={halomotButtonBackground}
-                  textColor={halomotButtonTextColor}
-                  innerBorderRadius={halomotButtonInnerBorderRadius}
-                  outerBorderRadius={halomotButtonOuterBorderRadius}
-                  {...(halomotButtonHoverTextColor
-                    ? { hoverTextColor: halomotButtonHoverTextColor }
-                    : {})}
-                />
-                <HalomotButton
-                  inscription={buttonInscriptions.openWebAppButton}
-                  onClick={() =>
-                    onItemClick && onItemClick(testimonials[active].link || "")
-                  }
-                  fillWidth
-                  gradient={halomotButtonGradient}
-                  backgroundColor={halomotButtonBackground}
-                  textColor={halomotButtonTextColor}
-                  innerBorderRadius={halomotButtonInnerBorderRadius}
-                  outerBorderRadius={halomotButtonOuterBorderRadius}
-                  {...(halomotButtonHoverTextColor
-                    ? { hoverTextColor: halomotButtonHoverTextColor }
-                    : {})}
-                  href={testimonials[active].link}
-                />
-              </div>
             </div>
           </>
         ) : (
@@ -399,6 +469,12 @@ export const ProjectShowcase = ({
                         innerRounding={innerRounding}
                         outlineColor={outlineColor}
                         hoverOutlineColor={hoverOutlineColor}
+                        onClick={() =>
+                          isActive(index) &&
+                          onItemClick &&
+                          onItemClick(testimonials[active].link || "")
+                        }
+                        showViewIcon={isActive(index)}
                       />
                     </motion.div>
                   ))}
@@ -462,59 +538,42 @@ export const ProjectShowcase = ({
                     </motion.span>
                   ))}
                 </motion.p>
+
+                {/* Tech Stack */}
+                {testimonials[active].techStack && (
+                  <TechStack techStack={testimonials[active].techStack!} />
+                )}
+
+                {/* Project Links */}
+                <ProjectLinks
+                  githubLink={testimonials[active].githubLink}
+                  webLink={testimonials[active].webLink}
+                />
               </motion.div>
-              <div
-                className={`flex gap-4 ${
-                  isMobileView ? "pt-12" : "md:pt-0"
-                } w-full`}
-              >
-                <HalomotButton
-                  inscription={buttonInscriptions.previousButton}
-                  onClick={handlePrev}
-                  fixedWidth="172px"
-                  gradient={halomotButtonGradient}
-                  backgroundColor={halomotButtonBackground}
-                  textColor={halomotButtonTextColor}
-                  innerBorderRadius={halomotButtonInnerBorderRadius}
-                  outerBorderRadius={halomotButtonOuterBorderRadius}
-                  {...(halomotButtonHoverTextColor
-                    ? { hoverTextColor: halomotButtonHoverTextColor }
-                    : {})}
-                />
-                <HalomotButton
-                  inscription={buttonInscriptions.nextButton}
-                  onClick={handleNext}
-                  fixedWidth="172px"
-                  gradient={halomotButtonGradient}
-                  backgroundColor={halomotButtonBackground}
-                  textColor={halomotButtonTextColor}
-                  innerBorderRadius={halomotButtonInnerBorderRadius}
-                  outerBorderRadius={halomotButtonOuterBorderRadius}
-                  {...(halomotButtonHoverTextColor
-                    ? { hoverTextColor: halomotButtonHoverTextColor }
-                    : {})}
-                />
-                <HalomotButton
-                  inscription={buttonInscriptions.openWebAppButton}
-                  onClick={() =>
-                    onItemClick && onItemClick(testimonials[active].link || "")
-                  }
-                  fillWidth
-                  gradient={halomotButtonGradient}
-                  backgroundColor={halomotButtonBackground}
-                  textColor={halomotButtonTextColor}
-                  innerBorderRadius={halomotButtonInnerBorderRadius}
-                  outerBorderRadius={halomotButtonOuterBorderRadius}
-                  {...(halomotButtonHoverTextColor
-                    ? { hoverTextColor: halomotButtonHoverTextColor }
-                    : {})}
-                  href={testimonials[active].link}
-                />
-              </div>
             </div>
           </>
         )}
       </div>
+
+      {/* Overlay navigation arrows - desktop & mobile friendly */}
+      <button
+        aria-label="Previous project"
+        onClick={handlePrev}
+        className={`group absolute z-[1000] h-10 w-10 md:h-11 md:w-11 rounded-full border border-white/10 bg-black/40 text-white backdrop-blur flex items-center justify-center transition hover:bg-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-0 ${
+          isMobileView ? "left-3 bottom-3" : "left-3 top-1/2 -translate-y-1/2"
+        }`}
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+      <button
+        aria-label="Next project"
+        onClick={handleNext}
+        className={`group absolute z-[1000] h-10 w-10 md:h-11 md:w-11 rounded-full border border-white/10 bg-black/40 text-white backdrop-blur flex items-center justify-center transition hover:bg-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-0 ${
+          isMobileView ? "right-3 bottom-3" : "right-3 top-1/2 -translate-y-1/2"
+        }`}
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
     </div>
   );
 };
@@ -526,6 +585,8 @@ type ImageContainerProps = {
   innerRounding: string;
   outlineColor: string;
   hoverOutlineColor: string;
+  onClick?: () => void;
+  showViewIcon?: boolean;
 };
 
 const ImageContainer = ({
@@ -535,9 +596,18 @@ const ImageContainer = ({
   innerRounding,
   outlineColor,
   hoverOutlineColor,
+  onClick,
+  showViewIcon,
 }: ImageContainerProps) => (
   <div
-    className="relative h-full w-full project-showcase-image-container"
+    role={onClick ? "button" : undefined}
+    tabIndex={onClick ? 0 : -1}
+    onClick={onClick}
+    onKeyDown={(e) => {
+      if (!onClick) return;
+      if (e.key === "Enter" || e.key === " ") onClick();
+    }}
+    className="relative h-full w-full project-showcase-image-container group"
     style={{
       borderRadius: outerRounding,
       padding: "1px",
@@ -559,6 +629,14 @@ const ImageContainer = ({
         draggable={false}
         className="h-full w-full object-cover object-center"
       />
+
+      {showViewIcon && (
+        <div className="absolute top-3 right-3 z-10">
+          <div className="flex items-center justify-center h-9 w-9 rounded-full border border-white/10 bg-black/50 text-white backdrop-blur transition group-hover:bg-primary/30">
+            <Eye className="h-4 w-4" />
+          </div>
+        </div>
+      )}
     </div>
     <style jsx>{`
       .project-showcase-image-container:hover {

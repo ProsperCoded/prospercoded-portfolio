@@ -16,8 +16,8 @@ export default function Home() {
       <div id="resume">
         <ResumeSection />
       </div>
-      <DesignProcessSection />
       <ProjectsSection />
+      <DesignProcessSection />
     </main>
   );
 }
