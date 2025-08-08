@@ -74,7 +74,7 @@ export const ImagesSlider = ({
     if (autoplay) {
       interval = setInterval(() => {
         handleNext();
-      }, 5000);
+      }, 8000);
     }
 
     return () => {
@@ -93,24 +93,14 @@ export const ImagesSlider = ({
       scale: 1,
       rotateX: 0,
       opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.645, 0.045, 0.355, 1.0],
-      },
     },
     upExit: {
       opacity: 1,
       y: "-150%",
-      transition: {
-        duration: 1,
-      },
     },
     downExit: {
       opacity: 1,
       y: "150%",
-      transition: {
-        duration: 1,
-      },
     },
   };
 
@@ -127,10 +117,8 @@ export const ImagesSlider = ({
       }}
     >
       {areImagesLoaded && children}
-      {areImagesLoaded && overlay && (
-        <div
-          className={cn("absolute inset-0 bg-black/60 z-40", overlayClassName)}
-        />
+      {areImagesLoaded && overlay && typeof overlay !== "boolean" && (
+        <div className={cn("absolute inset-0 z-40", overlayClassName)} />
       )}
 
       {areImagesLoaded && (
@@ -142,9 +130,52 @@ export const ImagesSlider = ({
             animate="visible"
             exit={direction === "up" ? "upExit" : "downExit"}
             variants={slideVariants}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
             className="image h-full w-full absolute inset-0 object-cover object-center"
           />
         </AnimatePresence>
+      )}
+
+      {/* Navigation Arrows */}
+      {areImagesLoaded && images.length > 1 && (
+        <>
+          <button
+            onClick={handlePrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </>
       )}
     </div>
   );

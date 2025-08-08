@@ -97,7 +97,7 @@ type Testimonial = {
   quote: string;
   name: string;
   designation: string;
-  src: string;
+  images: { src: string; isPrimary: boolean }[];
   link?: string;
   githubLink?: string;
   webLink?: string;
@@ -276,6 +276,12 @@ export const ProjectShowcase = ({
     );
   };
 
+  // Helper function to get primary image
+  const getPrimaryImage = (testimonial: Testimonial) => {
+    const primaryImage = testimonial.images.find((img) => img.isPrimary);
+    return primaryImage ? primaryImage.src : testimonial.images[0]?.src || "";
+  };
+
   return (
     <div
       ref={componentRef}
@@ -310,7 +316,7 @@ export const ProjectShowcase = ({
                 <AnimatePresence>
                   {testimonials.map((testimonial, index) => (
                     <motion.div
-                      key={testimonial.src}
+                      key={`${testimonial.name}-${index}`}
                       initial={{
                         opacity: 0,
                         scale: 0.9,
@@ -337,7 +343,7 @@ export const ProjectShowcase = ({
                       className="absolute inset-0 origin-bottom"
                     >
                       <ImageContainer
-                        src={testimonial.src}
+                        src={getPrimaryImage(testimonial)}
                         alt={testimonial.name}
                         outerRounding={outerRounding}
                         innerRounding={innerRounding}
@@ -439,7 +445,7 @@ export const ProjectShowcase = ({
                 <AnimatePresence>
                   {testimonials.map((testimonial, index) => (
                     <motion.div
-                      key={testimonial.src}
+                      key={`${testimonial.name}-${index}`}
                       initial={{
                         opacity: 0,
                         scale: 0.9,
@@ -466,7 +472,7 @@ export const ProjectShowcase = ({
                       className="absolute inset-0 origin-bottom"
                     >
                       <ImageContainer
-                        src={testimonial.src}
+                        src={getPrimaryImage(testimonial)}
                         alt={testimonial.name}
                         outerRounding={outerRounding}
                         innerRounding={innerRounding}

@@ -10,7 +10,7 @@ function openInNewTab(link: string) {
 }
 
 export const ProjectsSection = () => {
-  const projects = projectsData;
+  const projects = Object.values(projectsData);
 
   return (
     <section id="projects" className="relative md:mt-[4rem]">

@@ -63,7 +63,7 @@ const DEFAULT_ITEMS: CarouselItem[] = [
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
-const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 };
+const SPRING_OPTIONS = { type: "spring" as const, stiffness: 300, damping: 30 };
 
 export default function Carousel({
   items = DEFAULT_ITEMS,
@@ -168,13 +168,12 @@ export default function Carousel({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden p-4 ${
-        round
-          ? "rounded-full border border-white"
-          : "rounded-[24px] border border-[#222]"
+      className={`relative overflow-hidden ${
+        round ? "rounded-full border border-white" : "rounded-[24px]"
       }`}
       style={{
         width: `${baseWidth}px`,
+        height: `${baseWidth * 0.75}px`, // Increase height with a 4:3 aspect ratio
         ...(round && { height: `${baseWidth}px` }),
       }}
     >
@@ -209,28 +208,18 @@ export default function Carousel({
               key={index}
               className={`relative shrink-0 flex flex-col ${
                 round
-                  ? "items-center justify-center text-center bg-[#060010] border-0"
-                  : "items-start justify-between bg-[#222] border border-[#222] rounded-[12px]"
+                  ? "items-center justify-center text-center"
+                  : "items-start justify-between"
               } overflow-hidden cursor-grab active:cursor-grabbing`}
               style={{
                 width: itemWidth,
-                height: round ? itemWidth : "100%",
+                height: "100%",
                 rotateY: rotateY,
                 ...(round && { borderRadius: "50%" }),
               }}
               transition={effectiveTransition}
             >
-              <div className={`${round ? "p-0 m-0" : "mb-4 p-5"}`}>
-                <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
-                  {item.icon}
-                </span>
-              </div>
-              <div className="p-5">
-                <div className="mb-1 font-black text-lg text-white">
-                  {item.title}
-                </div>
-                <p className="text-sm text-white">{item.description}</p>
-              </div>
+              {item.icon}
             </motion.div>
           );
         })}
