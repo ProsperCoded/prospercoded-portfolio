@@ -116,9 +116,18 @@ export default function ProjectHero({
             transition={{ duration: 0.8 }}
             className="bg-black/40 backdrop-blur-md rounded-2xl p-8 border border-white/10"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold mb-4 text-white">
-              {project.name}
-            </h1>
+            <div className="flex items-center justify-center gap-4 mb-4">
+              {project.logoUrl && (
+                <img
+                  src={project.logoUrl}
+                  alt={`${project.name} logo`}
+                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain"
+                />
+              )}
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white">
+                {project.name}
+              </h1>
+            </div>
             <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-6">
               {project.designation}
             </p>

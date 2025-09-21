@@ -105,9 +105,18 @@ export default function ProjectsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white">
-                  {selectedProject?.name || "All Projects"}
-                </h1>
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  {selectedProject?.logoUrl && (
+                    <img
+                      src={selectedProject.logoUrl}
+                      alt={`${selectedProject.name} logo`}
+                      className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
+                    />
+                  )}
+                  <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white">
+                    {selectedProject?.name || "All Projects"}
+                  </h1>
+                </div>
                 <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
                   {selectedProject?.quote ||
                     "Explore my complete portfolio of innovative solutions"}

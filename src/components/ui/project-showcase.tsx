@@ -92,6 +92,7 @@ type Testimonial = {
   name: string;
   designation: string;
   images: { src: string; isPrimary: boolean }[];
+  logoUrl?: string; // Add logo URL field
   link?: string;
   githubLink?: string;
   webLink?: string;
@@ -370,18 +371,29 @@ export const ProjectShowcase = ({
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
               >
-                <h3
-                  className={`font-bold`}
-                  style={{
-                    fontSize: currentFontSizes.name,
-                    color: colors.name,
-                    marginTop: currentSpacing.nameTop,
-                    marginBottom: currentSpacing.nameBottom,
-                    textAlign: "right",
-                  }}
+                <div
+                  className="flex items-center gap-3 mb-2"
+                  style={{ textAlign: "right" }}
                 >
-                  {testimonials[active].name}
-                </h3>
+                  {testimonials[active].logoUrl && (
+                    <img
+                      src={testimonials[active].logoUrl}
+                      alt={`${testimonials[active].name} logo`}
+                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                    />
+                  )}
+                  <h3
+                    className={`font-bold`}
+                    style={{
+                      fontSize: currentFontSizes.name,
+                      color: colors.name,
+                      marginTop: currentSpacing.nameTop,
+                      marginBottom: currentSpacing.nameBottom,
+                    }}
+                  >
+                    {testimonials[active].name}
+                  </h3>
+                </div>
                 <p
                   style={{
                     fontSize: currentFontSizes.position,
@@ -501,17 +513,26 @@ export const ProjectShowcase = ({
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
               >
-                <h3
-                  className={`font-bold`}
-                  style={{
-                    fontSize: currentFontSizes.name,
-                    color: colors.name,
-                    marginTop: currentSpacing.nameTop,
-                    marginBottom: currentSpacing.nameBottom,
-                  }}
-                >
-                  {testimonials[active].name}
-                </h3>
+                <div className="flex items-center gap-3 mb-2">
+                  {testimonials[active].logoUrl && (
+                    <img
+                      src={testimonials[active].logoUrl}
+                      alt={`${testimonials[active].name} logo`}
+                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                    />
+                  )}
+                  <h3
+                    className={`font-bold`}
+                    style={{
+                      fontSize: currentFontSizes.name,
+                      color: colors.name,
+                      marginTop: currentSpacing.nameTop,
+                      marginBottom: currentSpacing.nameBottom,
+                    }}
+                  >
+                    {testimonials[active].name}
+                  </h3>
+                </div>
                 <p
                   style={{
                     fontSize: currentFontSizes.position,

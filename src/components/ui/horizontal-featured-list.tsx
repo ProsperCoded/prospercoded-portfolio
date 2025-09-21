@@ -71,7 +71,11 @@ const HorizontalFeaturedList: React.FC<HorizontalFeaturedListProps> = ({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-sm font-medium whitespace-nowrap">
+              <span
+                className={`text-sm whitespace-nowrap ${
+                  selectedIndex === originalIndex ? "font-bold" : "font-medium"
+                }`}
+              >
                 {item}
               </span>
             </motion.button>
