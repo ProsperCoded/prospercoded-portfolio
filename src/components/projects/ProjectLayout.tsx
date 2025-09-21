@@ -1,7 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import Link from "next/link";
 import { ProjectItem } from "@/data/ProjectsData";
 import ProjectHero from "./ProjectHero";
@@ -83,19 +89,21 @@ export default function ProjectLayout({
             className="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Projects</span>
+            <span className="hidden sm:inline">Back to Projects</span>
+            <span className="sm:hidden">Back</span>
           </Link>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             {project.webLink && (
               <a
                 href={project.webLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-300 text-sm"
+                className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-300 text-xs sm:text-sm"
               >
-                <ExternalLink className="w-4 h-4" />
-                <span>Live Demo</span>
+                <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">Live Demo</span>
+                <span className="sm:hidden">Demo</span>
               </a>
             )}
 
@@ -104,10 +112,11 @@ export default function ProjectLayout({
                 href={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-300 text-sm"
+                className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-300 text-xs sm:text-sm"
               >
-                <Github className="w-4 h-4" />
-                <span>GitHub</span>
+                <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">GitHub</span>
+                <span className="sm:hidden">Code</span>
               </a>
             )}
           </div>
@@ -157,15 +166,81 @@ export default function ProjectLayout({
         <div className="flex-1">{children}</div>
       </div>
 
-      {/* Mobile Sidebar Toggle */}
-      <div className="lg:hidden fixed bottom-6 right-6 z-40">
-        <motion.button
-          className="bg-red-500 text-white p-4 rounded-full shadow-lg hover:bg-red-600 transition-colors duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <span className="text-sm font-medium">Menu</span>
-        </motion.button>
+      {/* Mobile Section Navigation */}
+      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-40">
+        <div className="flex items-center justify-between gap-3">
+          {/* Previous Section Button */}
+          <motion.button
+            onClick={() => {
+              const currentIndex = sidebarSections.findIndex(
+                (s) => s.id === activeSection
+              );
+              if (currentIndex > 0) {
+                scrollToSection(sidebarSections[currentIndex - 1].id);
+              }
+            }}
+            disabled={activeSection === sidebarSections[0].id}
+            className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-300 ${
+              activeSection === sidebarSections[0].id
+                ? "bg-foreground/5 text-foreground/30 cursor-not-allowed"
+                : "bg-card/80 backdrop-blur-sm border border-border/50 text-foreground hover:bg-card/90"
+            }`}
+            whileHover={
+              activeSection !== sidebarSections[0].id ? { scale: 1.02 } : {}
+            }
+            whileTap={
+              activeSection !== sidebarSections[0].id ? { scale: 0.98 } : {}
+            }
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span className="text-sm font-medium">
+              {activeSection === sidebarSections[0].id
+                ? "Previous"
+                : sidebarSections[
+                    sidebarSections.findIndex((s) => s.id === activeSection) - 1
+                  ]?.label}
+            </span>
+          </motion.button>
+
+          {/* Next Section Button */}
+          <motion.button
+            onClick={() => {
+              const currentIndex = sidebarSections.findIndex(
+                (s) => s.id === activeSection
+              );
+              if (currentIndex < sidebarSections.length - 1) {
+                scrollToSection(sidebarSections[currentIndex + 1].id);
+              }
+            }}
+            disabled={
+              activeSection === sidebarSections[sidebarSections.length - 1].id
+            }
+            className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-300 ${
+              activeSection === sidebarSections[sidebarSections.length - 1].id
+                ? "bg-foreground/5 text-foreground/30 cursor-not-allowed"
+                : "bg-card/80 backdrop-blur-sm border border-border/50 text-foreground hover:bg-card/90"
+            }`}
+            whileHover={
+              activeSection !== sidebarSections[sidebarSections.length - 1].id
+                ? { scale: 1.02 }
+                : {}
+            }
+            whileTap={
+              activeSection !== sidebarSections[sidebarSections.length - 1].id
+                ? { scale: 0.98 }
+                : {}
+            }
+          >
+            <span className="text-sm font-medium">
+              {activeSection === sidebarSections[sidebarSections.length - 1].id
+                ? "Next"
+                : sidebarSections[
+                    sidebarSections.findIndex((s) => s.id === activeSection) + 1
+                  ]?.label}
+            </span>
+            <ChevronRight className="w-4 h-4" />
+          </motion.button>
+        </div>
       </div>
     </div>
   );

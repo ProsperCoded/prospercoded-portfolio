@@ -21,10 +21,11 @@ export type ProjectBrief = {
 export type ProjectArchitecture = {
   overview: string;
   techChoices: {
-    technology: string;
-    reason: string;
-    category: string;
-  }[];
+    [category: string]: {
+      tech: (typeof technologies)[keyof typeof technologies];
+      reason?: string;
+    }[];
+  };
   systemFlow: string;
   keyFeatures: string[];
 };
@@ -132,32 +133,56 @@ export const projects: Record<string, ProjectItem> = {
     architecture: {
       overview:
         "UniNav follows a modern full-stack architecture with a React/Next.js frontend and Node.js/Express backend. The system is designed for scalability and performance, using PostgreSQL for data persistence and Docker for containerization.",
-      techChoices: [
-        {
-          technology: "Next.js",
-          reason:
-            "Chosen for its excellent SEO capabilities, server-side rendering, and built-in optimization features that are crucial for a content-heavy platform",
-          category: "Frontend",
-        },
-        {
-          technology: "Node.js & Express",
-          reason:
-            "Selected for rapid development, excellent ecosystem, and seamless integration with modern frontend frameworks",
-          category: "Backend",
-        },
-        {
-          technology: "PostgreSQL",
-          reason:
-            "Chosen for its reliability, ACID compliance, and excellent performance with complex queries needed for the recommendation system",
-          category: "Database",
-        },
-        {
-          technology: "Docker",
-          reason:
-            "Implemented for consistent deployment across environments and easy scaling of the application",
-          category: "DevOps",
-        },
-      ],
+      techChoices: {
+        Frontend: [
+          {
+            tech: technologies.nextjs,
+            reason:
+              "Chosen for its excellent SEO capabilities, server-side rendering, and built-in optimization features that are crucial for a content-heavy platform",
+          },
+          {
+            tech: technologies.typescript,
+            reason:
+              "For type safety, improved code quality, and better maintainability, especially in a growing codebase",
+          },
+          {
+            tech: technologies.tailwindcss,
+            reason:
+              "For rapid UI development, highly customizable styling, and responsive design without writing custom CSS",
+          },
+        ],
+        Backend: [
+          {
+            tech: technologies.nodejs,
+            reason:
+              "Selected for its non-blocking I/O model, efficiency, and ability to handle concurrent requests, making it suitable for a scalable API",
+          },
+          {
+            tech: technologies.expressjs,
+            reason:
+              "A minimalist and flexible Node.js web application framework that provides a robust set of features for web and mobile applications",
+          },
+        ],
+        Database: [
+          {
+            tech: technologies.postgresql,
+            reason:
+              "A powerful, open-source relational database known for its reliability, feature richness, and strong support for complex queries and data integrity",
+          },
+        ],
+        Deployment: [
+          {
+            tech: technologies.docker,
+            reason:
+              "For containerizing the application, ensuring consistent environments from development to production and simplifying deployment",
+          },
+          {
+            tech: technologies.vercel,
+            reason:
+              "For seamless deployment of the Next.js frontend with automatic scaling and CI/CD integration",
+          },
+        ],
+      },
       systemFlow:
         "The application follows a three-tier architecture: Presentation Layer (React/Next.js), Business Logic Layer (Express.js API), and Data Layer (PostgreSQL). User requests flow through the Next.js frontend to the Express API, which processes business logic and interacts with the PostgreSQL database.",
       keyFeatures: [

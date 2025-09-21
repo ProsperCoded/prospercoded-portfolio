@@ -164,19 +164,32 @@ export default function ProjectCard({
       <div className="p-4 sm:p-6">
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.techStack.slice(0, 4).map((tech, index) => (
-            <span
-              key={index}
-              className="px-2 py-1 bg-red-500/10 text-red-500 text-xs rounded-full border border-red-500/20"
-            >
-              {tech.name}
-            </span>
-          ))}
-          {project.techStack.length > 4 && (
-            <span className="px-2 py-1 bg-foreground/10 text-foreground/60 text-xs rounded-full">
-              +{project.techStack.length - 4} more
-            </span>
-          )}
+          {project.architecture?.techChoices &&
+            (() => {
+              const allTechs = Object.values(
+                project.architecture.techChoices
+              ).flat();
+              const displayTechs = allTechs.slice(0, 4);
+              const remainingCount = allTechs.length - 4;
+
+              return (
+                <>
+                  {displayTechs.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-2 py-1 bg-red-500/10 text-red-500 text-xs rounded-full border border-red-500/20"
+                    >
+                      {tech.tech.name}
+                    </span>
+                  ))}
+                  {remainingCount > 0 && (
+                    <span className="px-2 py-1 bg-foreground/10 text-foreground/60 text-xs rounded-full">
+                      +{remainingCount} more
+                    </span>
+                  )}
+                </>
+              );
+            })()}
         </div>
 
         {/* Action Buttons */}

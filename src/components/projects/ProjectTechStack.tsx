@@ -4,7 +4,15 @@ import { motion } from "motion/react";
 import { technologies } from "@/data/TechnologiesData";
 
 interface ProjectTechStackProps {
-  techStack: (typeof technologies)[keyof typeof technologies][];
+  techStack?: (typeof technologies)[keyof typeof technologies][];
+  architecture?: {
+    techChoices: {
+      [category: string]: {
+        tech: (typeof technologies)[keyof typeof technologies];
+        reason?: string;
+      }[];
+    };
+  };
   className?: string;
   showCategories?: boolean;
   size?: "small" | "medium" | "large";
@@ -18,18 +26,31 @@ const sizeClasses = {
 
 export default function ProjectTechStack({
   techStack,
+  architecture,
   className = "",
   showCategories = true,
   size = "medium",
 }: ProjectTechStackProps) {
-  // Group technologies by category
-  const groupedTech = techStack.reduce((acc, tech) => {
-    if (!acc[tech.category]) {
-      acc[tech.category] = [];
-    }
-    acc[tech.category].push(tech);
-    return acc;
-  }, {} as Record<string, typeof techStack>);
+  // Use architecture.techChoices if available, otherwise fall back to techStack
+  const techChoices = architecture?.techChoices || techStack;
+
+  if (!techChoices) {
+    return null;
+  }
+
+  // If using architecture.techChoices, it's already grouped by category
+  const groupedTech =
+    architecture?.techChoices ||
+    (Array.isArray(techChoices)
+      ? techChoices.reduce((acc, tech) => {
+          const category = tech.category || "Other";
+          if (!acc[category]) {
+            acc[category] = [];
+          }
+          acc[category].push(tech);
+          return acc;
+        }, {} as Record<string, typeof techChoices>)
+      : {});
 
   const categoryColors = {
     frontend: "bg-blue-500/10 text-blue-500 border-blue-500/20",
@@ -50,21 +71,42 @@ export default function ProjectTechStack({
   };
 
   if (!showCategories) {
+    // Flatten all technologies from all categories
+    const allTechs = Object.values(groupedTech).flat();
+
     return (
       <div className={`flex flex-wrap gap-2 ${className}`}>
-        {techStack.map((tech, index) => (
-          <motion.span
-            key={index}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`${sizeClasses[size]} rounded-full border font-medium ${
-              categoryColors[tech.category]
-            }`}
-          >
-            {tech.name}
-          </motion.span>
-        ))}
+        {allTechs.map((tech, index) => {
+          const techObj = "tech" in tech ? tech.tech : tech;
+          const techName = techObj.name;
+          const techIcon = techObj.icon;
+          const techColor = techObj.color;
+
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              className={`flex items-center gap-1.5 ${sizeClasses[size]} bg-foreground/5 backdrop-blur-sm rounded-md border border-border/50 hover:bg-foreground/10 transition-colors`}
+            >
+              {techIcon ? (
+                <img
+                  src={techIcon}
+                  alt={techName}
+                  className="w-4 h-4 object-contain"
+                />
+              ) : (
+                <div
+                  className={`w-3 h-3 rounded-sm ${techColor || "bg-gray-400"}`}
+                />
+              )}
+              <span className={`font-medium ${techColor || "text-foreground"}`}>
+                {techName}
+              </span>
+            </motion.div>
+          );
+        })}
       </div>
     );
   }
@@ -83,21 +125,41 @@ export default function ProjectTechStack({
             {categoryLabels[category as keyof typeof categoryLabels]}
           </h4>
           <div className="flex flex-wrap gap-2">
-            {techs.map((tech, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className={`${
-                  sizeClasses[size]
-                } rounded-full border font-medium ${
-                  categoryColors[tech.category]
-                }`}
-              >
-                {tech.name}
-              </motion.span>
-            ))}
+            {techs.map((tech: any, index: number) => {
+              const techObj = "tech" in tech ? tech.tech : tech;
+              const techName = techObj.name;
+              const techIcon = techObj.icon;
+              const techColor = techObj.color;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className={`flex items-center gap-1.5 ${sizeClasses[size]} bg-foreground/5 backdrop-blur-sm rounded-md border border-border/50 hover:bg-foreground/10 transition-colors`}
+                >
+                  {techIcon ? (
+                    <img
+                      src={techIcon}
+                      alt={techName}
+                      className="w-4 h-4 object-contain"
+                    />
+                  ) : (
+                    <div
+                      className={`w-3 h-3 rounded-sm ${
+                        techColor || "bg-gray-400"
+                      }`}
+                    />
+                  )}
+                  <span
+                    className={`font-medium ${techColor || "text-foreground"}`}
+                  >
+                    {techName}
+                  </span>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       ))}

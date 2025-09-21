@@ -10,44 +10,46 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { technologies } from "@/data/TechnologiesData";
-
-// TechStack Component
-const TechStack = ({
-  techStack,
+import TechStack from "./tech-stack";
+// Architecture Tech Choices Component
+const ArchitectureTechChoices = ({
+  techChoices,
 }: {
-  techStack: (typeof technologies)[keyof typeof technologies][];
+  techChoices: {
+    [category: string]: {
+      tech: (typeof technologies)[keyof typeof technologies];
+      reason?: string;
+    }[];
+  };
 }) => {
   return (
     <div className="mt-4">
       <h4 className="text-sm font-medium text-white/80 mb-2">Tech Stack</h4>
-      <div className="flex flex-wrap gap-2">
-        {techStack.map((tech, index) => {
-          return (
-            <div
-              key={index}
-              className="flex items-center gap-1.5 px-2.5 py-1 bg-white/5 backdrop-blur-sm rounded-md border border-white/10 hover:bg-white/10 transition-colors"
-            >
-              {tech && "icon" in tech && tech.icon ? (
-                <img
-                  src={tech.icon}
-                  alt={tech.name}
-                  className="w-4 h-4 object-contain"
-                />
-              ) : (
+      <div className="space-y-3">
+        {Object.entries(techChoices).map(([category, techs]) => (
+          <div key={category} className="space-y-2">
+            <h5 className="text-xs font-medium text-white/60">{category}</h5>
+            <div className="flex flex-wrap gap-2">
+              {techs.map((tech, index) => (
                 <div
-                  className={`w-3 h-3 rounded-sm ${
-                    tech?.color || "bg-gray-400"
-                  }`}
-                />
-              )}
-              <span
-                className={`text-xs font-medium ${tech?.color || "text-white"}`}
-              >
-                {tech.name}
-              </span>
+                  key={index}
+                  className="flex items-center gap-1.5 px-2.5 py-1 bg-white/5 backdrop-blur-sm rounded-md border border-white/10 hover:bg-white/10 transition-colors"
+                >
+                  {"icon" in tech.tech && tech.tech.icon && (
+                    <img
+                      src={tech.tech.icon}
+                      alt={tech.tech.name}
+                      className="w-4 h-4 object-contain"
+                    />
+                  )}
+                  <span className="text-xs font-medium text-white">
+                    {tech.tech.name}
+                  </span>
+                </div>
+              ))}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -101,7 +103,14 @@ type Testimonial = {
   link?: string;
   githubLink?: string;
   webLink?: string;
-  techStack?: (typeof technologies)[keyof typeof technologies][];
+  architecture?: {
+    techChoices: {
+      [category: string]: {
+        tech: (typeof technologies)[keyof typeof technologies];
+        reason?: string;
+      }[];
+    };
+  };
 };
 
 type ProjectShowcaseProps = {
@@ -423,8 +432,10 @@ export const ProjectShowcase = ({
                 </motion.p>
 
                 {/* Tech Stack */}
-                {testimonials[active].techStack && (
-                  <TechStack techStack={testimonials[active].techStack!} />
+                {testimonials[active].architecture?.techChoices && (
+                  <ArchitectureTechChoices
+                    techChoices={testimonials[active].architecture!.techChoices}
+                  />
                 )}
 
                 {/* Project Links */}
@@ -549,8 +560,10 @@ export const ProjectShowcase = ({
                 </motion.p>
 
                 {/* Tech Stack */}
-                {testimonials[active].techStack && (
-                  <TechStack techStack={testimonials[active].techStack!} />
+                {testimonials[active].architecture?.techChoices && (
+                  <ArchitectureTechChoices
+                    techChoices={testimonials[active].architecture!.techChoices}
+                  />
                 )}
 
                 {/* Project Links */}

@@ -112,24 +112,34 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <h3 className="text-xl font-semibold text-foreground">
               Technology Choices
             </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {project.architecture.techChoices.map((tech, index) => (
-                <div
-                  key={index}
-                  className="bg-card/50 p-4 rounded-lg border border-border/50"
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm font-medium text-red-500">
-                      {tech.category}
-                    </span>
-                  </div>
-                  <h4 className="font-semibold text-foreground mb-2">
-                    {tech.technology}
+            {Object.entries(project.architecture.techChoices).map(
+              ([category, techs]) => (
+                <div key={category} className="space-y-4">
+                  <h4 className="text-lg font-semibold text-foreground">
+                    {category}
                   </h4>
-                  <p className="text-foreground/80 text-sm">{tech.reason}</p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {techs.map((tech, index) => (
+                      <div
+                        key={index}
+                        className="bg-card/50 p-4 rounded-lg border border-border/50"
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-sm font-medium text-red-500">
+                            {tech.tech.name}
+                          </span>
+                        </div>
+                        {tech.reason && (
+                          <p className="text-foreground/80 text-sm">
+                            {tech.reason}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
+              )
+            )}
           </div>
 
           <ProjectTextBlock
@@ -139,7 +149,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           />
 
           <ProjectTechStack
-            techStack={project.techStack}
+            architecture={project.architecture}
             showCategories={true}
             size="medium"
           />
