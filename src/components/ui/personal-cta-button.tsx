@@ -1,16 +1,11 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 interface PersonalCTAButtonProps {
   children: React.ReactNode;
-  variant?:
-    | "outline"
-    | "filled"
-    | "minimal"
-    | "arrow"
-    | "icon-left"
-    | "icon-right";
+  variant?: "outline" | "filled" | "minimal" | "arrow" | "rounded";
   size?: "sm" | "md" | "lg";
   image?: string;
   imageAlt?: string;
@@ -18,6 +13,7 @@ interface PersonalCTAButtonProps {
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
+  href?: string; // Add href prop for navigation
 }
 
 export function PersonalCTAButton({
@@ -30,6 +26,7 @@ export function PersonalCTAButton({
   className,
   onClick,
   disabled = false,
+  href,
 }: PersonalCTAButtonProps) {
   // Image size configurations
   const imageSizes = {
@@ -87,21 +84,14 @@ export function PersonalCTAButton({
       "before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300",
       "pr-6" // Extra padding for arrow
     ),
-    "icon-left": cn(
-      "border-3 border-primary text-primary bg-white/15 backdrop-blur-md",
+    rounded: cn(
+      "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground border-3 border-primary",
+      "bg-white/15 backdrop-blur-md",
       "shadow-xl shadow-primary/30",
       "hover:bg-primary hover:text-primary-foreground hover:border-primary",
       "hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-0.5",
       "active:translate-y-0 active:shadow-lg",
-      "pl-2" // Extra padding for icon
-    ),
-    "icon-right": cn(
-      "border-3 border-primary text-primary bg-white/15 backdrop-blur-md",
-      "shadow-xl shadow-primary/30",
-      "hover:bg-primary hover:text-primary-foreground hover:border-primary",
-      "hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-0.5",
-      "active:translate-y-0 active:shadow-lg",
-      "pr-2" // Extra padding for icon
+      "rounded-full" // Fully rounded button
     ),
   };
 
@@ -124,15 +114,12 @@ export function PersonalCTAButton({
     </div>
   );
 
-  return (
-    <button
-      className={cn(baseStyles, variantStyles[variant], className)}
-      onClick={onClick}
-      disabled={disabled}
-    >
+  // Render as Link if href is provided, otherwise as button
+  const ButtonContent = () => (
+    <>
       {/* Image/Icon for left side */}
       {image &&
-        (variant === "icon-left" ||
+        (variant === "rounded" ||
           variant === "filled" ||
           variant === "minimal") && (
           <div
@@ -154,24 +141,6 @@ export function PersonalCTAButton({
       {/* Button text */}
       <span className="relative z-10">{children}</span>
 
-      {/* Image/Icon for right side */}
-      {image && variant === "icon-right" && (
-        <div
-          className={cn(
-            "ml-3 flex items-center justify-center",
-            currentImageSize.className
-          )}
-        >
-          <Image
-            src={image}
-            alt={imageAlt}
-            width={currentImageSize.width}
-            height={currentImageSize.height}
-            className="transition-transform duration-300 group-hover:scale-110"
-          />
-        </div>
-      )}
-
       {/* Arrow for arrow variant */}
       {variant === "arrow" && <ArrowIcon />}
 
@@ -182,6 +151,33 @@ export function PersonalCTAButton({
         {/* Hover effect overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className="inline-block">
+        <div
+          className={cn(
+            baseStyles,
+            variantStyles[variant],
+            className,
+            "cursor-pointer"
+          )}
+        >
+          <ButtonContent />
+        </div>
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      className={cn(baseStyles, variantStyles[variant], className)}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      <ButtonContent />
     </button>
   );
 }

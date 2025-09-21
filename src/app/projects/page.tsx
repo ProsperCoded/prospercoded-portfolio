@@ -13,6 +13,7 @@ import { projects as projectsData, UniqueProjects } from "@/data/ProjectsData";
 import { ImagesSlider } from "@/components/ui/images-slider";
 import HorizontalFeaturedList from "@/components/ui/horizontal-featured-list";
 import ProjectCard from "@/components/ProjectCard";
+import { PersonalCTAButton } from "@/components/ui/personal-cta-button";
 
 export default function ProjectsPage() {
   const allProjects = Object.values(projectsData);
@@ -114,13 +115,17 @@ export default function ProjectsPage() {
                 {/* Action Buttons Overlay */}
                 {selectedProject && (
                   <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                    <Link
+                    <PersonalCTAButton
+                      variant="rounded"
+                      size="md"
                       href={`/projects/${selectedProject.slug}`}
-                      className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
+                      image="/assets/icons/project-icon.svg"
+                      imageAlt="Project Brief"
+                      imageSize="medium"
+                      className="text-white border-white/30 hover:border-white/50"
                     >
-                      <FileText className="w-4 h-4" />
-                      <span>Project Brief</span>
-                    </Link>
+                      Project Brief
+                    </PersonalCTAButton>
 
                     {selectedProject.webLink && (
                       <a

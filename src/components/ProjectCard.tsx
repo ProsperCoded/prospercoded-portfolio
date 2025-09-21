@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { ExternalLink, Github, FileText } from "lucide-react";
 import { ProjectItem } from "@/data/ProjectsData";
+import TechStack from "@/components/ui/tech-stack";
 
 interface ProjectCardProps {
   project: ProjectItem;
@@ -163,34 +164,25 @@ export default function ProjectCard({
       {/* Content Section */}
       <div className="p-4 sm:p-6">
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.architecture?.techChoices &&
-            (() => {
-              const allTechs = Object.values(
-                project.architecture.techChoices
-              ).flat();
-              const displayTechs = allTechs.slice(0, 4);
-              const remainingCount = allTechs.length - 4;
+        {project.architecture?.techChoices &&
+          (() => {
+            const allTechs = Object.values(
+              project.architecture.techChoices
+            ).flat();
+            const displayTechs = allTechs.slice(0, 4);
+            const remainingCount = allTechs.length - 4;
 
-              return (
-                <>
-                  {displayTechs.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-red-500/10 text-red-500 text-xs rounded-full border border-red-500/20"
-                    >
-                      {tech.tech.name}
-                    </span>
-                  ))}
-                  {remainingCount > 0 && (
-                    <span className="px-2 py-1 bg-foreground/10 text-foreground/60 text-xs rounded-full">
-                      +{remainingCount} more
-                    </span>
-                  )}
-                </>
-              );
-            })()}
-        </div>
+            return (
+              <div className="mb-4">
+                <TechStack techStack={displayTechs.map((tech) => tech.tech)} />
+                {remainingCount > 0 && (
+                  <span className="inline-block px-2 py-1 bg-foreground/10 text-foreground/60 text-xs rounded-full mt-2">
+                    +{remainingCount} more
+                  </span>
+                )}
+              </div>
+            );
+          })()}
 
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-2 sm:gap-3">

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ExternalLink, Github, Play } from "lucide-react";
+import { ExternalLink, Github, Play, FileText } from "lucide-react";
 import { ProjectItem } from "@/data/ProjectsData";
 
 interface ProjectHeroProps {
@@ -119,33 +119,6 @@ export default function ProjectHero({
             <p className="text-base sm:text-lg text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
               {project.quote}
             </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap justify-center gap-4">
-              {project.webLink && (
-                <a
-                  href={project.webLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all duration-300 hover:scale-105 font-medium"
-                >
-                  <ExternalLink className="w-5 h-5" />
-                  <span>Live Demo</span>
-                </a>
-              )}
-
-              {project.githubLink && (
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 font-medium"
-                >
-                  <Github className="w-5 h-5" />
-                  <span>View Code</span>
-                </a>
-              )}
-            </div>
           </motion.div>
         </div>
       </div>

@@ -22,35 +22,20 @@ const ArchitectureTechChoices = ({
     }[];
   };
 }) => {
+  // Flatten all technologies from all categories
+  const allTechs = Object.values(techChoices).flat();
+  const displayTechs = allTechs.slice(0, 5);
+  const remainingCount = allTechs.length - displayTechs.length;
+
   return (
     <div className="mt-4">
       <h4 className="text-sm font-medium text-white/80 mb-2">Tech Stack</h4>
-      <div className="space-y-3">
-        {Object.entries(techChoices).map(([category, techs]) => (
-          <div key={category} className="space-y-2">
-            <h5 className="text-xs font-medium text-white/60">{category}</h5>
-            <div className="flex flex-wrap gap-2">
-              {techs.map((tech, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-1.5 px-2.5 py-1 bg-white/5 backdrop-blur-sm rounded-md border border-white/10 hover:bg-white/10 transition-colors"
-                >
-                  {"icon" in tech.tech && tech.tech.icon && (
-                    <img
-                      src={tech.tech.icon}
-                      alt={tech.tech.name}
-                      className="w-4 h-4 object-contain"
-                    />
-                  )}
-                  <span className="text-xs font-medium text-white">
-                    {tech.tech.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <TechStack techStack={displayTechs.map((tech) => tech.tech)} />
+      {remainingCount > 0 && (
+        <span className="inline-block px-2 py-1 bg-white/10 text-white/70 text-xs rounded-full mt-2">
+          +{remainingCount} more
+        </span>
+      )}
     </div>
   );
 };
