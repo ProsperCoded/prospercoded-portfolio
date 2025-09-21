@@ -5,7 +5,6 @@ import ProjectLayout from "@/components/projects/ProjectLayout";
 import ProjectSection from "@/components/projects/ProjectSection";
 import ProjectTextBlock from "@/components/projects/ProjectTextBlock";
 import ProjectImage from "@/components/projects/ProjectImage";
-import ProjectTechStack from "@/components/projects/ProjectTechStack";
 
 interface ProjectPageProps {
   params: {
@@ -124,13 +123,20 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                         key={index}
                         className="bg-card/50 p-4 rounded-lg border border-border/50"
                       >
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-sm font-medium text-red-500">
+                        <div className="flex items-center gap-3 mb-3">
+                          {"icon" in tech.tech && tech.tech.icon && (
+                            <img
+                              src={tech.tech.icon}
+                              alt={tech.tech.name}
+                              className="w-8 h-8 object-contain"
+                            />
+                          )}
+                          <span className="text-lg font-semibold text-foreground">
                             {tech.tech.name}
                           </span>
                         </div>
                         {tech.reason && (
-                          <p className="text-foreground/80 text-sm">
+                          <p className="text-foreground/80 text-sm leading-relaxed">
                             {tech.reason}
                           </p>
                         )}
@@ -146,12 +152,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             title="Key Features"
             content={project.architecture.keyFeatures}
             variant="default"
-          />
-
-          <ProjectTechStack
-            architecture={project.architecture}
-            showCategories={true}
-            size="medium"
           />
         </ProjectSection>
       )}
