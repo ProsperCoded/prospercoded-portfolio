@@ -182,9 +182,7 @@ export default function ProjectCard({
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-2 sm:gap-3">
           <Link
-            href={`/projects/${project.name
-              .toLowerCase()
-              .replace(/\s+/g, "-")}`}
+            href={`/projects/${project.slug}`}
             className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-200 text-xs sm:text-sm flex-1 justify-center"
           >
             <FileText className="w-3 h-3 sm:w-4 sm:h-4" />

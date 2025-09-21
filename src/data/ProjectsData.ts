@@ -5,6 +5,50 @@ export type ProjectImage = {
   isPrimary: boolean;
 };
 
+// Enhanced content types for project documentation
+export type ProjectBrief = {
+  motivation: string;
+  challenges: string[];
+  solutions: string[];
+  impact: string;
+  links: {
+    github?: string;
+    live?: string;
+    demo?: string;
+  };
+};
+
+export type ProjectArchitecture = {
+  overview: string;
+  techChoices: {
+    technology: string;
+    reason: string;
+    category: string;
+  }[];
+  systemFlow: string;
+  keyFeatures: string[];
+};
+
+export type ProjectUML = {
+  description: string;
+  imageUrl: string;
+  flowExplanation: string;
+  components: string[];
+};
+
+export type ProjectDatabase = {
+  overview: string;
+  schema: {
+    imageUrl: string;
+    description: string;
+  };
+  designDecisions: string[];
+  tables: {
+    name: string;
+    purpose: string;
+  }[];
+};
+
 export type ProjectItem = {
   name: string;
   quote: string;
@@ -14,6 +58,14 @@ export type ProjectItem = {
   githubLink?: string;
   webLink?: string;
   techStack: (typeof technologies)[keyof typeof technologies][];
+  // Enhanced content for documentation
+  brief?: ProjectBrief;
+  architecture?: ProjectArchitecture;
+  uml?: ProjectUML;
+  database?: ProjectDatabase;
+  slug: string;
+  category: string;
+  featured: boolean;
 };
 
 export const projects: Record<string, ProjectItem> = {
@@ -49,6 +101,133 @@ export const projects: Record<string, ProjectItem> = {
       technologies.postgresql,
       technologies.docker,
     ],
+    slug: "uninav",
+    category: "Full Stack",
+    featured: true,
+    brief: {
+      motivation:
+        "As a student at the University of Ibadan, I experienced firsthand the challenges of accessing and sharing study materials. Traditional methods like scattered Google Drive links and WhatsApp groups were inefficient and disorganized. I wanted to create a centralized platform that would help students access and share essential course-related resources in an organized, scalable way.",
+      challenges: [
+        "Scattered study materials across multiple platforms",
+        "Difficulty finding relevant resources for specific courses",
+        "No centralized system for material organization",
+        "Limited collaboration between students",
+        "Inefficient resource discovery during critical academic periods",
+      ],
+      solutions: [
+        "Created a structured storage system organized by Faculty, Department, and Level",
+        "Implemented advanced search and filtering capabilities",
+        "Built a recommendation engine based on user profiles and academic interests",
+        "Integrated role-based access with student, moderator, and admin roles",
+        "Added monetization features including blog system and ad management",
+      ],
+      impact:
+        "UniNav has transformed how students at University of Ibadan access and share study materials. The platform has created a community-driven approach where students actively contribute to a growing knowledge base, making academic resources more accessible and organized than ever before.",
+      links: {
+        github: "https://github.com/prospercoded/uninav",
+        live: "https://uninav-demo.vercel.app",
+        demo: "https://uninav-demo.vercel.app",
+      },
+    },
+    architecture: {
+      overview:
+        "UniNav follows a modern full-stack architecture with a React/Next.js frontend and Node.js/Express backend. The system is designed for scalability and performance, using PostgreSQL for data persistence and Docker for containerization.",
+      techChoices: [
+        {
+          technology: "Next.js",
+          reason:
+            "Chosen for its excellent SEO capabilities, server-side rendering, and built-in optimization features that are crucial for a content-heavy platform",
+          category: "Frontend",
+        },
+        {
+          technology: "Node.js & Express",
+          reason:
+            "Selected for rapid development, excellent ecosystem, and seamless integration with modern frontend frameworks",
+          category: "Backend",
+        },
+        {
+          technology: "PostgreSQL",
+          reason:
+            "Chosen for its reliability, ACID compliance, and excellent performance with complex queries needed for the recommendation system",
+          category: "Database",
+        },
+        {
+          technology: "Docker",
+          reason:
+            "Implemented for consistent deployment across environments and easy scaling of the application",
+          category: "DevOps",
+        },
+      ],
+      systemFlow:
+        "The application follows a three-tier architecture: Presentation Layer (React/Next.js), Business Logic Layer (Express.js API), and Data Layer (PostgreSQL). User requests flow through the Next.js frontend to the Express API, which processes business logic and interacts with the PostgreSQL database.",
+      keyFeatures: [
+        "Role-based access control system",
+        "Advanced search and filtering",
+        "Recommendation engine",
+        "File upload and management",
+        "Real-time notifications",
+        "Monetization system with ads and boosted content",
+      ],
+    },
+    uml: {
+      description:
+        "The UML diagram illustrates the complete system architecture and data flow of UniNav, showing how different components interact to deliver a seamless user experience.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
+      flowExplanation:
+        "The system flow begins with user authentication and authorization. Students can upload materials, which go through a moderation process before being made available. The recommendation engine analyzes user behavior and academic profiles to suggest relevant content. The platform supports multiple user roles with different access levels and capabilities.",
+      components: [
+        "User Authentication & Authorization",
+        "Material Upload & Management",
+        "Search & Filtering System",
+        "Recommendation Engine",
+        "Moderation System",
+        "Notification Service",
+        "Monetization Module",
+      ],
+    },
+    database: {
+      overview:
+        "The database design focuses on scalability and performance, with carefully designed relationships between users, materials, and interactions. The schema supports complex queries for the recommendation system while maintaining data integrity.",
+      schema: {
+        imageUrl:
+          "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=1200&h=800&fit=crop",
+        description:
+          "The database schema includes tables for users, materials, departments, faculties, interactions, and monetization features. Each table is optimized for specific query patterns and includes proper indexing for performance.",
+      },
+      designDecisions: [
+        "Normalized database design to reduce redundancy and maintain data integrity",
+        "Strategic indexing on frequently queried columns for optimal performance",
+        "Soft delete implementation for materials to maintain historical data",
+        "Separate tables for different interaction types to support analytics",
+        "Optimized foreign key relationships to support complex queries",
+      ],
+      tables: [
+        {
+          name: "users",
+          purpose:
+            "Stores user information, roles, and academic profiles for the recommendation system",
+        },
+        {
+          name: "materials",
+          purpose:
+            "Contains uploaded study materials with metadata, categorization, and approval status",
+        },
+        {
+          name: "departments",
+          purpose: "Organizes materials by academic departments and levels",
+        },
+        {
+          name: "interactions",
+          purpose:
+            "Tracks user interactions with materials for recommendation algorithms",
+        },
+        {
+          name: "notifications",
+          purpose: "Manages real-time notifications for users",
+        },
+      ],
+    },
   },
   MedMap: {
     name: "MedMap",
@@ -80,6 +259,9 @@ export const projects: Record<string, ProjectItem> = {
       technologies.tailwindcss,
       technologies.vercel,
     ],
+    slug: "medmap",
+    category: "Healthcare",
+    featured: true,
   },
   GoalFund: {
     name: "GoalFund",
@@ -111,6 +293,9 @@ export const projects: Record<string, ProjectItem> = {
       technologies.expressjs,
       technologies.docker,
     ],
+    slug: "goalfund",
+    category: "Fintech",
+    featured: true,
   },
   "Party Currency": {
     name: "Party Currency",
@@ -142,6 +327,9 @@ export const projects: Record<string, ProjectItem> = {
       technologies.prisma,
       technologies.typescript,
     ],
+    slug: "party-currency",
+    category: "Event Management",
+    featured: true,
   },
   "Faculty Payment System": {
     name: "Faculty Payment System",
@@ -173,6 +361,9 @@ export const projects: Record<string, ProjectItem> = {
       technologies.restapi,
       technologies.aws,
     ],
+    slug: "faculty-payment",
+    category: "Educational",
+    featured: true,
   },
   "ATC Africa Integration": {
     name: "ATC Africa Integration",
@@ -204,6 +395,9 @@ export const projects: Record<string, ProjectItem> = {
       technologies.graphql,
       technologies.docker,
     ],
+    slug: "atc-africa",
+    category: "Team Leadership",
+    featured: true,
   },
 };
 
@@ -212,9 +406,19 @@ export const getProjectByName = (name: string): ProjectItem | undefined => {
   return projects[name];
 };
 
+// Helper function to get a project by slug
+export const getProjectBySlug = (slug: string): ProjectItem | undefined => {
+  return Object.values(projects).find((project) => project.slug === slug);
+};
+
 // Helper function to get all project names
 export const getProjectNames = (): string[] => {
   return Object.keys(projects);
+};
+
+// Helper function to get all project slugs for static generation
+export const getAllProjectSlugs = (): string[] => {
+  return Object.values(projects).map((project) => project.slug);
 };
 
 export const UniqueProjects = [

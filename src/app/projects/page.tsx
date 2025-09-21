@@ -115,9 +115,7 @@ export default function ProjectsPage() {
                 {selectedProject && (
                   <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
                     <Link
-                      href={`/projects/${selectedProject.name
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`}
+                      href={`/projects/${selectedProject.slug}`}
                       className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
                     >
                       <FileText className="w-4 h-4" />
