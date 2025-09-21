@@ -7,13 +7,12 @@ import {
   ExternalLink,
   Github,
   FileText,
-  ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 import { projects as projectsData, UniqueProjects } from "@/data/ProjectsData";
 import { ImagesSlider } from "@/components/ui/images-slider";
-import AnimatedList from "@/components/ui/animated-list";
-import Carousel from "@/components/ui/carousel";
+import HorizontalFeaturedList from "@/components/ui/horizontal-featured-list";
+import ProjectCard from "@/components/ProjectCard";
 
 export default function ProjectsPage() {
   const allProjects = Object.values(projectsData);
@@ -68,19 +67,6 @@ export default function ProjectsPage() {
     }
   }, [displayedProjects, allProjects.length, loading]);
 
-  // Convert projects to carousel items
-  const carouselItems = useMemo(
-    () =>
-      allProjects.slice(0, displayedProjects).map((project, index) => ({
-        title: project.name,
-        description: project.designation,
-        id: index,
-        icon: <div className="w-4 h-4 bg-primary rounded-full" />,
-        project: project,
-      })),
-    [allProjects, displayedProjects]
-  );
-
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -108,12 +94,11 @@ export default function ProjectsPage() {
           overlay={false}
         >
           <div className="relative z-40 flex flex-col items-center justify-center h-full text-center px-6">
-            <div className="p-8 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10">
+            <div className="p-8 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="max-w-4xl mx-auto"
               >
                 <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white">
                   {selectedProject?.name || "All Projects"}
@@ -169,45 +154,41 @@ export default function ProjectsPage() {
           </div>
         </ImagesSlider>
 
-        {/* Unique Projects Animated List */}
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 z-50 hidden lg:block">
+        {/* Desktop Featured Projects - Bottom positioned to avoid overlay */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 hidden lg:block w-full max-w-6xl px-6">
           <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
             <h3 className="text-white font-semibold mb-4 text-center">
               Featured Projects
             </h3>
-            <AnimatedList
+            <HorizontalFeaturedList
               items={UniqueProjects.map((up) => up.quote)}
               onItemSelect={handleUniqueProjectSelect}
-              className="w-80"
+              className="w-full"
               itemClassName="bg-white/5 hover:bg-white/10 border border-white/10"
-              showGradients={true}
-              displayScrollbar={false}
+              initialSelectedIndex={0}
+            />
+          </div>
+        </div>
+
+        {/* Mobile/Tablet Featured Projects - Bottom positioned */}
+        <div className="absolute bottom-8 left-0 right-0 z-50 lg:hidden px-6">
+          <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+            <h3 className="text-white font-semibold mb-4 text-center">
+              Featured Projects
+            </h3>
+            <HorizontalFeaturedList
+              items={UniqueProjects.map((up) => up.quote)}
+              onItemSelect={handleUniqueProjectSelect}
+              className="w-full"
+              itemClassName="bg-white/5 hover:bg-white/10 border border-white/10"
               initialSelectedIndex={0}
             />
           </div>
         </div>
       </section>
 
-      {/* Mobile Unique Projects */}
-      <section className="lg:hidden py-8 px-6 bg-background/95 backdrop-blur-sm">
-        <h3 className="text-2xl font-bold text-center mb-6 text-foreground">
-          Featured Projects
-        </h3>
-        <div className="max-w-md mx-auto">
-          <AnimatedList
-            items={UniqueProjects.map((up) => up.quote)}
-            onItemSelect={handleUniqueProjectSelect}
-            className="w-full"
-            itemClassName="bg-card/50 hover:bg-card border border-border/50"
-            showGradients={true}
-            displayScrollbar={true}
-            initialSelectedIndex={0}
-          />
-        </div>
-      </section>
-
-      {/* All Projects Carousel Section */}
-      <section className="py-16 px-6 bg-background">
+      {/* All Projects Grid Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-pink to-primary bg-clip-text text-transparent">
@@ -219,81 +200,18 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          {/* Projects Grid with Carousel */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {carouselItems.map((item, index) => (
-              <div key={item.id} className="relative">
-                <Carousel
-                  items={item.project.images.map((img, imgIndex) => ({
-                    title: item.project.name,
-                    description: item.project.quote,
-                    id: imgIndex,
-                    icon: (
-                      <div
-                        className="w-full h-full bg-cover bg-center rounded-lg flex flex-col justify-end p-6"
-                        style={{
-                          backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.8), transparent), url(${img.src})`,
-                        }}
-                      >
-                        <h3 className="text-xl font-bold text-white mb-2">
-                          {item.project.name}
-                        </h3>
-                        <p
-                          className="text-white/80 text-sm leading-relaxed overflow-hidden"
-                          style={{
-                            display: "-webkit-box",
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: "vertical",
-                          }}
-                        >
-                          {item.project.quote}
-                        </p>
-                      </div>
-                    ),
-                  }))}
-                  baseWidth={500}
-                  autoplay={false}
-                  pauseOnHover={true}
-                  loop={true}
-                />
-
-                {/* Action Buttons Outside Carousel */}
-                <div className="flex justify-center gap-3 mt-4">
-                  <Link
-                    href={`/projects/${item.project.name
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")}`}
-                    className="flex items-center gap-2 px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-200 text-sm"
-                  >
-                    <FileText className="w-4 h-4" />
-                    <span>Brief</span>
-                  </Link>
-
-                  {item.project.githubLink && (
-                    <a
-                      href={item.project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-200 text-sm"
-                    >
-                      <Github className="w-4 h-4" />
-                      <span>Code</span>
-                    </a>
-                  )}
-
-                  {item.project.webLink && (
-                    <a
-                      href={item.project.webLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-pink text-white rounded-lg transition-all duration-200 hover:shadow-lg hover:scale-105 text-sm"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Live</span>
-                    </a>
-                  )}
-                </div>
-              </div>
+          {/* Responsive Projects Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8">
+            {allProjects.slice(0, displayedProjects).map((project, index) => (
+              <motion.div
+                key={project.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="h-full"
+              >
+                <ProjectCard project={project} className="h-full" />
+              </motion.div>
             ))}
           </div>
 

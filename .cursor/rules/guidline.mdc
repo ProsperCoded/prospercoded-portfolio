@@ -25,7 +25,7 @@ This document outlines the core context and design principles for the Fullstack 
 - **Corner Radius:** Containers/boxes should have slightly rounded corners, leaning towards an almost pointy aesthetic rather than fully circular.
 
 - **Typography:** Focus on clean, readable fonts that complement the modern, dark theme.
-- **Decorative Elements:** Incorporate subtle glows and code-braces ({} or []) as decorative elements throughout the design, using red/orange/pink or other theme-fitting accent colors.
+- **Decorative Elements:** Incorporate subtle glows and code-braces ({} or []) as decorative elements throughout the design, using red/orange or other theme-fitting accent colors.
 
 **Technical Stack & Libraries:**
 
