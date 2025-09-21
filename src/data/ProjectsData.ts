@@ -50,6 +50,19 @@ export type ProjectDatabase = {
   }[];
 };
 
+export type ProjectChallenges = {
+  overview: string;
+  challenges: {
+    title: string;
+    description: string;
+    impact: string;
+    solution: string;
+    images?: string[];
+    technologies?: string[];
+  }[];
+  summary: string;
+};
+
 export type ProjectItem = {
   name: string;
   quote: string;
@@ -64,6 +77,7 @@ export type ProjectItem = {
   architecture?: ProjectArchitecture;
   uml?: ProjectUML;
   database?: ProjectDatabase;
+  challenges?: ProjectChallenges;
   slug: string;
   category: string;
   featured: boolean;
@@ -252,6 +266,86 @@ export const projects: Record<string, ProjectItem> = {
           purpose: "Manages real-time notifications for users",
         },
       ],
+    },
+    challenges: {
+      overview:
+        "Building UniNav presented several complex challenges that required innovative solutions and deep technical expertise. From handling massive file uploads to implementing real-time features, each challenge pushed the boundaries of what was possible with the chosen technology stack.",
+      challenges: [
+        {
+          title: "Scalable File Upload System",
+          description:
+            "Students needed to upload large study materials (PDFs, videos, images) efficiently without overwhelming the server or causing timeouts.",
+          impact:
+            "Initial uploads were failing for files over 10MB, causing 40% of users to abandon the upload process. This severely limited the platform's usefulness.",
+          solution:
+            "Implemented a chunked upload system with resumable uploads using multer and cloud storage. Added progress bars and retry mechanisms. Files are now processed in 2MB chunks with automatic retry on failure.",
+          images: [
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+          ],
+          technologies: ["Node.js", "Multer", "AWS S3", "Redis"],
+        },
+        {
+          title: "Real-time Recommendation Engine",
+          description:
+            "Creating a recommendation system that could analyze user behavior and suggest relevant materials in real-time without impacting performance.",
+          impact:
+            "Without recommendations, users had to manually search through thousands of materials, leading to poor user engagement and low content discovery rates.",
+          solution:
+            "Built a hybrid recommendation system combining collaborative filtering with content-based filtering. Implemented caching with Redis and background processing to ensure recommendations load instantly.",
+          images: [
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+          ],
+          technologies: ["Python", "Redis", "Machine Learning", "PostgreSQL"],
+        },
+        {
+          title: "Role-based Access Control",
+          description:
+            "Implementing a complex permission system where different user types (students, moderators, admins) have varying levels of access to materials and features.",
+          impact:
+            "Security vulnerabilities were discovered where students could access admin functions, and moderators couldn't properly manage content, leading to potential data breaches.",
+          solution:
+            "Designed a hierarchical RBAC system with JWT tokens and middleware-based permission checking. Implemented fine-grained permissions for each resource type with audit logging.",
+          images: [
+            "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop",
+          ],
+          technologies: ["JWT", "Express.js", "PostgreSQL", "Middleware"],
+        },
+        {
+          title: "Database Performance Optimization",
+          description:
+            "The database was becoming a bottleneck with complex queries for search, recommendations, and analytics taking 5+ seconds to execute.",
+          impact:
+            "Slow database queries were causing 3-5 second page load times, leading to 60% user abandonment and poor user experience.",
+          solution:
+            "Implemented database indexing strategy, query optimization, and connection pooling. Added read replicas for analytics queries and implemented caching layers.",
+          images: [
+            "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+          ],
+          technologies: [
+            "PostgreSQL",
+            "Redis",
+            "Connection Pooling",
+            "Database Indexing",
+          ],
+        },
+        {
+          title: "Real-time Notifications",
+          description:
+            "Implementing a notification system that could handle thousands of concurrent users and deliver instant updates about new materials, comments, and interactions.",
+          impact:
+            "Users were missing important updates about new materials in their departments, leading to low engagement and poor user retention.",
+          solution:
+            "Built a WebSocket-based notification system with Socket.io, implementing room-based subscriptions and message queuing to handle high concurrency.",
+          images: [
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+          ],
+          technologies: ["Socket.io", "Redis", "Node.js", "WebSockets"],
+        },
+      ],
+      summary:
+        "These challenges taught me the importance of scalable architecture, performance optimization, and user experience design. The solutions implemented not only solved the immediate problems but also created a robust foundation for future growth. The platform now handles 10x more users and processes 5x more data than initially anticipated.",
     },
   },
   MedMap: {

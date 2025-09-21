@@ -5,6 +5,7 @@ import ProjectLayout from "@/components/projects/ProjectLayout";
 import ProjectSection from "@/components/projects/ProjectSection";
 import ProjectTextBlock from "@/components/projects/ProjectTextBlock";
 import ProjectImage from "@/components/projects/ProjectImage";
+import ProjectChallenges from "@/components/projects/ProjectChallenges";
 
 interface ProjectPageProps {
   params: {
@@ -195,7 +196,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         <ProjectSection
           id="database"
           title="Database Design"
-          icon="https://img.icons8.com/color/96/data-configuration.png"
+          icon="https://img.icons8.com/liquid-glass/48/stacked-organizational-chart.png"
         >
           <ProjectTextBlock
             title="Database Overview"
@@ -234,6 +235,21 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               ))}
             </div>
           </div>
+        </ProjectSection>
+      )}
+
+      {/* Challenges & Solutions Section */}
+      {project.challenges && (
+        <ProjectSection
+          id="challenges"
+          title="Challenges & Solutions"
+          icon="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-challenges-sales-flaticons-lineal-color-flat-icons-3.png"
+        >
+          <ProjectChallenges
+            overview={project.challenges.overview}
+            challenges={project.challenges.challenges}
+            summary={project.challenges.summary}
+          />
         </ProjectSection>
       )}
     </ProjectLayout>

@@ -85,11 +85,10 @@ export function PersonalCTAButton({
       "pr-6" // Extra padding for arrow
     ),
     rounded: cn(
-      "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground border-3 border-primary",
-      "bg-white/15 backdrop-blur-md",
-      "shadow-xl shadow-primary/30",
-      "hover:bg-primary hover:text-primary-foreground hover:border-primary",
-      "hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-0.5",
+      "bg-gradient-to-r from-red-500 to-red-600 text-white border-3 border-red-500",
+      "shadow-xl shadow-red-500/30",
+      "hover:from-red-600 hover:to-red-700 hover:border-red-600",
+      "hover:shadow-2xl hover:shadow-red-500/40 hover:-translate-y-0.5",
       "active:translate-y-0 active:shadow-lg",
       "rounded-full" // Fully rounded button
     ),

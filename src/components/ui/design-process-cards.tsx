@@ -3,7 +3,13 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
-import { Lightbulb, Code, Rocket, MousePointer2 } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLightbulb,
+  faCode,
+  faRocket,
+  faMousePointer,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Card = ({
   title,
@@ -77,7 +83,7 @@ const Card = ({
           {/* Hover indicator for desktop */}
           {!isMobile && (
             <div className="flex items-center gap-1 mt-2 text-xs text-muted-foreground/60 opacity-60 group-hover/canvas-card:opacity-100 transition-opacity duration-200">
-              <MousePointer2 className="h-3 w-3" />
+              <FontAwesomeIcon icon={faMousePointer} className="h-3 w-3" />
               <span>Hover to explore</span>
             </div>
           )}
@@ -152,7 +158,10 @@ export const DesignProcessCards = () => {
           title="Planning & Strategy"
           description="I start by understanding the problem, researching user needs, and mapping out technical requirements to build a solid foundation."
           icon={
-            <Lightbulb className="h-12 w-12 text-primary group-hover/canvas-card:text-white transition-colors duration-200" />
+            <FontAwesomeIcon
+              icon={faLightbulb}
+              className="h-12 w-12 text-primary group-hover/canvas-card:text-white transition-colors duration-200"
+            />
           }
         >
           <CanvasRevealEffect
@@ -171,7 +180,10 @@ export const DesignProcessCards = () => {
           title="Development & Testing"
           description="With a clear plan, I code iteratively, implement features with clean architecture, and ensure robust testing throughout the process."
           icon={
-            <Code className="h-12 w-12 text-primary group-hover/canvas-card:text-white transition-colors duration-200" />
+            <FontAwesomeIcon
+              icon={faCode}
+              className="h-12 w-12 text-primary group-hover/canvas-card:text-white transition-colors duration-200"
+            />
           }
         >
           <CanvasRevealEffect
@@ -191,7 +203,10 @@ export const DesignProcessCards = () => {
           title="Deploy & Optimize"
           description="Finally, I deploy with confidence, monitor performance, gather feedback, and continuously optimize for better user experience."
           icon={
-            <Rocket className="h-12 w-12 text-primary group-hover/canvas-card:text-white transition-colors duration-200" />
+            <FontAwesomeIcon
+              icon={faRocket}
+              className="h-12 w-12 text-primary group-hover/canvas-card:text-white transition-colors duration-200"
+            />
           }
         >
           <CanvasRevealEffect

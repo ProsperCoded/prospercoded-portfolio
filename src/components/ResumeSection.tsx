@@ -1,6 +1,7 @@
 "use client";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
-import { ExternalLink } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useEffect, useState } from "react";
 import {
   skillCategories as resumeSkillCategories,
@@ -199,7 +200,7 @@ export function ResumeSection() {
                               className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-medium text-sm mb-2 transition-colors"
                             >
                               {org.company}
-                              <ExternalLink className="w-3 h-3" />
+                              <FontAwesomeIcon icon={faExternalLinkAlt} className="w-3 h-3" />
                             </a>
                             <div className="text-sm text-gray-300 leading-relaxed">
                               {org.description}
@@ -262,7 +263,7 @@ export function ResumeSection() {
                           >
                             <div className="text-white font-medium text-sm group-hover:text-purple-400 transition-colors flex items-center gap-1 mb-1">
                               {cert.title}
-                              <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <FontAwesomeIcon icon={faExternalLinkAlt} className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
                             <div className="flex justify-between items-center">
                               <div className="text-emerald-400 text-xs font-medium">
@@ -311,7 +312,7 @@ export function ResumeSection() {
                               <div className="flex-1">
                                 <div className="text-white font-medium text-sm group-hover:text-purple-400 transition-colors flex items-center gap-1">
                                   {comp.title}
-                                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  <FontAwesomeIcon icon={faExternalLinkAlt} className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
                                 <div className="text-gray-400 text-xs">
                                   {comp.event}

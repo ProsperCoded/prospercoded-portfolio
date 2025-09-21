@@ -2,7 +2,8 @@ import Image from "next/image";
 import GridBackground from "@/components/ui/grid-background";
 import { GlowBraces } from "@/components/ui/glow-braces";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
-import { Phone, MapPin } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 export function AboutSection() {
   return (
@@ -69,7 +70,7 @@ export function AboutSection() {
                 {/* Location Badge - extends out of image */}
                 <div className="absolute -top-1 -left-2 sm:-top-3 sm:-left-6 bg-white/95 backdrop-blur-sm rounded-full px-4 py-3 shadow-xl border border-gray-200">
                   <div className="flex items-center gap-2 text-sm font-medium text-gray-800">
-                    <MapPin className="w-4 h-4" />
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4" />
                     Based in Ibadan, Nigeria
                   </div>
                 </div>
@@ -162,7 +163,7 @@ export function AboutSection() {
                   href="tel:+2349155004456"
                   className="flex items-center justify-center sm:justify-start gap-3 bg-green-600/20 border border-green-600/30 rounded-lg px-4 py-3 text-green-400 hover:bg-green-600/30 transition-colors col-span-1 sm:col-span-2"
                 >
-                  <Phone className="w-8 h-8 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <FontAwesomeIcon icon={faPhone} className="w-8 h-8 sm:w-5 sm:h-5 flex-shrink-0" />
                   <span className="font-medium hidden sm:block">
                     +234 915 500 4456
                   </span>

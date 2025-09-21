@@ -2,13 +2,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState, useCallback, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  ChevronLeft,
-  ChevronRight,
-  Eye,
-  Github,
-  ExternalLink,
-} from "lucide-react";
+  faChevronLeft,
+  faChevronRight,
+  faEye,
+  faExternalLinkAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { technologies } from "@/data/TechnologiesData";
 import TechStack from "./tech-stack";
 // Architecture Tech Choices Component
@@ -57,7 +58,10 @@ const ProjectLinks = ({
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3 py-2 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg border border-gray-600/30 hover:border-gray-500/50 transition-all group"
         >
-          <Github className="w-4 h-4 text-gray-300 group-hover:text-white transition-colors" />
+          <FontAwesomeIcon
+            icon={faGithub}
+            className="w-4 h-4 text-gray-300 group-hover:text-white transition-colors"
+          />
           <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
             GitHub
           </span>
@@ -70,7 +74,10 @@ const ProjectLinks = ({
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 hover:border-primary/50 transition-all group"
         >
-          <ExternalLink className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors" />
+          <FontAwesomeIcon
+            icon={faExternalLinkAlt}
+            className="w-4 h-4 text-primary group-hover:text-primary-foreground transition-colors"
+          />
           <span className="text-sm text-primary group-hover:text-primary-foreground transition-colors">
             Live Demo
           </span>
@@ -570,7 +577,7 @@ export const ProjectShowcase = ({
           isMobileView ? "left-3 bottom-3" : "left-3 top-1/2 -translate-y-1/2"
         }`}
       >
-        <ChevronLeft className="h-5 w-5" />
+        <FontAwesomeIcon icon={faChevronLeft} className="h-5 w-5" />
       </button>
       <button
         aria-label="Next project"
@@ -579,7 +586,7 @@ export const ProjectShowcase = ({
           isMobileView ? "right-3 bottom-3" : "right-3 top-1/2 -translate-y-1/2"
         }`}
       >
-        <ChevronRight className="h-5 w-5" />
+        <FontAwesomeIcon icon={faChevronRight} className="h-5 w-5" />
       </button>
     </div>
   );
@@ -640,7 +647,7 @@ const ImageContainer = ({
       {showViewIcon && (
         <div className="absolute top-3 right-3 z-10">
           <div className="flex items-center justify-center h-9 w-9 rounded-full border border-white/10 bg-black/50 text-white backdrop-blur transition group-hover:bg-primary/30">
-            <Eye className="h-4 w-4" />
+            <FontAwesomeIcon icon={faEye} className="h-4 w-4" />
           </div>
         </div>
       )}

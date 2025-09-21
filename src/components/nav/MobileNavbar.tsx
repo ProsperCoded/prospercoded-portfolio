@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { navLinks } from "./nav.data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const MobileNavbar = () => {
   const [activeLink, setActiveLink] = useState<string | null>(null);
@@ -29,7 +30,7 @@ export const MobileNavbar = () => {
         <div className="bg-background/90 backdrop-blur-md border border-border/30 rounded-xl px-3 py-2 shadow-lg">
           <ul className="flex items-center justify-between">
             {navLinks.map((link) => {
-              const Icon = link.icon;
+              const icon = link.icon;
               const isActive = activeLink === link.name;
 
               return (
@@ -58,12 +59,13 @@ export const MobileNavbar = () => {
                         }}
                       />
                     )}
-                    {Icon && (
-                      <Icon
-                        size={18}
+                    {icon && (
+                      <FontAwesomeIcon
+                        icon={icon}
                         className={`transition-colors duration-200 relative z-10 ${
                           isActive ? "text-red-500" : "text-foreground/70"
                         }`}
+                        style={{ fontSize: '18px' }}
                       />
                     )}
                     <span

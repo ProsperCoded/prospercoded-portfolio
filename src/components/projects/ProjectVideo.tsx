@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { motion } from "motion/react";
-import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause, faVolumeUp, faVolumeMute, faExpand } from "@fortawesome/free-solid-svg-icons";
 
 interface ProjectVideoProps {
   src: string;
@@ -90,9 +91,9 @@ export default function ProjectVideo({
             whileTap={{ scale: 0.9 }}
           >
             {isPlaying ? (
-              <Pause className="w-8 h-8" />
+              <FontAwesomeIcon icon={faPause} className="w-8 h-8" />
             ) : (
-              <Play className="w-8 h-8" />
+              <FontAwesomeIcon icon={faPlay} className="w-8 h-8" />
             )}
           </motion.button>
         </div>
@@ -107,9 +108,9 @@ export default function ProjectVideo({
                   className="hover:bg-white/20 p-2 rounded-full transition-colors duration-200"
                 >
                   {isPlaying ? (
-                    <Pause className="w-5 h-5" />
+                    <FontAwesomeIcon icon={faPause} className="w-5 h-5" />
                   ) : (
-                    <Play className="w-5 h-5" />
+                    <FontAwesomeIcon icon={faPlay} className="w-5 h-5" />
                   )}
                 </button>
                 <button
@@ -117,9 +118,9 @@ export default function ProjectVideo({
                   className="hover:bg-white/20 p-2 rounded-full transition-colors duration-200"
                 >
                   {isMuted ? (
-                    <VolumeX className="w-5 h-5" />
+                    <FontAwesomeIcon icon={faVolumeMute} className="w-5 h-5" />
                   ) : (
-                    <Volume2 className="w-5 h-5" />
+                    <FontAwesomeIcon icon={faVolumeUp} className="w-5 h-5" />
                   )}
                 </button>
               </div>
@@ -127,7 +128,7 @@ export default function ProjectVideo({
                 onClick={toggleFullscreen}
                 className="hover:bg-white/20 p-2 rounded-full transition-colors duration-200"
               >
-                <Maximize className="w-5 h-5" />
+                <FontAwesomeIcon icon={faExpand} className="w-5 h-5" />
               </button>
             </div>
           </div>

@@ -2,13 +2,14 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  ArrowLeft,
-  ExternalLink,
-  Github,
-  FileText,
-  ChevronRight,
-} from "lucide-react";
+  faArrowLeft,
+  faExternalLinkAlt,
+  faFileAlt,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { projects as projectsData, UniqueProjects } from "@/data/ProjectsData";
 import { ImagesSlider } from "@/components/ui/images-slider";
 import HorizontalFeaturedList from "@/components/ui/horizontal-featured-list";
@@ -76,7 +77,10 @@ export default function ProjectsPage() {
           href="/"
           className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+          />
           <span>Back to Home</span>
         </Link>
       </div>
@@ -134,7 +138,10 @@ export default function ProjectsPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-red-500/80 backdrop-blur-sm rounded-full text-white hover:bg-red-500 transition-all duration-300 text-sm sm:text-base"
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <FontAwesomeIcon
+                          icon={faExternalLinkAlt}
+                          className="w-4 h-4"
+                        />
                         <span>Visit Live</span>
                       </a>
                     )}
@@ -146,7 +153,7 @@ export default function ProjectsPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
                       >
-                        <Github className="w-4 h-4" />
+                        <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
                         <span>GitHub</span>
                       </a>
                     )}
@@ -220,7 +227,10 @@ export default function ProjectsPage() {
                 ) : (
                   <>
                     <span>Load More Projects</span>
-                    <ChevronRight className="w-4 h-4" />
+                    <FontAwesomeIcon
+                      icon={faChevronRight}
+                      className="w-4 h-4"
+                    />
                   </>
                 )}
               </button>

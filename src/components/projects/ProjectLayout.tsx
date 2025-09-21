@@ -1,13 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  ArrowLeft,
-  ExternalLink,
-  Github,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+  faArrowLeft,
+  faExternalLinkAlt,
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { ProjectItem } from "@/data/ProjectsData";
 import ProjectHero from "./ProjectHero";
@@ -37,7 +38,12 @@ const sidebarSections = [
   {
     id: "database",
     label: "Database Design",
-    icon: "https://img.icons8.com/color/96/data-configuration.png",
+    icon: "https://img.icons8.com/liquid-glass/48/stacked-organizational-chart.png",
+  },
+  {
+    id: "challenges",
+    label: "Challenges & Solutions",
+    icon: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-challenges-sales-flaticons-lineal-color-flat-icons-3.png",
   },
 ];
 
@@ -88,7 +94,10 @@ export default function ProjectLayout({
             href="/projects"
             className="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors group"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+            />
             <span className="hidden sm:inline">Back to Projects</span>
             <span className="sm:hidden">Back</span>
           </Link>
@@ -101,7 +110,10 @@ export default function ProjectLayout({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-300 text-xs sm:text-sm"
               >
-                <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                <FontAwesomeIcon
+                  icon={faExternalLinkAlt}
+                  className="w-3 h-3 sm:w-4 sm:h-4"
+                />
                 <span className="hidden sm:inline">Live Demo</span>
                 <span className="sm:hidden">Demo</span>
               </a>
@@ -114,7 +126,10 @@ export default function ProjectLayout({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-300 text-xs sm:text-sm"
               >
-                <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  className="w-3 h-3 sm:w-4 sm:h-4"
+                />
                 <span className="hidden sm:inline">GitHub</span>
                 <span className="sm:hidden">Code</span>
               </a>
@@ -192,7 +207,7 @@ export default function ProjectLayout({
               activeSection !== sidebarSections[0].id ? { scale: 0.98 } : {}
             }
           >
-            <ChevronLeft className="w-4 h-4" />
+            <FontAwesomeIcon icon={faChevronLeft} className="w-4 h-4" />
             <span className="text-sm font-medium">
               {activeSection === sidebarSections[0].id
                 ? "Previous"
@@ -238,7 +253,7 @@ export default function ProjectLayout({
                     sidebarSections.findIndex((s) => s.id === activeSection) + 1
                   ]?.label}
             </span>
-            <ChevronRight className="w-4 h-4" />
+            <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4" />
           </motion.button>
         </div>
       </div>

@@ -2,14 +2,21 @@
 import { technologies } from "@/data/TechnologiesData";
 export default function TechStack({
   techStack,
+  limit,
 }: {
   techStack: (typeof technologies)[keyof typeof technologies][];
+  limit?: number;
 }) {
+  // Apply limit if specified
+  const displayTechs = limit ? techStack.slice(0, limit) : techStack;
+  const remainingCount =
+    limit && techStack.length > limit ? techStack.length - limit : 0;
+
   return (
     <div className="mt-4">
       <h4 className="text-sm font-medium text-white/80 mb-2">Tech Stack</h4>
       <div className="flex flex-wrap gap-2">
-        {techStack.map((tech, index) => {
+        {displayTechs.map((tech, index) => {
           return (
             <div
               key={index}
@@ -36,6 +43,11 @@ export default function TechStack({
             </div>
           );
         })}
+        {remainingCount > 0 && (
+          <span className="inline-block px-2 py-1 bg-foreground/10 text-foreground/60 text-xs rounded-full">
+            +{remainingCount} more
+          </span>
+        )}
       </div>
     </div>
   );

@@ -1,16 +1,16 @@
-import type { LucideIcon } from "lucide-react";
-import { Home, User, FileText, FolderOpen } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome, faUser, faFileAlt, faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 
 // Single source of truth for navigation items used by desktop and mobile
 export type NavLinkItem = {
   name: string;
   href: string;
-  icon?: LucideIcon; // optional icon for mobile/other UIs
+  icon?: any; // FontAwesome icon for mobile/other UIs
 };
 
 export const navLinks: NavLinkItem[] = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "About", href: "#about", icon: User },
-  { name: "Resume", href: "#resume", icon: FileText },
-  { name: "Projects", href: "/projects", icon: FolderOpen },
+  { name: "Home", href: "/", icon: faHome },
+  { name: "About", href: "#about", icon: faUser },
+  { name: "Resume", href: "#resume", icon: faFileAlt },
+  { name: "Projects", href: "/projects", icon: faFolderOpen },
 ];
