@@ -129,7 +129,7 @@ export default function ProjectsPage() {
                         href={selectedProject.webLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-primary/80 backdrop-blur-sm rounded-full text-white hover:bg-primary transition-all duration-300 text-sm sm:text-base"
+                        className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-red-500/80 backdrop-blur-sm rounded-full text-white hover:bg-red-500 transition-all duration-300 text-sm sm:text-base"
                       >
                         <ExternalLink className="w-4 h-4" />
                         <span>Visit Live</span>
@@ -153,25 +153,11 @@ export default function ProjectsPage() {
             </div>
           </div>
         </ImagesSlider>
+      </section>
 
-        {/* Desktop Featured Projects - Bottom positioned to avoid overlay */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 hidden lg:block w-full max-w-6xl px-6">
-          <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-            <h3 className="text-white font-semibold mb-4 text-center">
-              Featured Projects
-            </h3>
-            <HorizontalFeaturedList
-              items={UniqueProjects.map((up) => up.quote)}
-              onItemSelect={handleUniqueProjectSelect}
-              className="w-full"
-              itemClassName="bg-white/5 hover:bg-white/10 border border-white/10"
-              initialSelectedIndex={0}
-            />
-          </div>
-        </div>
-
-        {/* Mobile/Tablet Featured Projects - Bottom positioned */}
-        <div className="absolute bottom-8 left-0 right-0 z-50 lg:hidden px-6">
+      {/* Featured Projects Section - Positioned midway between hero and content */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-background/95 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto">
           <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
             <h3 className="text-white font-semibold mb-4 text-center">
               Featured Projects
@@ -191,7 +177,7 @@ export default function ProjectsPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-pink to-primary bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 bg-clip-text text-transparent">
               All Projects
             </h2>
             <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
@@ -221,7 +207,7 @@ export default function ProjectsPage() {
               <button
                 onClick={loadMoreProjects}
                 disabled={loading}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary via-pink to-primary text-white font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-red-500 text-white font-semibold rounded-full hover:bg-red-600 hover:shadow-lg hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <>

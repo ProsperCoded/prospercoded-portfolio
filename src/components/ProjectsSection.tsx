@@ -5,6 +5,7 @@ import { ProjectShowcase } from "./ui/project-showcase";
 import { projects as projectsData } from "@/data/ProjectsData";
 import GridBackground from "@/components/ui/grid-background";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
+import { PersonalCTAButton } from "@/components/ui/personal-cta-button";
 function openInNewTab(link: string) {
   window.open(link, "_blank", "noopener,noreferrer");
 }
@@ -14,8 +15,6 @@ export const ProjectsSection = () => {
 
   return (
     <section id="projects" className="relative md:mt-[4rem]">
-      {/* <GridBackground spacing={20}> */}
-      {/* Decorative Background Elements */}
       <DecorativeGlowBraces
         type="square"
         size="xl"
@@ -52,7 +51,6 @@ export const ProjectsSection = () => {
               Featured Projects
             </h2>
 
-            {/* Decorative Line */}
             <div className="flex items-center justify-center mt-8 gap-4">
               <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/50"></div>
               <div className="flex gap-1">
@@ -64,7 +62,6 @@ export const ProjectsSection = () => {
             </div>
           </div>
 
-          {/* Subtle glow effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-pink/5 rounded-3xl blur-3xl -z-10"></div>
 
           <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-8">
@@ -116,34 +113,20 @@ export const ProjectsSection = () => {
             />
           </div>
 
-          {/* View More Button */}
           <div className="flex justify-center mt-8">
-            <Link
-              href="/projects"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 ease-out bg-gradient-to-r from-primary via-pink to-primary bg-size-200 bg-pos-0 hover:bg-pos-100 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1"
+            <PersonalCTAButton
+              variant="arrow"
+              size="lg"
+              imageSize="large"
+              image="/assets/icons/project-icon.svg"
+              imageAlt="Project icon"
+              className="font-semibold tracking-wide"
             >
-              <span className="relative z-10">View All Projects</span>
-              <svg
-                className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-pink/20 to-primary/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary via-pink to-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
+              View All Projects
+            </PersonalCTAButton>
           </div>
         </div>
       </div>
-      {/* </GridBackground> */}
     </section>
   );
 };

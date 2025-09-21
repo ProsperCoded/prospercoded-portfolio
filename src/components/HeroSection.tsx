@@ -1,30 +1,17 @@
 import Image from "next/image";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { PersonalCTAButton } from "@/components/ui/personal-cta-button";
 import SplitText from "@/components/ui/split-text";
 import RippleGrid from "@/components/ui/ripple-grid";
 import { cn } from "@/lib/utils";
-import { RainbowButton } from "@/components/ui/rainbow-button";
 
 const images = [
-  {
-    src: require("@/app/assets/technologies/3D/nextjs-3d.png"),
-    alt: "Next.js",
-  },
-  { src: require("@/app/assets/technologies/3D/docker-3d.png"), alt: "Docker" },
-  { src: require("@/app/assets/technologies/3D/react-3d.png"), alt: "React" },
-  {
-    src: require("@/app/assets/technologies/3D/postgres-3d.png"),
-    alt: "Postgres",
-  },
-  {
-    src: require("@/app/assets/technologies/3D/nestjs-3d.webp"),
-    alt: "NestJS",
-  },
-  { src: require("@/app/assets/technologies/3D/node-3d.png"), alt: "Node.js" },
-  {
-    src: require("@/app/assets/technologies/3D/typescript-3d.png"),
-    alt: "TypeScript",
-  },
+  { src: "/assets/icons/technologies/3D/nextjs-3d.png", alt: "Next.js" },
+  { src: "/assets/icons/technologies/3D/docker-3d.png", alt: "Docker" },
+  { src: "/assets/icons/technologies/3D/react-3d.png", alt: "React" },
+  { src: "/assets/icons/technologies/3D/postgres-3d.png", alt: "Postgres" },
+  { src: "/assets/icons/technologies/3D/nestjs-3d.webp", alt: "NestJS" },
+  { src: "/assets/icons/technologies/3D/node-3d.png", alt: "Node.js" },
+  { src: "/assets/icons/technologies/3D/typescript-3d.png", alt: "TypeScript" },
 ];
 
 export function HeroSection() {
@@ -109,9 +96,18 @@ export function HeroSection() {
         </p>
         {/* CTA Button */}
         <div className="flex justify-center">
-          <InteractiveHoverButton className="bg-primary text-primary-foreground hover:bg-primary/90 border-primary">
+          <PersonalCTAButton
+            variant="filled"
+            size="lg"
+            imageSize="large"
+            // image="/assets/icons/project-icon.svg"
+            image="/assets/icons/cooking.svg"
+            // image="https://img.icons8.com/ios-filled/100/salt-bae.png"
+            imageAlt="Project icon"
+            className="font-semibold tracking-wide"
+          >
             Visit my work
-          </InteractiveHoverButton>
+          </PersonalCTAButton>
         </div>
       </div>
     </section>

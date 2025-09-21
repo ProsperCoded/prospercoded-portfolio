@@ -1,11 +1,3 @@
-// import DockerIcon from "@/app/assets/icons/technologies/docker.svg";
-// import AWSIcon from "@/assets/icons/technologies/aws.svg";
-// import VercelIcon from "@/assets/icons/technologies/vercel.svg";
-// import GitIcon from "@/assets/icons/technologies/git.svg";
-// import GitHubIcon from "@/assets/icons/technologies/github.svg";
-// import GraphQLIcon from "@/assets/icons/technologies/graphql.svg";
-// import RESTAPIIcon from "@/assets/icons/technologies/restapi.svg";
-
 export type Technology = {
   name: string;
   icon?: string;

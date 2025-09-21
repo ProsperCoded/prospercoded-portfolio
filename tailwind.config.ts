@@ -63,6 +63,7 @@ export default {
         "slide-up": "slideUp 0.3s ease-out",
         "rainbow-pulse": "rainbow-pulse 2s ease-in-out infinite",
         gradient: "gradient 8s linear infinite",
+        shimmer: "shimmer 3s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -81,6 +82,10 @@ export default {
           "0%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
           "100%": { backgroundPosition: "0% 50%" },
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
         },
       },
     },
