@@ -108,7 +108,7 @@ export const projects: Record<string, ProjectItem> = {
       },
     ],
     links: {
-      github: "https://github.com/prospercoded/uninav",
+      github: "https://github.com/prospercoded/uninav-backend",
       live: "https://uninav.live",
       projectLink: "/projects/uninav",
       demo: "http://uninav-pitch.vercel.app/",
@@ -151,11 +151,6 @@ export const projects: Record<string, ProjectItem> = {
             reason:
               "For type safety, improved code quality, and better maintainability, especially in a growing codebase",
           },
-          {
-            tech: technologies.tailwindcss,
-            reason:
-              "For rapid UI development, highly customizable styling, and responsive design without writing custom CSS",
-          },
         ],
         Backend: [
           {
@@ -164,16 +159,16 @@ export const projects: Record<string, ProjectItem> = {
               "Selected for its non-blocking I/O model, efficiency, and ability to handle concurrent requests, making it suitable for a scalable API",
           },
           {
-            tech: technologies.expressjs,
+            tech: technologies.nestjs,
             reason:
-              "A minimalist and flexible Node.js web application framework that provides a robust set of features for web and mobile applications",
+              "For its modular architecture, scalability, and type safety, making it a great fit for a microservices architecture",
           },
         ],
         Database: [
           {
             tech: technologies.postgresql,
             reason:
-              "A powerful, open-source relational database known for its reliability, feature richness, and strong support for complex queries and data integrity",
+              "For its reliability, feature richness, and strong support for complex queries and data integrity, used it for more optimized searches using pgvector",
           },
         ],
         Deployment: [
@@ -190,7 +185,7 @@ export const projects: Record<string, ProjectItem> = {
         ],
       },
       systemFlow:
-        "The application follows a three-tier architecture: Presentation Layer (React/Next.js), Business Logic Layer (Express.js API), and Data Layer (PostgreSQL). User requests flow through the Next.js frontend to the Express API, which processes business logic and interacts with the PostgreSQL database.",
+        "The application follows a three-tier architecture: Presentation Layer (Next.js), Business Logic Layer (NestJS API), and Data Layer (PostgreSQL). User requests flow through the Next.js frontend to the NestJS API, which processes business logic and interacts with the PostgreSQL database.",
       keyFeatures: [
         "Role-based access control system",
         "Advanced search and filtering",
@@ -221,8 +216,7 @@ export const projects: Record<string, ProjectItem> = {
       overview:
         "The database design focuses on scalability and performance, with carefully designed relationships between users, materials, and interactions. The schema supports complex queries for the recommendation system while maintaining data integrity.",
       schema: {
-        imageUrl:
-          "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=1200&h=800&fit=crop",
+        imageUrl: "/assets/projects/uninav/database/image1.png",
         description:
           "The database schema includes tables for users, materials, departments, faculties, interactions, and monetization features. Each table is optimized for specific query patterns and includes proper indexing for performance.",
       },
@@ -237,25 +231,60 @@ export const projects: Record<string, ProjectItem> = {
         {
           name: "users",
           purpose:
-            "Stores user information, roles, and academic profiles for the recommendation system",
+            "Student accounts with auth, profile, matric number, role (student/mod/admin)",
+        },
+        {
+          name: "moderators",
+          purpose:
+            "Moderator assignments per department/faculty with approval status",
+        },
+        {
+          name: "faculties",
+          purpose: "University faculties directory with moderation status",
+        },
+        {
+          name: "departments",
+          purpose: "Departments linked to faculties with descriptions",
+        },
+        {
+          name: "courses",
+          purpose: "Course catalog with unique course codes and descriptions",
+        },
+        {
+          name: "department_courses",
+          purpose: "Junction table mapping courses offered by each department",
+        },
+        {
+          name: "student_courses",
+          purpose: "Junction table of students enrolled in courses",
         },
         {
           name: "materials",
           purpose:
-            "Contains uploaded study materials with metadata, categorization, and approval status",
+            "Study materials metadata (type, tags, address), counts, status, visibility",
         },
         {
-          name: "departments",
-          purpose: "Organizes materials by academic departments and levels",
-        },
-        {
-          name: "interactions",
+          name: "collections",
           purpose:
-            "Tracks user interactions with materials for recommendation algorithms",
+            "User-created material collections with contributors, tags, visibility, restriction",
         },
         {
-          name: "notifications",
-          purpose: "Manages real-time notifications for users",
+          name: "bookmarks",
+          purpose: "User saves for materials or collections for quick access",
+        },
+        {
+          name: "adverts",
+          purpose:
+            "Advertisements linked to materials/collections with pricing and metrics",
+        },
+        {
+          name: "blogs",
+          purpose:
+            "Editorial content (articles/guidelines/schemes) with body, likes, clicks",
+        },
+        {
+          name: "comments",
+          purpose: "User comments on blog posts",
         },
       ],
     },
@@ -264,33 +293,6 @@ export const projects: Record<string, ProjectItem> = {
         "Building UniNav presented several complex challenges that required innovative solutions and deep technical expertise. From handling massive file uploads to implementing real-time features, each challenge pushed the boundaries of what was possible with the chosen technology stack.",
       challenges: [
         {
-          title: "Scalable File Upload System",
-          description:
-            "Students needed to upload large study materials (PDFs, videos, images) efficiently without overwhelming the server or causing timeouts.",
-          impact:
-            "Initial uploads were failing for files over 10MB, causing 40% of users to abandon the upload process. This severely limited the platform's usefulness.",
-          solution:
-            "Implemented a chunked upload system with resumable uploads using multer and cloud storage. Added progress bars and retry mechanisms. Files are now processed in 2MB chunks with automatic retry on failure.",
-          images: [
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-          ],
-          technologies: ["Node.js", "Multer", "AWS S3", "Redis"],
-        },
-        {
-          title: "Real-time Recommendation Engine",
-          description:
-            "Creating a recommendation system that could analyze user behavior and suggest relevant materials in real-time without impacting performance.",
-          impact:
-            "Without recommendations, users had to manually search through thousands of materials, leading to poor user engagement and low content discovery rates.",
-          solution:
-            "Built a hybrid recommendation system combining collaborative filtering with content-based filtering. Implemented caching with Redis and background processing to ensure recommendations load instantly.",
-          images: [
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-          ],
-          technologies: ["Python", "Redis", "Machine Learning", "PostgreSQL"],
-        },
-        {
           title: "Role-based Access Control",
           description:
             "Implementing a complex permission system where different user types (students, moderators, admins) have varying levels of access to materials and features.",
@@ -298,46 +300,11 @@ export const projects: Record<string, ProjectItem> = {
             "Security vulnerabilities were discovered where students could access admin functions, and moderators couldn't properly manage content, leading to potential data breaches.",
           solution:
             "Designed a hierarchical RBAC system with JWT tokens and middleware-based permission checking. Implemented fine-grained permissions for each resource type with audit logging.",
-          images: [
-            "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop",
-          ],
-          technologies: ["JWT", "Express.js", "PostgreSQL", "Middleware"],
-        },
-        {
-          title: "Database Performance Optimization",
-          description:
-            "The database was becoming a bottleneck with complex queries for search, recommendations, and analytics taking 5+ seconds to execute.",
-          impact:
-            "Slow database queries were causing 3-5 second page load times, leading to 60% user abandonment and poor user experience.",
-          solution:
-            "Implemented database indexing strategy, query optimization, and connection pooling. Added read replicas for analytics queries and implemented caching layers.",
-          images: [
-            "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-          ],
-          technologies: [
-            "PostgreSQL",
-            "Redis",
-            "Connection Pooling",
-            "Database Indexing",
-          ],
-        },
-        {
-          title: "Real-time Notifications",
-          description:
-            "Implementing a notification system that could handle thousands of concurrent users and deliver instant updates about new materials, comments, and interactions.",
-          impact:
-            "Users were missing important updates about new materials in their departments, leading to low engagement and poor user retention.",
-          solution:
-            "Built a WebSocket-based notification system with Socket.io, implementing room-based subscriptions and message queuing to handle high concurrency.",
-          images: [
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-          ],
-          technologies: ["Socket.io", "Redis", "Node.js", "WebSockets"],
+          images: ["/assets/projects/uninav/challenges/user-roles.png"],
         },
       ],
       summary:
-        "These challenges taught me the importance of scalable architecture, performance optimization, and user experience design. The solutions implemented not only solved the immediate problems but also created a robust foundation for future growth. The platform now handles 10x more users and processes 5x more data than initially anticipated.",
+        "These challenges taught me the importance of scalable architecture, performance optimization, and user experience design.",
     },
   },
   MedMap: {
@@ -369,43 +336,6 @@ export const projects: Record<string, ProjectItem> = {
     category: "Healthcare",
     featured: true,
   },
-  GoalFund: {
-    name: "GoalFund",
-    quote:
-      "A crowdfunding platform that connects goal-oriented individuals with supporters. Features secure payment integration, real-time progress tracking, and transparency-focused design.",
-    designation: "Fintech Platform",
-    logoUrl: "https://img.icons8.com/color/96/money-bag.png",
-    images: [
-      {
-        src: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-        isPrimary: true,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop",
-        isPrimary: false,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
-        isPrimary: false,
-      },
-    ],
-    links: {
-      github: "https://github.com/prospercoded/goalfund",
-      live: "https://goalfund.vercel.app",
-      projectLink: "/projects/goalfund",
-    },
-    // techStack: [
-    //   technologies.react,
-    //   technologies.nodejs,
-    //   technologies.postgresql,
-    //   technologies.stripe,
-    //   technologies.expressjs,
-    //   technologies.docker,
-    // ],
-    slug: "goalfund",
-    category: "Fintech",
-    featured: true,
-  },
   "Party Currency": {
     name: "Party Currency",
     quote:
@@ -431,88 +361,28 @@ export const projects: Record<string, ProjectItem> = {
       live: "https://party-currency.vercel.app",
       projectLink: "/projects/party-currency",
     },
-    // techStack: [
-    //   technologies.nextjs,
-    //   technologies.nestjs,
-    //   technologies.postgresql,
-    //   technologies.websockets,
-    //   technologies.prisma,
-    //   technologies.typescript,
-    // ],
     slug: "party-currency",
     category: "Event Management",
     featured: true,
   },
-  "Faculty Payment System": {
-    name: "Faculty Payment System",
-    quote:
-      "A comprehensive payment system developed for university faculty operations. Solves real-world logistical challenges on campus with secure transaction processing and administrative features.",
-    designation: "Educational Platform",
-    logoUrl: "https://img.icons8.com/color/96/graduation-cap.png",
-    images: [
-      {
-        src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop",
-        isPrimary: true,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-        isPrimary: false,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
-        isPrimary: false,
-      },
-    ],
-    links: {
-      github: "https://github.com/prospercoded/faculty-payment",
-      live: "https://faculty-payment-demo.vercel.app",
-      projectLink: "/projects/faculty-payment",
-    },
-    // techStack: [
-    //   technologies.react,
-    //   technologies.django,
-    //   technologies.python,
-    //   technologies.postgresql,
-    //   technologies.restapi,
-    //   technologies.aws,
-    // ],
-    slug: "faculty-payment",
-    category: "Educational",
-    featured: true,
-  },
+
   "ATC Africa Integration": {
     name: "ATC Africa Integration",
     quote:
       "Led a team of 5 Backend Engineers to integrate an event management system on the official ATC Africa site. Focused on scalability, performance optimization, and seamless user experience.",
     designation: "Team Leadership Project",
-    logoUrl: "https://img.icons8.com/color/96/team.png",
+    logoUrl: "/assets/projects/atcafrica/logo.png",
     images: [
       {
-        src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop",
+        src: "/assets/projects/atcafrica/showcase/image1.png",
         isPrimary: true,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-        isPrimary: false,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
-        isPrimary: false,
       },
     ],
     links: {
-      github: "https://github.com/atc-africa/event-management",
+      github: "https://github.com/amazingtechcom/atc-website-api",
       live: "https://atcafrica.com",
       projectLink: "/projects/atc-africa",
     },
-    // techStack: [
-    //   technologies.nextjs,
-    //   technologies.nodejs,
-    //   technologies.typescript,
-    //   technologies.mongodb,
-    //   technologies.graphql,
-    //   technologies.docker,
-    // ],
     slug: "atc-africa",
     category: "Team Leadership",
     featured: true,
@@ -549,16 +419,12 @@ export const UniqueProjects = [
     project: projects["MedMap"],
   },
   {
-    quote: "Best Fintech Project",
-    project: projects["GoalFund"],
-  },
-  {
     quote: "Best Event Management Project",
     project: projects["Party Currency"],
   },
   {
     quote: "Best Educational Project",
-    project: projects["Faculty Payment System"],
+    project: projects["Uninav"],
   },
   {
     quote: "Best Team Leadership Project",

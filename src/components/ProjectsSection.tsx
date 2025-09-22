@@ -118,6 +118,7 @@ export const ProjectsSection = () => {
               variant="arrow"
               size="lg"
               imageSize="large"
+              href="/projects"
               image="/assets/icons/project-icon.svg"
               imageAlt="Project icon"
               className="font-semibold tracking-wide"

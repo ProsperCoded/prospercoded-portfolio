@@ -14,7 +14,7 @@ export function FloatingContactButton() {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-imperial-red to-folly text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+        className="fixed bottom-16 md:bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-imperial-red to-folly text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ scale: 0 }}
@@ -41,7 +41,7 @@ export function FloatingContactButton() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-40 space-y-3"
+            className="fixed bottom-32 md:bottom-24 right-6 z-40 space-y-3"
           >
             {/* Contact Form Link */}
             <motion.div
