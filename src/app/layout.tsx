@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${OWNER_DETAILS.fullName} - ${OWNER_DETAILS.title} Portfolio`,
+  title: `ProsperCoded Portfolio`,
   description: `${OWNER_DETAILS.bio} Focus: ${OWNER_DETAILS.specialization}.`,
   keywords: [
     OWNER_DETAILS.title,
