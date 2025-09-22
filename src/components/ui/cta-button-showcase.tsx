@@ -45,7 +45,7 @@ export function CTAButtonShowcase() {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Icon Left</h3>
           <PersonalCTAButton
-            variant="icon-left"
+            variant="filled"
             size="md"
             image="/assets/icons/project-icon.svg"
             imageAlt="Project icon"
@@ -58,7 +58,7 @@ export function CTAButtonShowcase() {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Icon Right</h3>
           <PersonalCTAButton
-            variant="icon-right"
+            variant="filled"
             size="md"
             image="/assets/icons/project-icon.svg"
             imageAlt="Project icon"

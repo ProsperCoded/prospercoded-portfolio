@@ -33,6 +33,9 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          purple: "var(--accent-purple)",
+          yellow: "var(--accent-yellow)",
+          green: "var(--accent-green)",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -60,12 +63,6 @@ export default {
         },
         warm: {
           orange: "var(--warm-orange)",
-        },
-        // Accent colors (preserved)
-        accent: {
-          purple: "var(--accent-purple)",
-          yellow: "var(--accent-yellow)",
-          green: "var(--accent-green)",
         },
       },
       fontFamily: {

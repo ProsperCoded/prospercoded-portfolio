@@ -161,7 +161,7 @@ export default function ProjectChallenges({
                                 key={techIndex}
                                 className="px-2 sm:px-3 py-1 bg-blue-500/10 text-blue-500 text-xs sm:text-sm rounded-full border border-blue-500/20"
                               >
-                                {tech}
+                                {tech.name}
                               </span>
                             ))}
                           </div>
