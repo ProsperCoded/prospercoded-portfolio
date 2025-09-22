@@ -328,7 +328,7 @@ export default function ProjectsPage() {
               onItemSelect={handleUniqueProjectSelect}
               className="w-full"
               itemClassName="bg-white/5 hover:bg-white/10 border border-white/10"
-              initialSelectedIndex={0}
+              initialSelectedIndex={-1}
             />
           </div>
         </div>
