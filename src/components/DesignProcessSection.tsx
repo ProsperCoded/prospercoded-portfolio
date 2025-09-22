@@ -12,7 +12,7 @@ export const DesignProcessSection = () => {
         <DecorativeGlowBraces
           type="square"
           size="xl"
-          glowColor="rgb(251, 191, 36)"
+          glowColor="var(--accent-yellow)"
           glowIntensity="low"
           rotation={-25}
           opacity={0.4}
@@ -22,7 +22,7 @@ export const DesignProcessSection = () => {
         <DecorativeGlowBraces
           type="curly"
           size="lg"
-          glowColor="rgb(34, 197, 94)"
+          glowColor="var(--accent-green)"
           rotation={45}
           opacity={0.2}
           glow={true}
@@ -31,7 +31,7 @@ export const DesignProcessSection = () => {
         <DecorativeGlowBraces
           type="square"
           size="xl"
-          glowColor="rgb(239, 68, 68)"
+          glowColor="var(--imperial-red)"
           glowIntensity="medium"
           rotation={-15}
           opacity={0.3}

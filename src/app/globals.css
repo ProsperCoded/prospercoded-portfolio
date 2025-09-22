@@ -51,8 +51,23 @@
   --pink: 330 100% 50%;
 } */
 
-/* @media (prefers-color-scheme: dark) { */
+/* New Color Scheme - Inspired by Imperial Red, Folly, Tangelo, and Purple/Yellow gradients */
 :root {
+  /* Theme Colors */
+  --imperial-red: #ff0038;
+  --folly: #fe0b54;
+  --tangelo: #ff4400;
+  --purple-gradient-start: #a060c0;
+  --purple-gradient-end: #8040a0;
+  --golden-yellow: #ffe600;
+  --warm-orange: #ffaa00;
+
+  /* Accent Colors (to be preserved) */
+  --accent-purple: #bd79e9;
+  --accent-yellow: #ffca0c;
+  --accent-green: #00e168;
+
+  /* Component Variables */
   --halomot-button-background: #0a0a0a;
   --halomot-button-foreground: #fff;
   --project-showcase-name-color: #fff;
@@ -69,35 +84,80 @@
   --project-showcase-testimony-bottom: 1em;
   --project-showcase-line-height: 1.56;
   --project-showcase-button-gradient: linear-gradient(
-    to right,
-    #603dec,
-    #a123f4
+    135deg,
+    var(--imperial-red),
+    var(--folly),
+    var(--tangelo)
   );
   --project-showcase-button-background: #161616;
   --project-showcase-button-text-color: #fff;
   --project-showcase-button-outer-radius: 6.34px;
   --project-showcase-button-inner-radius: 6px;
   --project-showcase-button-hover-text-color: #fff;
+
+  /* Core Theme Variables */
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
   --card: 240 10% 3.9%;
   --card-foreground: 0 0% 98%;
   --popover: 240 10% 3.9%;
   --popover-foreground: 0 0% 98%;
-  --primary: 350 90% 55%;
+
+  /* Primary - Imperial Red */
+  --primary: 0 100% 50%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 240 3.7% 15.9%;
+
+  /* Secondary - Purple gradient */
+  --secondary: 280 40% 60%;
   --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+
+  /* Muted - Dark purple */
+  --muted: 280 20% 15%;
+  --muted-foreground: 280 5% 65%;
+
+  /* Accent - Golden yellow */
+  --accent: 45 100% 50%;
+  --accent-foreground: 0 0% 0%;
+
+  /* Destructive - Imperial red */
   --destructive: 0 100% 50%;
   --destructive-foreground: 0 0% 100%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 354 100% 50%;
+
+  /* Border - Purple tint */
+  --border: 280 20% 20%;
+  --input: 280 20% 20%;
+
+  /* Ring - Imperial red */
+  --ring: 0 100% 50%;
+
+  /* Pink - Folly */
   --pink: 330 100% 50%;
+
+  /* Custom Gradients */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--imperial-red),
+    var(--folly),
+    var(--tangelo)
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    var(--purple-gradient-start),
+    var(--purple-gradient-end)
+  );
+  --gradient-golden: linear-gradient(
+    135deg,
+    var(--golden-yellow),
+    var(--warm-orange)
+  );
+  --gradient-rainbow: linear-gradient(
+    135deg,
+    var(--imperial-red),
+    var(--folly),
+    var(--tangelo),
+    var(--purple-gradient-start),
+    var(--accent-yellow)
+  );
 }
 /* } */
 

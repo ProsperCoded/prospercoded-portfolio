@@ -94,7 +94,7 @@ export default function ProjectCard({
   return (
     <Link href={`/projects/${project.slug}`}>
       <motion.div
-        className={`group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 cursor-pointer ${className}`}
+        className={`group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-imperial-red/50 hover:shadow-xl hover:shadow-imperial-red/10 cursor-pointer ${className}`}
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         whileHover={{ y: -4 }}
@@ -142,7 +142,7 @@ export default function ProjectCard({
 
             {/* Hover Overlay with Visit Icon */}
             <motion.div
-              className="absolute inset-0 bg-red-500/20 z-30 flex items-center justify-center"
+              className="absolute inset-0 bg-imperial-red/20 z-30 flex items-center justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: isHovered ? 1 : 0 }}
               transition={{ duration: 0.3 }}
@@ -217,7 +217,7 @@ export default function ProjectCard({
                 href={project.webLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-red-500 text-white rounded-lg transition-all duration-200 hover:bg-red-600 hover:shadow-lg hover:scale-105 text-xs sm:text-sm flex-1 justify-center"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-imperial-red text-white rounded-lg transition-all duration-200 hover:bg-folly hover:shadow-lg hover:scale-105 text-xs sm:text-sm flex-1 justify-center"
               >
                 <FontAwesomeIcon
                   icon={faExternalLinkAlt}

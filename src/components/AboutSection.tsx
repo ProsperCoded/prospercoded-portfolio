@@ -13,7 +13,7 @@ export function AboutSection() {
         <DecorativeGlowBraces
           type="square"
           size="2xl"
-          glowColor="rgb(34, 197, 94)"
+          glowColor="var(--accent-green)"
           glowIntensity="medium"
           rotation={-20}
           opacity={0.4}
@@ -23,7 +23,7 @@ export function AboutSection() {
         <DecorativeGlowBraces
           type="curly"
           size="xl"
-          glowColor="rgb(251, 191, 36)"
+          glowColor="var(--accent-yellow)"
           glowIntensity="low"
           rotation={45}
           opacity={0.2}
@@ -33,7 +33,7 @@ export function AboutSection() {
         <DecorativeGlowBraces
           type="square"
           size="lg"
-          glowColor="rgb(99, 102, 241)"
+          glowColor="var(--purple-start)"
           rotation={-10}
           opacity={0.5}
           glow={false}
@@ -43,7 +43,7 @@ export function AboutSection() {
         <DecorativeGlowBraces
           type="curly"
           size="2xl"
-          glowColor="rgb(168, 85, 247)"
+          glowColor="var(--accent-purple)"
           glowIntensity="medium"
           rotation={25}
           opacity={0.4}
@@ -70,7 +70,10 @@ export function AboutSection() {
                 {/* Location Badge - extends out of image */}
                 <div className="absolute -top-1 -left-2 sm:-top-3 sm:-left-6 bg-white/95 backdrop-blur-sm rounded-full px-4 py-3 shadow-xl border border-gray-200">
                   <div className="flex items-center gap-2 text-sm font-medium text-gray-800">
-                    <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4" />
+                    <FontAwesomeIcon
+                      icon={faMapMarkerAlt}
+                      className="w-4 h-4"
+                    />
                     Based in Ibadan, Nigeria
                   </div>
                 </div>
@@ -100,7 +103,7 @@ export function AboutSection() {
               {/* Introduction */}
               <div className="mb-8">
                 <h2 className="text-7xl md:text-8xl lg:text-8xl font-bold mb-4 text-shadow-white">
-                  <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-imperial-red to-tangelo bg-clip-text text-transparent">
                     Intro
                   </span>
                   ducing
@@ -110,10 +113,10 @@ export function AboutSection() {
                   <GlowBraces
                     type="square"
                     size="xl"
-                    glowColor="rgb(168, 85, 247)"
+                    glowColor="var(--accent-purple)"
                     className="text-4xl md:text-5xl"
                   >
-                    <span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+                    <span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-imperial-red to-tangelo bg-clip-text text-transparent">
                       Prosper
                     </span>
                   </GlowBraces>
@@ -126,11 +129,11 @@ export function AboutSection() {
                       Prosper Enwerem
                     </span>{" "}
                     here, a{" "}
-                    <span className="text-yellow-400 font-semibold mr-2">
+                    <span className="text-accent-yellow font-semibold mr-2">
                       Backend Software Engineer
                     </span>
                     with over three years of experience specializing in the{" "}
-                    <span className="text-yellow-400 font-semibold mr-2">
+                    <span className="text-accent-yellow font-semibold mr-2">
                       Node.js ecosystem
                     </span>
                     . I'm currently a student at the University of Ibadan, where
@@ -139,15 +142,15 @@ export function AboutSection() {
 
                   <p>
                     My passion is not just in writing code but in{" "}
-                    <span className="text-purple-400 font-semibold mr-2">
+                    <span className="text-accent-purple font-semibold mr-2">
                       building systems that solve real-world problems
                     </span>
                     and make a tangible impact. From{" "}
-                    <span className="text-green-400 font-semibold">
+                    <span className="text-accent-green font-semibold">
                       GoalFund
                     </span>{" "}
                     to{" "}
-                    <span className="text-yellow-400 font-semibold">
+                    <span className="text-accent-yellow font-semibold">
                       MedMap
                     </span>
                     , I love participating in hackathons and building solutions
@@ -161,9 +164,12 @@ export function AboutSection() {
                 {/* First Row: Phone, LinkedIn, X */}
                 <a
                   href="tel:+2349155004456"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-green-600/20 border border-green-600/30 rounded-lg px-4 py-3 text-green-400 hover:bg-green-600/30 transition-colors col-span-1 sm:col-span-2"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-accent-green/20 border border-accent-green/30 rounded-lg px-4 py-3 text-accent-green hover:bg-accent-green/30 transition-colors col-span-1 sm:col-span-2"
                 >
-                  <FontAwesomeIcon icon={faPhone} className="w-8 h-8 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <FontAwesomeIcon
+                    icon={faPhone}
+                    className="w-8 h-8 sm:w-5 sm:h-5 flex-shrink-0"
+                  />
                   <span className="font-medium hidden sm:block">
                     +234 915 500 4456
                   </span>
@@ -172,7 +178,7 @@ export function AboutSection() {
                   href="https://linkedin.com/in/prospercoded/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-blue-600/20 border border-blue-600/30 rounded-lg px-4 py-3 text-blue-400 hover:bg-blue-600/30 transition-colors col-span-1 sm:col-span-2"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-purple-start/20 border border-purple-start/30 rounded-lg px-4 py-3 text-purple-start hover:bg-purple-start/30 transition-colors col-span-1 sm:col-span-2"
                 >
                   <Image
                     src="/assets/linkedIn.svg"
@@ -205,7 +211,7 @@ export function AboutSection() {
                 {/* Second Row: Email, LeetCode (span 3 each on desktop) */}
                 <a
                   href="mailto:prospercoded@gmail.com"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-red-600/20 border border-red-600/30 rounded-lg px-4 py-3 text-red-400 hover:bg-red-600/30 transition-colors col-span-1 sm:col-span-3"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-imperial-red/20 border border-imperial-red/30 rounded-lg px-4 py-3 text-imperial-red hover:bg-imperial-red/30 transition-colors col-span-1 sm:col-span-3"
                 >
                   <Image
                     src="/assets/gmail.svg"
@@ -222,7 +228,7 @@ export function AboutSection() {
                   href="https://leetcode.com/u/prosperCoded/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-orange-600/20 border border-orange-600/30 rounded-lg px-4 py-3 text-orange-400 hover:bg-orange-600/30 transition-colors col-span-1 sm:col-span-3"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-tangelo/20 border border-tangelo/30 rounded-lg px-4 py-3 text-tangelo hover:bg-tangelo/30 transition-colors col-span-1 sm:col-span-3"
                 >
                   <Image
                     src="/assets/leetcode.svg"

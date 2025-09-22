@@ -21,7 +21,7 @@ export function HeroSection() {
       <div className="absolute inset-0 w-full h-full">
         <RippleGrid
           enableRainbow={true}
-          gridColor="#ec4899"
+          gridColor="var(--imperial-red)"
           rippleIntensity={0.03}
           gridSize={30}
           gridThickness={10}
@@ -80,7 +80,7 @@ export function HeroSection() {
         {/* Main Heading */}
         <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl font-sans">
           Powering Innovations through{" "}
-          <span className="bg-gradient-to-r from-primary via-pink-500 to-primary bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-imperial-red via-folly to-tangelo bg-clip-text text-transparent">
             Scalable Solutions
           </span>
         </h1>

@@ -19,7 +19,7 @@ interface HalomotButtonProps {
 }
 
 export const HalomotButton: React.FC<HalomotButtonProps> = ({
-  gradient = "linear-gradient(135deg, #4776cb, #a19fe5, #6cc606)",
+  gradient = "var(--gradient-primary)",
   inscription,
   onClick,
   fillWidth = false,

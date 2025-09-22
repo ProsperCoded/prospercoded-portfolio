@@ -12,8 +12,9 @@ interface ProjectTextBlockProps {
 
 const variantClasses = {
   default: "text-foreground/90",
-  highlight: "bg-red-500/10 border-l-4 border-red-500 p-4 rounded-r-lg",
-  quote: "italic text-foreground/80 border-l-4 border-red-500 pl-4",
+  highlight:
+    "bg-imperial-red/10 border-l-4 border-imperial-red p-4 rounded-r-lg",
+  quote: "italic text-foreground/80 border-l-4 border-imperial-red pl-4",
   code: "bg-foreground/5 border border-border/50 p-4 rounded-lg font-mono text-sm",
 };
 
@@ -42,7 +43,7 @@ export default function ProjectTextBlock({
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex items-start gap-2"
             >
-              <span className="text-red-500 mt-1">•</span>
+              <span className="text-imperial-red mt-1">•</span>
               <span>{item}</span>
             </motion.li>
           ))}

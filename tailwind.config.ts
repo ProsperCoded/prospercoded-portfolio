@@ -45,6 +45,28 @@ export default {
         pink: {
           DEFAULT: "hsl(var(--pink))",
         },
+        // New theme colors
+        imperial: {
+          red: "var(--imperial-red)",
+        },
+        folly: "var(--folly)",
+        tangelo: "var(--tangelo)",
+        purple: {
+          start: "var(--purple-gradient-start)",
+          end: "var(--purple-gradient-end)",
+        },
+        golden: {
+          yellow: "var(--golden-yellow)",
+        },
+        warm: {
+          orange: "var(--warm-orange)",
+        },
+        // Accent colors (preserved)
+        accent: {
+          purple: "var(--accent-purple)",
+          yellow: "var(--accent-yellow)",
+          green: "var(--accent-green)",
+        },
       },
       fontFamily: {
         sans: [

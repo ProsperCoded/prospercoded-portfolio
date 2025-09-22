@@ -67,7 +67,7 @@ export function ResumeSection() {
         <DecorativeGlowBraces
           type="square"
           size="3xl"
-          glowColor="rgb(251, 191, 36)"
+          glowColor="var(--accent-yellow)"
           glowIntensity="high"
           rotation={-15}
           opacity={0.6}
@@ -77,7 +77,7 @@ export function ResumeSection() {
         <DecorativeGlowBraces
           type="curly"
           size="2xl"
-          glowColor="rgb(34, 197, 94)"
+          glowColor="var(--accent-green)"
           glowIntensity="medium"
           rotation={25}
           opacity={0.4}
@@ -87,7 +87,7 @@ export function ResumeSection() {
         <DecorativeGlowBraces
           type="square"
           size="xl"
-          glowColor="rgb(168, 85, 247)"
+          glowColor="var(--accent-purple)"
           glowIntensity="low"
           rotation={-35}
           opacity={0.3}
@@ -97,7 +97,7 @@ export function ResumeSection() {
         <DecorativeGlowBraces
           type="curly"
           size="4xl"
-          glowColor="rgb(239, 68, 68)"
+          glowColor="var(--imperial-red)"
           glowIntensity="high"
           rotation={45}
           opacity={0.5}
@@ -110,7 +110,7 @@ export function ResumeSection() {
           <div className="hidden lg:block absolute -left-20 xl:-left-20 top-1/2 -translate-y-1/2 z-30">
             <div className="transform -rotate-90 origin-center">
               <h1 className="text-6xl xl:text-7xl font-bold whitespace-nowrap">
-                <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-imperial-red via-folly to-tangelo bg-clip-text text-transparent">
                   resume
                 </span>
               </h1>
@@ -120,7 +120,7 @@ export function ResumeSection() {
           {/* Mobile Header */}
           <div className="text-center mb-8 lg:hidden">
             <h1 className="text-4xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-imperial-red via-folly to-tangelo bg-clip-text text-transparent">
                 resume
               </span>
             </h1>
@@ -159,7 +159,7 @@ export function ResumeSection() {
                 {/* Left Column */}
                 <div className="space-y-6 lg:space-y-8">
                   {/* Professional Summary */}
-                  <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-xl p-4 border border-purple-500/20">
+                  <div className="bg-gradient-to-br from-imperial-red/20 to-folly/20 rounded-xl p-4 border border-imperial-red/20">
                     <h3 className="text-lg font-semibold text-white mb-3">
                       Professional Summary
                     </h3>
@@ -187,7 +187,7 @@ export function ResumeSection() {
                       >
                         {organizations.map((org, idx) => (
                           <div key={idx} className="group">
-                            <div className="text-purple-400 font-semibold mb-1">
+                            <div className="text-accent-purple font-semibold mb-1">
                               {org.period}
                             </div>
                             <div className="text-white font-medium mb-1">
@@ -197,10 +197,13 @@ export function ResumeSection() {
                               href={org.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-medium text-sm mb-2 transition-colors"
+                              className="inline-flex items-center gap-1 text-accent-green hover:text-accent-green/80 font-medium text-sm mb-2 transition-colors"
                             >
                               {org.company}
-                              <FontAwesomeIcon icon={faExternalLinkAlt} className="w-3 h-3" />
+                              <FontAwesomeIcon
+                                icon={faExternalLinkAlt}
+                                className="w-3 h-3"
+                              />
                             </a>
                             <div className="text-sm text-gray-300 leading-relaxed">
                               {org.description}
@@ -233,7 +236,7 @@ export function ResumeSection() {
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
                       Education
                     </h2>
-                    <div className="text-purple-400 font-semibold mb-1">
+                    <div className="text-accent-purple font-semibold mb-1">
                       2021 - 2025
                     </div>
                     <div className="text-white font-medium mb-1">
@@ -259,17 +262,20 @@ export function ResumeSection() {
                           <a
                             key={idx}
                             href={cert.link}
-                            className="block group hover:bg-gray-800/50 rounded-lg p-3 transition-colors border border-gray-700/30 hover:border-purple-500/50"
+                            className="block group hover:bg-gray-800/50 rounded-lg p-3 transition-colors border border-gray-700/30 hover:border-accent-purple/50"
                           >
-                            <div className="text-white font-medium text-sm group-hover:text-purple-400 transition-colors flex items-center gap-1 mb-1">
+                            <div className="text-white font-medium text-sm group-hover:text-accent-purple transition-colors flex items-center gap-1 mb-1">
                               {cert.title}
-                              <FontAwesomeIcon icon={faExternalLinkAlt} className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <FontAwesomeIcon
+                                icon={faExternalLinkAlt}
+                                className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                              />
                             </div>
                             <div className="flex justify-between items-center">
-                              <div className="text-emerald-400 text-xs font-medium">
+                              <div className="text-accent-green text-xs font-medium">
                                 {cert.org}
                               </div>
-                              <div className="text-purple-400 text-xs font-medium">
+                              <div className="text-accent-purple text-xs font-medium">
                                 {cert.date}
                               </div>
                             </div>
@@ -310,9 +316,12 @@ export function ResumeSection() {
                                 {comp.icon}
                               </span>
                               <div className="flex-1">
-                                <div className="text-white font-medium text-sm group-hover:text-purple-400 transition-colors flex items-center gap-1">
+                                <div className="text-white font-medium text-sm group-hover:text-accent-purple transition-colors flex items-center gap-1">
                                   {comp.title}
-                                  <FontAwesomeIcon icon={faExternalLinkAlt} className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  <FontAwesomeIcon
+                                    icon={faExternalLinkAlt}
+                                    className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                                  />
                                 </div>
                                 <div className="text-gray-400 text-xs">
                                   {comp.event}

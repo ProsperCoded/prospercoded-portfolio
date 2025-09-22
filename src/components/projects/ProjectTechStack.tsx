@@ -53,11 +53,11 @@ export default function ProjectTechStack({
       : {});
 
   const categoryColors = {
-    frontend: "bg-blue-500/10 text-blue-500 border-blue-500/20",
-    backend: "bg-green-500/10 text-green-500 border-green-500/20",
-    database: "bg-purple-500/10 text-purple-500 border-purple-500/20",
-    deployment: "bg-orange-500/10 text-orange-500 border-orange-500/20",
-    language: "bg-red-500/10 text-red-500 border-red-500/20",
+    frontend: "bg-purple-start/10 text-purple-start border-purple-start/20",
+    backend: "bg-accent-green/10 text-accent-green border-accent-green/20",
+    database: "bg-accent-purple/10 text-accent-purple border-accent-purple/20",
+    deployment: "bg-tangelo/10 text-tangelo border-tangelo/20",
+    language: "bg-imperial-red/10 text-imperial-red border-imperial-red/20",
     tool: "bg-gray-500/10 text-gray-500 border-gray-500/20",
   };
 

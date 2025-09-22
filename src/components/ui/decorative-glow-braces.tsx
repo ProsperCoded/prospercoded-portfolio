@@ -17,7 +17,7 @@ type DecorativeGlowBracesProps = {
 export function DecorativeGlowBraces({
   type = "square",
   className = "",
-  glowColor = "rgb(147, 51, 234)", // purple-600
+  glowColor = "var(--accent-purple)", // accent purple
   glowIntensity = "medium",
   size = "2xl",
   rotation = 0,
