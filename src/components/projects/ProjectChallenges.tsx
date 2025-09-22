@@ -11,27 +11,13 @@ import {
   faImage,
 } from "@fortawesome/free-solid-svg-icons";
 import ProjectImage from "./ProjectImage";
-
-interface Challenge {
-  title: string;
-  description: string;
-  impact: string;
-  solution: string;
-  images?: string[];
-  technologies?: string[];
-}
-
-interface ProjectChallengesProps {
-  overview: string;
-  challenges: Challenge[];
-  summary: string;
-}
+import { ProjectChallenges as ProjectChallengesData } from "@/data/ProjectsData";
 
 export default function ProjectChallenges({
   overview,
   challenges,
   summary,
-}: ProjectChallengesProps) {
+}: ProjectChallengesData) {
   const [expandedChallenge, setExpandedChallenge] = useState<number | null>(
     null
   );

@@ -1,5 +1,4 @@
 import { technologies, Technology } from "./TechnologiesData";
-
 export type ProjectImage = {
   src: string;
   isPrimary: boolean;
@@ -395,25 +394,12 @@ export const projects: Record<string, ProjectItem> = {
         "Scalable data model for pharmacy inventories",
       ],
     },
-    uml: {
-      description:
-        "High-level flow showing user search, inventory lookup, distance calculation, and AI Q&A.",
-      imageUrl: "/assets/projects/medmap/showcase/image1.png",
-      flowExplanation:
-        "User submits a drug query → API loads candidate pharmacies → distance matrix computed via map services → results ranked and returned → user can ask AI for medication guidance.",
-      components: [
-        "React UI",
-        "Express API",
-        "PostgreSQL + Drizzle",
-        "Maps/Distance Service",
-        "AI Assistant Layer",
-      ],
-    },
+
     database: {
       overview:
         "Schema centers on pharmacies, medications, and an inventory join to represent stock and pricing. Designed to support future real-time sync and geospatial querying.",
       schema: {
-        imageUrl: "/assets/projects/medmap/showcase/image2.png",
+        imageUrl: "/assets/projects/medmap/database/image1.png",
         description:
           "Core tables include pharmacies, medications, and pharmacy_inventories with quantity and price fields; future extensions can add live sync and auditing.",
       },
@@ -499,6 +485,165 @@ export const projects: Record<string, ProjectItem> = {
     slug: "atc-africa",
     category: "Team Leadership",
     featured: true,
+    brief: {
+      motivation:
+        "ATC Africa needed a robust, backend-powered Event Management System to eliminate manual content updates and empower organizers to manage events end-to-end. The goal was to improve operational efficiency, transparency, and audience engagement across HQ, State, and Campus events.",
+      challenges: [
+        "Manual workflows caused slow event updates and inconsistent data",
+        "No lifecycle automation to transition events post-date",
+        "Access control needed for organizers, managers, and admins",
+        "Scalable media handling and caching for a content-heavy site",
+      ],
+      solutions: [
+        "Built a NestJS API with structured event CRUD and roles/permissions",
+        "Implemented lifecycle automation with scheduled jobs and reminder emails",
+        "Added RBAC enforcing Organizer, Community Manager, and Admin scopes",
+        "Integrated AWS S3 for media and Redis caching for performance",
+      ],
+      impact:
+        "The platform streamlines event operations, reduces developer bottlenecks, and showcases concluded events with measurable outcomes, boosting credibility and participation for future events.",
+    },
+    architecture: {
+      overview:
+        "Service-oriented backend built with NestJS exposing REST endpoints consumed by the official site. PostgreSQL (RDS) persists core entities, Redis accelerates reads, AWS S3 stores media, and Brevo handles transactional emails for lifecycle reminders.",
+      techChoices: {
+        Backend: [
+          {
+            tech: technologies.nestjs,
+            reason: "Opinionated modular architecture with DI and decorators",
+          },
+          {
+            tech: technologies.restapi,
+            reason: "Simple, predictable integration surface for the website",
+          },
+        ],
+        Database: [
+          {
+            tech: technologies.postgresql,
+            reason: "Reliable relational store hosted on Amazon RDS",
+          },
+          {
+            tech: technologies.redis,
+            reason: "Caching with cache-manager to reduce response latency",
+          },
+        ],
+        Deployment: [
+          {
+            tech: technologies.aws,
+            reason: "RDS for PostgreSQL and S3 for object storage",
+          },
+          {
+            tech: technologies.docker,
+            reason: "Consistent runtime across environments and CI",
+          },
+        ],
+        Tools: [
+          {
+            tech: technologies.github,
+            reason: "Source control and team collaboration",
+          },
+          {
+            tech: technologies.jest,
+            reason: "Automated tests for critical modules",
+          },
+        ],
+      },
+      systemFlow:
+        "Organizers create/update events → RBAC validates permissions → data stored in PostgreSQL → scheduled jobs monitor event dates → post-date, the system requests outcomes (media, attendance, slides) via Brevo emails → once submitted, status transitions to Concluded and content becomes visible on the site.",
+      keyFeatures: [
+        "Event CRUD with status tracking (Draft, Pending Approval, Approved, Concluded)",
+        "Lifecycle automation with reminders and state transitions",
+        "Role-based access control (Organizer, Community Manager, Admin)",
+        "Media handling via S3 and API endpoints for galleries",
+        "Caching layer for high-traffic endpoints",
+      ],
+    },
+    uml: {
+      description:
+        "Sequence of event creation, approval, lifecycle monitoring, and conclusion with media submission and publication.",
+      imageUrl: "/assets/projects/atcafrica/showcase/image1.png",
+      flowExplanation:
+        "Create/approve event → scheduler checks event date → if exceeded, email reminders are sent → organizer submits outcomes → API validates and persists → status = Concluded → frontend displays in concluded section.",
+      components: [
+        "NestJS API",
+        "PostgreSQL (RDS)",
+        "Redis Cache",
+        "AWS S3 Storage",
+        "Email Service (Brevo)",
+      ],
+    },
+    database: {
+      overview:
+        "Normalized schema around events, roles, and media artifacts. Event status and timestamps support automation; audit fields enable governance.",
+      schema: {
+        imageUrl: "/assets/projects/atcafrica/showcase/image1.png",
+        description:
+          "Core entities include events, users, roles/permissions, speakers, sponsors, media assets, and audit trails. Status fields drive lifecycle transitions.",
+      },
+      designDecisions: [
+        "Explicit event status machine for clear lifecycle handling",
+        "RBAC tables separating users, roles, and permissions",
+        "Media assets stored on S3 with DB metadata and signed access",
+        "Indexes on event dates and status for dashboard queries",
+      ],
+      tables: [
+        { name: "users", purpose: "Platform users with role assignments" },
+        {
+          name: "roles",
+          purpose: "Role definitions (Organizer/Manager/Admin)",
+        },
+        { name: "user_roles", purpose: "Junction for user-to-role mapping" },
+        {
+          name: "events",
+          purpose: "Event details, status, schedule, and metadata",
+        },
+        { name: "event_speakers", purpose: "Speakers linked to events" },
+        { name: "event_sponsors", purpose: "Sponsors linked to events" },
+        {
+          name: "media_assets",
+          purpose: "References to S3 objects and captions",
+        },
+        {
+          name: "cta_modals",
+          purpose: "Configurable CTAs for site engagement",
+        },
+      ],
+    },
+    challenges: {
+      overview:
+        "Transforming a static process into a dynamic, automated system required strong domain modeling, secure access control, and robust scheduling and media flows.",
+      challenges: [
+        {
+          title: "Role-Based Access Control at Scale",
+          description:
+            "Different actors needed scoped access to create, approve, and conclude events.",
+          impact:
+            "Without RBAC, unauthorized actions and data inconsistencies could occur.",
+          solution:
+            "Implemented RBAC with guards and decorators in NestJS, mapping roles to route permissions and adding audits.",
+        },
+        {
+          title: "Automated Event Lifecycle",
+          description:
+            "Events must transition post-date and prompt organizers for outcomes.",
+          impact:
+            "Manual follow-ups were slow and error-prone, delaying public updates.",
+          solution:
+            "Added scheduled jobs to detect overdue events and send Brevo reminders until outcomes are submitted.",
+        },
+        {
+          title: "Media Storage and Performance",
+          description:
+            "High-resolution photos and assets needed reliable storage and fast delivery.",
+          impact:
+            "Large media could slow endpoints and increase load on the DB/API.",
+          solution:
+            "Stored media on S3 with signed URLs, leveraged Redis for caching, and optimized endpoints for gallery views.",
+        },
+      ],
+      summary:
+        "The system now reliably manages events end-to-end with security, automation, and performant content delivery, reducing operational friction for the ATC Africa team.",
+    },
   },
 };
 

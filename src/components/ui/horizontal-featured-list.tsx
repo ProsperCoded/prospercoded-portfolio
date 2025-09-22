@@ -45,7 +45,7 @@ const HorizontalFeaturedList: React.FC<HorizontalFeaturedListProps> = ({
     // toggle off selection when clicking same item
     if (allowToggle && selectedIndex === index) {
       setSelectedIndex(-1);
-      if (onItemSelect) onItemSelect(item, index);
+      if (onItemSelect) onItemSelect(item, -1); // signal deselection
       return;
     }
     setSelectedIndex(index);

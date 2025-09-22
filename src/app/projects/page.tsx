@@ -56,11 +56,14 @@ export default function ProjectsPage() {
     }
   }, [isGlobalRotation, primaryImages]);
 
-  // When a project is selected explicitly, switch to project mode and show its images
+  // When a project is selected explicitly, switch to project mode and show only its primary image
   useEffect(() => {
     if (!selectedProject) return;
     if (!isGlobalRotation) {
-      setHeroImages(selectedProject.images.map((img) => img.src));
+      const primary =
+        selectedProject.images.find((img) => img.isPrimary)?.src ||
+        selectedProject.images[0]?.src;
+      setHeroImages(primary ? [primary] : []);
       setHeroIndex(0);
     }
   }, [selectedProject, isGlobalRotation]);
@@ -68,6 +71,14 @@ export default function ProjectsPage() {
   // Handle unique project selection
   const handleUniqueProjectSelect = useCallback(
     (item: string, index: number) => {
+      // index -1 means deselect (toggle off)
+      if (index === -1) {
+        setIsGlobalRotation(true);
+        setHeroImages(primaryImages as string[]);
+        setHeroIndex(0);
+        return;
+      }
+
       const uniqueProject = UniqueProjects[index];
       if (uniqueProject) {
         const clickedProject = uniqueProject.project as ProjectItem;
@@ -76,15 +87,22 @@ export default function ProjectsPage() {
         // Toggle back to global rotation when re-clicking the same featured project
         if (!isGlobalRotation && isSameProject) {
           setIsGlobalRotation(true);
+          setHeroImages(primaryImages as string[]);
+          setHeroIndex(0);
           return;
         }
 
-        // Focus on the clicked project
+        // Focus on the clicked project and freeze on its primary image
         setSelectedProject(clickedProject);
         setIsGlobalRotation(false);
+        const primary =
+          clickedProject.images.find((img) => img.isPrimary)?.src ||
+          clickedProject.images[0]?.src;
+        setHeroImages(primary ? [primary] : []);
+        setHeroIndex(0);
       }
     },
-    [isGlobalRotation, selectedProject]
+    [isGlobalRotation, primaryImages, selectedProject]
   );
 
   // Load more projects (infinite scroll simulation)
