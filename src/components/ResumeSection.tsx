@@ -106,26 +106,6 @@ export function ResumeSection() {
         />
 
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative">
-          {/* Vertical "resume" text - Desktop only */}
-          <div className="hidden lg:block absolute -left-20 xl:-left-20 top-1/2 -translate-y-1/2 z-30">
-            <div className="transform -rotate-90 origin-center">
-              <h1 className="text-6xl xl:text-7xl font-bold whitespace-nowrap">
-                <span className="bg-gradient-to-r from-imperial-red via-folly to-tangelo bg-clip-text text-transparent">
-                  resume
-                </span>
-              </h1>
-            </div>
-          </div>
-
-          {/* Mobile Header */}
-          <div className="text-center mb-8 lg:hidden">
-            <h1 className="text-4xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-imperial-red via-folly to-tangelo bg-clip-text text-transparent">
-                resume
-              </span>
-            </h1>
-          </div>
-
           {/* Resume Content */}
           <div className="max-w-7xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-3xl border border-gray-700/50 overflow-hidden">
             {/* Header - Hidden on mobile */}

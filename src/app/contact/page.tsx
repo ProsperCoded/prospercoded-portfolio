@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/nav/Navbar";
 import { MobileNavbar } from "@/components/nav/MobileNavbar";
-import { Logo } from "@/components/ui/Logo";
+import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 import {
   Mail,

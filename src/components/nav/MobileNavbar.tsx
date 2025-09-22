@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { navLinks } from "./nav.data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Logo from "../ui/Logo";
+import Logo from "@/components/ui/Logo";
 
 export const MobileNavbar = () => {
   const [activeLink, setActiveLink] = useState<string | null>(null);
