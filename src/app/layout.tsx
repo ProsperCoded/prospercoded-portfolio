@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Titillium_Web, Geist_Mono, Geist } from "next/font/google";
 import "./globals.css";
+import { FloatingContactButton } from "@/components/ui/FloatingContactButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${titilliumWeb.variable} antialiased font-sans`}
       >
         {children}
+        <FloatingContactButton />
       </body>
     </html>
   );

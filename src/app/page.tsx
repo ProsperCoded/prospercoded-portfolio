@@ -5,7 +5,6 @@ import { Navbar } from "@/components/nav/Navbar";
 import { MobileNavbar } from "@/components/nav/MobileNavbar";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { DesignProcessSection } from "@/components/DesignProcessSection";
-import { FloatingContactButton } from "@/components/ui/FloatingContactButton";
 
 // Page component for the home route
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
       </div>
       <ProjectsSection />
       <DesignProcessSection />
-      <FloatingContactButton />
     </main>
   );
 }

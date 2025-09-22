@@ -123,14 +123,7 @@ export default function ContactPage() {
             {/* Profile Card */}
             <div className="bg-card/50 backdrop-blur-sm border border-border/20 rounded-2xl p-8">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-imperial-red to-folly flex items-center justify-center">
-                  <span className="text-2xl font-bold text-white">
-                    {OWNER_DETAILS.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
-                </div>
+                <Logo size="lg" />
                 <div>
                   <h3 className="text-2xl font-bold">{OWNER_DETAILS.name}</h3>
                   <p className="text-muted-foreground">{OWNER_DETAILS.title}</p>

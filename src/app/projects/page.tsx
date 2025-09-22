@@ -15,6 +15,7 @@ import { ImagesSlider } from "@/components/ui/images-slider";
 import HorizontalFeaturedList from "@/components/ui/horizontal-featured-list";
 import ProjectCard from "@/components/ProjectCard";
 import { PersonalCTAButton } from "@/components/ui/personal-cta-button";
+import Logo from "@/components/ui/Logo";
 
 export default function ProjectsPage() {
   const allProjects = Object.values(projectsData);
@@ -73,16 +74,21 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <div className="relative z-50 p-6">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
-        >
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
-          />
-          <span>Back to Home</span>
-        </Link>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Logo size="md" className="text-white" />
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
+            >
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+              />
+              <span>Back to Home</span>
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* Hero Section with Image Slider */}
