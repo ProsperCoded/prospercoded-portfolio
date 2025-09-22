@@ -10,7 +10,11 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { projects as projectsData, UniqueProjects } from "@/data/ProjectsData";
+import {
+  projects as projectsData,
+  UniqueProjects,
+  ProjectItem,
+} from "@/data/ProjectsData";
 import { ImagesSlider } from "@/components/ui/images-slider";
 import HorizontalFeaturedList from "@/components/ui/horizontal-featured-list";
 import ProjectCard from "@/components/ProjectCard";
@@ -19,16 +23,20 @@ import Logo from "@/components/ui/Logo";
 
 export default function ProjectsPage() {
   const allProjects = Object.values(projectsData);
+  // currently focused project in hero overlay
   const [selectedProject, setSelectedProject] = useState(
     UniqueProjects[0].project
   );
-  const [currentProjectImages, setCurrentProjectImages] = useState<string[]>(
-    []
-  );
+  // images currently being displayed by the hero slider
+  const [heroImages, setHeroImages] = useState<string[]>([]);
+  // if true: rotate through primary image of each project and sync overlay to that project
+  const [isGlobalRotation, setIsGlobalRotation] = useState(true);
+  // track current index within the heroImages for sync
+  const [heroIndex, setHeroIndex] = useState(0);
   const [displayedProjects, setDisplayedProjects] = useState(6);
   const [loading, setLoading] = useState(false);
 
-  // Get primary images for all projects for the auto-sliding hero
+  // Get primary images for all projects for the global rotation
   const primaryImages = useMemo(
     () =>
       allProjects
@@ -41,22 +49,42 @@ export default function ProjectsPage() {
     [allProjects]
   );
 
-  // Update current project images when selected project changes
+  // Initialize hero images: start in global rotation
   useEffect(() => {
-    if (selectedProject) {
-      setCurrentProjectImages(selectedProject.images.map((img) => img.src));
+    if (isGlobalRotation) {
+      setHeroImages(primaryImages as string[]);
     }
-  }, [selectedProject]);
+  }, [isGlobalRotation, primaryImages]);
+
+  // When a project is selected explicitly, switch to project mode and show its images
+  useEffect(() => {
+    if (!selectedProject) return;
+    if (!isGlobalRotation) {
+      setHeroImages(selectedProject.images.map((img) => img.src));
+      setHeroIndex(0);
+    }
+  }, [selectedProject, isGlobalRotation]);
 
   // Handle unique project selection
   const handleUniqueProjectSelect = useCallback(
     (item: string, index: number) => {
       const uniqueProject = UniqueProjects[index];
       if (uniqueProject) {
-        setSelectedProject(uniqueProject.project);
+        const clickedProject = uniqueProject.project as ProjectItem;
+        const isSameProject = selectedProject?.slug === clickedProject.slug;
+
+        // Toggle back to global rotation when re-clicking the same featured project
+        if (!isGlobalRotation && isSameProject) {
+          setIsGlobalRotation(true);
+          return;
+        }
+
+        // Focus on the clicked project
+        setSelectedProject(clickedProject);
+        setIsGlobalRotation(false);
       }
     },
-    []
+    [isGlobalRotation, selectedProject]
   );
 
   // Load more projects (infinite scroll simulation)
@@ -94,15 +122,19 @@ export default function ProjectsPage() {
       {/* Hero Section with Image Slider */}
       <section className="relative h-screen">
         <ImagesSlider
-          images={
-            currentProjectImages.length > 0
-              ? currentProjectImages
-              : primaryImages
-          }
+          images={heroImages.length > 0 ? heroImages : primaryImages}
           className="h-full"
-          autoplay={true}
+          autoplay={isGlobalRotation}
           direction="up"
           overlay={false}
+          onIndexChange={(index) => {
+            setHeroIndex(index);
+            // Sync overlay when in global rotation: map image to project
+            if (isGlobalRotation) {
+              const projectAtIndex = allProjects[index % allProjects.length];
+              setSelectedProject(projectAtIndex as ProjectItem);
+            }
+          }}
         >
           <div className="relative z-40 flex flex-col items-center justify-center h-full text-center px-6">
             <div className="p-8 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 max-w-4xl mx-auto">

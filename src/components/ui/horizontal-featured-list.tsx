@@ -7,6 +7,7 @@ interface HorizontalFeaturedListProps {
   className?: string;
   itemClassName?: string;
   initialSelectedIndex?: number;
+  allowToggle?: boolean; // allow re-click to de-select
 }
 
 const HorizontalFeaturedList: React.FC<HorizontalFeaturedListProps> = ({
@@ -15,6 +16,7 @@ const HorizontalFeaturedList: React.FC<HorizontalFeaturedListProps> = ({
   className = "",
   itemClassName = "",
   initialSelectedIndex = 0,
+  allowToggle = true,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(initialSelectedIndex);
@@ -40,10 +42,14 @@ const HorizontalFeaturedList: React.FC<HorizontalFeaturedListProps> = ({
   }, []);
 
   const handleItemClick = (item: string, index: number) => {
-    setSelectedIndex(index);
-    if (onItemSelect) {
-      onItemSelect(item, index);
+    // toggle off selection when clicking same item
+    if (allowToggle && selectedIndex === index) {
+      setSelectedIndex(-1);
+      if (onItemSelect) onItemSelect(item, index);
+      return;
     }
+    setSelectedIndex(index);
+    if (onItemSelect) onItemSelect(item, index);
   };
 
   return (

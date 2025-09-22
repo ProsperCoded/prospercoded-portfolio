@@ -11,6 +11,7 @@ export const ImagesSlider = ({
   className,
   autoplay = true,
   direction = "up",
+  onIndexChange,
 }: {
   images: string[];
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export const ImagesSlider = ({
   className?: string;
   autoplay?: boolean;
   direction?: "up" | "down";
+  onIndexChange?: (index: number) => void; // notify parent when slide changes
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -37,8 +39,10 @@ export const ImagesSlider = ({
   };
 
   useEffect(() => {
+    // reload images whenever the list changes
+    setCurrentIndex(0);
     loadImages();
-  }, []);
+  }, [images]);
 
   const loadImages = () => {
     setLoading(true);
@@ -81,7 +85,14 @@ export const ImagesSlider = ({
       window.removeEventListener("keydown", handleKeyDown);
       clearInterval(interval);
     };
-  }, []);
+  }, [autoplay]);
+
+  // inform parent when currentIndex changes
+  useEffect(() => {
+    if (typeof onIndexChange === "function") {
+      onIndexChange(currentIndex);
+    }
+  }, [currentIndex, onIndexChange]);
 
   const slideVariants = {
     initial: {

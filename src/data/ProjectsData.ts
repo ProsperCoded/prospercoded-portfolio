@@ -1,4 +1,4 @@
-import { technologies } from "./TechnologiesData";
+import { technologies, Technology } from "./TechnologiesData";
 
 export type ProjectImage = {
   src: string;
@@ -53,7 +53,7 @@ export type ProjectChallenges = {
     impact: string;
     solution: string;
     images?: string[];
-    technologies?: string[];
+    technologies?: (typeof technologies)[keyof typeof technologies][];
   }[];
   summary: string;
 };
@@ -70,7 +70,6 @@ export type ProjectItem = {
     live?: string;
     demo?: string;
   };
-  // techStack: (typeof technologies)[keyof typeof technologies][];
   // Enhanced content for documentation
   brief?: ProjectBrief;
   architecture?: ProjectArchitecture;
@@ -195,23 +194,7 @@ export const projects: Record<string, ProjectItem> = {
         "Monetization system with ads and boosted content",
       ],
     },
-    uml: {
-      description:
-        "The UML diagram illustrates the complete system architecture and data flow of UniNav, showing how different components interact to deliver a seamless user experience.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
-      flowExplanation:
-        "The system flow begins with user authentication and authorization. Students can upload materials, which go through a moderation process before being made available. The recommendation engine analyzes user behavior and academic profiles to suggest relevant content. The platform supports multiple user roles with different access levels and capabilities.",
-      components: [
-        "User Authentication & Authorization",
-        "Material Upload & Management",
-        "Search & Filtering System",
-        "Recommendation Engine",
-        "Moderation System",
-        "Notification Service",
-        "Monetization Module",
-      ],
-    },
+
     database: {
       overview:
         "The database design focuses on scalability and performance, with carefully designed relationships between users, materials, and interactions. The schema supports complex queries for the recommendation system while maintaining data integrity.",
@@ -312,58 +295,188 @@ export const projects: Record<string, ProjectItem> = {
     quote:
       "A healthcare platform designed to help users locate nearby medical facilities and services. Features real-time data integration and user-friendly interface for emergency and routine medical needs.",
     designation: "Healthcare Platform",
-    logoUrl: "https://img.icons8.com/color/96/medical-bag.png",
+    logoUrl: "/assets/projects/medmap/logo.png",
     images: [
       {
-        src: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
+        src: "/assets/projects/medmap/showcase/image1.png",
         isPrimary: true,
       },
       {
-        src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
+        src: "/assets/projects/medmap/showcase/image2.png",
         isPrimary: false,
       },
       {
-        src: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=800&h=600&fit=crop",
+        src: "/assets/projects/medmap/showcase/image3.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/medmap/showcase/image4.png",
         isPrimary: false,
       },
     ],
     links: {
       github: "https://github.com/prospercoded/medmap",
-      live: "https://medmap-app.vercel.app",
+      live: "https://medmap.live",
       projectLink: "/projects/medmap",
     },
     slug: "medmap",
     category: "Healthcare",
     featured: true,
-  },
-  "Party Currency": {
-    name: "Party Currency",
-    quote:
-      "An innovative event management and payment system that streamlines party planning and expense tracking. Built with modern technologies to handle real-time transactions and event coordination.",
-    designation: "Event Management System",
-    logoUrl: "https://img.icons8.com/color/96/party-popper.png",
-    images: [
-      {
-        src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop",
-        isPrimary: true,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&h=600&fit=crop",
-        isPrimary: false,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop",
-        isPrimary: false,
-      },
-    ],
-    links: {
-      github: "https://github.com/prospercoded/party-currency",
-      live: "https://party-currency.vercel.app",
-      projectLink: "/projects/party-currency",
+    brief: {
+      motivation:
+        "Many patients struggle to locate prescribed medications quickly. Lack of real-time drug availability information leads to treatment delays and avoidable complications. MedMap bridges patients to accessible, reliable healthcare by surfacing nearby pharmacies that stock requested medications and offering AI guidance. The software was presented in a state hackathon and took 4th place",
+      challenges: [
+        "No reliable, real-time visibility into drug availability across pharmacies",
+        "Slow manual discovery and navigation to pharmacies that actually stock a drug",
+        "Users lack quick, trustworthy guidance on drug usage and side effects",
+        "Scaling data ingestion and search while keeping UX simple",
+      ],
+      solutions: [
+        "Implemented medication search with proximity-based sorting and clear availability signals",
+        "Integrated map and directions for fast route planning to pharmacies",
+        "Added an AI assistant to explain usage, warnings, and side effects for common medications",
+        "Structured data model for pharmacies and inventories to support future real-time sync",
+      ],
+      impact:
+        "MedMap reduces time-to-medication by guiding users to nearby locations that are likely to have their prescriptions in stock, while the AI assistant improves understanding and safe usage. The approach lays a foundation for live inventory syncing and nation-wide scale.",
     },
-    slug: "party-currency",
-    category: "Event Management",
-    featured: true,
+    architecture: {
+      overview:
+        "MedMap follows a modular web architecture with a React frontend, a Node.js/Express API, and PostgreSQL managed via Drizzle ORM. It integrates Google Maps services for geospatial features and an AI layer for medication guidance.",
+      techChoices: {
+        Frontend: [
+          {
+            tech: technologies.react,
+            reason: "Modern, performant UI with React 18",
+          },
+          {
+            tech: technologies.tailwindcss,
+            reason: "Rapid, consistent styling system",
+          },
+          {
+            tech: technologies.openstreetmap,
+            reason:
+              "For geospatial features and distance calculations, and map view",
+          },
+        ],
+        Backend: [
+          {
+            tech: technologies.expressjs,
+            reason: "Minimal, flexible HTTP layer for REST",
+          },
+          {
+            tech: technologies.websockets,
+            reason: "Socket.io, for real time communication with AI chat bot",
+          },
+        ],
+        Database: [
+          {
+            tech: technologies.postgresql,
+            reason: "Reliable relational store with geospatial extensions",
+          },
+          {
+            tech: technologies.drizzle,
+            reason: "Type-safe schema and migrations with great DX",
+          },
+        ],
+        Deployment: [
+          {
+            tech: technologies.vercel,
+            reason: "Seamless hosting for the frontend with CI/CD",
+          },
+        ],
+      },
+      systemFlow:
+        "Users search for medications → frontend queries the API → API filters pharmacies by inventory and distance → results are sorted by proximity and availability → users view map pins and directions. The AI assistant answers medication questions using curated data.",
+      keyFeatures: [
+        "Medication search with proximity-based ranking",
+        "Map visualization with directions to pharmacies",
+        "AI assistant for usage, warnings, and side effects",
+        "Scalable data model for pharmacy inventories",
+      ],
+    },
+    uml: {
+      description:
+        "High-level flow showing user search, inventory lookup, distance calculation, and AI Q&A.",
+      imageUrl: "/assets/projects/medmap/showcase/image1.png",
+      flowExplanation:
+        "User submits a drug query → API loads candidate pharmacies → distance matrix computed via map services → results ranked and returned → user can ask AI for medication guidance.",
+      components: [
+        "React UI",
+        "Express API",
+        "PostgreSQL + Drizzle",
+        "Maps/Distance Service",
+        "AI Assistant Layer",
+      ],
+    },
+    database: {
+      overview:
+        "Schema centers on pharmacies, medications, and an inventory join to represent stock and pricing. Designed to support future real-time sync and geospatial querying.",
+      schema: {
+        imageUrl: "/assets/projects/medmap/showcase/image2.png",
+        description:
+          "Core tables include pharmacies, medications, and pharmacy_inventories with quantity and price fields; future extensions can add live sync and auditing.",
+      },
+      designDecisions: [
+        "Normalized tables for clean relationships and predictable queries",
+        "Geolocation fields on pharmacies for proximity sorting",
+        "Indexes on medication name/code and pharmacy location",
+        "Inventory row versioning support for future real-time updates",
+      ],
+      tables: [
+        {
+          name: "pharmacies",
+          purpose: "Registered pharmacies with geolocation and metadata",
+        },
+        {
+          name: "medications",
+          purpose: "Catalog of drugs with generic/brand names and tags",
+        },
+        {
+          name: "pharmacy_inventories",
+          purpose: "Stock availability, quantity, and pricing per pharmacy",
+        },
+        {
+          name: "search_logs",
+          purpose: "Anonymous search analytics for improving results",
+        },
+      ],
+    },
+    challenges: {
+      overview:
+        "Delivering trustworthy availability and guidance required careful data modeling, geospatial processing, and an AI layer that remains helpful and safe.",
+      challenges: [
+        {
+          title: "Proximity-based Ranking for Medication Search",
+          description:
+            "Users need nearby options surfaced first, while still seeing availability context.",
+          impact:
+            "Without accurate distance sorting, users waste time visiting distant or irrelevant pharmacies.",
+          solution:
+            "Added geolocation to pharmacies and computed distance to user queries, ordering results by proximity and availability signals.",
+        },
+        {
+          title: "Actionable Map and Directions UX",
+          description:
+            "Search results must translate into clear navigation and decision-making on a map.",
+          impact:
+            "Poor UX increases drop-off and delays in obtaining medication during urgent needs.",
+          solution:
+            "Integrated a map view with pins, summaries, and one-click directions to selected pharmacies.",
+        },
+        {
+          title: "Helpful AI Guidance on Medications",
+          description:
+            "Users want quick, reliable information on usage, side effects, and warnings.",
+          impact:
+            "Misinformation or lack of guidance can lead to misuse and safety risks.",
+          solution:
+            "Embedded curated medication data into an AI assistant to answer common questions and emphasize safety warnings.",
+        },
+      ],
+      summary:
+        "The solution combines geospatial ranking, clear navigation, and AI assistance to reduce time-to-medication and support safer usage.",
+    },
   },
 
   "ATC Africa Integration": {
@@ -424,7 +537,7 @@ export const UniqueProjects = [
   },
   {
     quote: "Best Educational Project",
-    project: projects["Uninav"],
+    project: projects["UniNav"],
   },
   {
     quote: "Best Team Leadership Project",

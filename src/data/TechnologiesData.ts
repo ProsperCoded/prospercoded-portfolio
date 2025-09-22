@@ -253,6 +253,12 @@ export const technologies = {
     color: "text-green-400",
     category: "tool" as const,
   },
+  openstreetmap: {
+    name: "OpenStreetMap",
+    color: "text-blue-300",
+    icon: "/assets/icons/technologies/openstreetmap.png",
+    category: "tool" as const,
+  },
 } as const;
 
 // Type for technology keys
