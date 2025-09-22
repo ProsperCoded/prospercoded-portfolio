@@ -138,18 +138,6 @@ export const projects: Record<string, ProjectItem> = {
       overview:
         "UniNav follows a modern full-stack architecture with a Next.js frontend and NestJS backend. The system is designed for scalability and performance, using PostgreSQL for data persistence and Docker for containerization",
       techChoices: {
-        Frontend: [
-          {
-            tech: technologies.nextjs,
-            reason:
-              "Chosen for its excellent SEO capabilities, server-side rendering, and built-in optimization features that are crucial for a content-heavy platform",
-          },
-          {
-            tech: technologies.typescript,
-            reason:
-              "For type safety, improved code quality, and better maintainability, especially in a growing codebase",
-          },
-        ],
         Backend: [
           {
             tech: technologies.nodejs,
@@ -162,13 +150,6 @@ export const projects: Record<string, ProjectItem> = {
               "For its modular architecture, scalability, and type safety, making it a great fit for a microservices architecture",
           },
         ],
-        Database: [
-          {
-            tech: technologies.postgresql,
-            reason:
-              "For its reliability, feature richness, and strong support for complex queries and data integrity, used it for more optimized searches using pgvector",
-          },
-        ],
         Deployment: [
           {
             tech: technologies.docker,
@@ -179,6 +160,25 @@ export const projects: Record<string, ProjectItem> = {
             tech: technologies.vercel,
             reason:
               "For seamless deployment of the Next.js frontend with automatic scaling and CI/CD integration",
+          },
+        ],
+        Frontend: [
+          {
+            tech: technologies.nextjs,
+            reason:
+              "Chosen for its excellent SEO capabilities, server-side rendering, and built-in optimization features that are crucial for a content-heavy platform",
+          },
+          {
+            tech: technologies.typescript,
+            reason:
+              "For type safety, improved code quality, and better maintainability, especially in a growing codebase",
+          },
+        ],
+        Database: [
+          {
+            tech: technologies.postgresql,
+            reason:
+              "For its reliability, feature richness, and strong support for complex queries and data integrity, used it for more optimized searches using pgvector",
           },
         ],
       },
@@ -343,6 +343,22 @@ export const projects: Record<string, ProjectItem> = {
       overview:
         "MedMap follows a modular web architecture with a React frontend, a Node.js/Express API, and PostgreSQL managed via Drizzle ORM. It integrates Google Maps services for geospatial features and an AI layer for medication guidance.",
       techChoices: {
+        Backend: [
+          {
+            tech: technologies.expressjs,
+            reason: "Minimal, flexible HTTP layer for REST",
+          },
+          {
+            tech: technologies.websockets,
+            reason: "Socket.io, for real time communication with AI chat bot",
+          },
+        ],
+        Deployment: [
+          {
+            tech: technologies.vercel,
+            reason: "Seamless hosting for the frontend with CI/CD",
+          },
+        ],
         Frontend: [
           {
             tech: technologies.react,
@@ -358,16 +374,6 @@ export const projects: Record<string, ProjectItem> = {
               "For geospatial features and distance calculations, and map view",
           },
         ],
-        Backend: [
-          {
-            tech: technologies.expressjs,
-            reason: "Minimal, flexible HTTP layer for REST",
-          },
-          {
-            tech: technologies.websockets,
-            reason: "Socket.io, for real time communication with AI chat bot",
-          },
-        ],
         Database: [
           {
             tech: technologies.postgresql,
@@ -376,12 +382,6 @@ export const projects: Record<string, ProjectItem> = {
           {
             tech: technologies.drizzle,
             reason: "Type-safe schema and migrations with great DX",
-          },
-        ],
-        Deployment: [
-          {
-            tech: technologies.vercel,
-            reason: "Seamless hosting for the frontend with CI/CD",
           },
         ],
       },
@@ -517,16 +517,6 @@ export const projects: Record<string, ProjectItem> = {
             reason: "Simple, predictable integration surface for the website",
           },
         ],
-        Database: [
-          {
-            tech: technologies.postgresql,
-            reason: "Reliable relational store hosted on Amazon RDS",
-          },
-          {
-            tech: technologies.redis,
-            reason: "Caching with cache-manager to reduce response latency",
-          },
-        ],
         Deployment: [
           {
             tech: technologies.aws,
@@ -535,6 +525,16 @@ export const projects: Record<string, ProjectItem> = {
           {
             tech: technologies.docker,
             reason: "Consistent runtime across environments and CI",
+          },
+        ],
+        Database: [
+          {
+            tech: technologies.postgresql,
+            reason: "Reliable relational store hosted on Amazon RDS",
+          },
+          {
+            tech: technologies.redis,
+            reason: "Caching with cache-manager to reduce response latency",
           },
         ],
         Tools: [

@@ -1,12 +1,11 @@
 "use client";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faExternalLinkAlt,
-  faFileAlt,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -15,7 +14,7 @@ import {
   UniqueProjects,
   ProjectItem,
 } from "@/data/ProjectsData";
-import { ImagesSlider } from "@/components/ui/images-slider";
+// custom hero built for projects page
 import HorizontalFeaturedList from "@/components/ui/horizontal-featured-list";
 import ProjectCard from "@/components/ProjectCard";
 import { PersonalCTAButton } from "@/components/ui/personal-cta-button";
@@ -23,50 +22,46 @@ import Logo from "@/components/ui/Logo";
 
 export default function ProjectsPage() {
   const allProjects = Object.values(projectsData);
-  // currently focused project in hero overlay
-  const [selectedProject, setSelectedProject] = useState(
-    UniqueProjects[0].project
-  );
-  // images currently being displayed by the hero slider
-  const [heroImages, setHeroImages] = useState<string[]>([]);
-  // if true: rotate through primary image of each project and sync overlay to that project
+  // no featured selected by default
+  const [selectedProject, setSelectedProject] = useState<
+    ProjectItem | undefined
+  >(undefined);
+  // global rotation through primary images when no project is selected
   const [isGlobalRotation, setIsGlobalRotation] = useState(true);
-  // track current index within the heroImages for sync
-  const [heroIndex, setHeroIndex] = useState(0);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [displayedProjects, setDisplayedProjects] = useState(6);
   const [loading, setLoading] = useState(false);
 
-  // Get primary images for all projects for the global rotation
-  const primaryImages = useMemo(
+  // Build global slides: primary image per project
+  const globalSlides = useMemo(
     () =>
       allProjects
-        .map(
-          (project) =>
+        .map((project) => ({
+          image:
             project.images.find((img) => img.isPrimary)?.src ||
-            project.images[0]?.src
-        )
-        .filter(Boolean),
+            project.images[0]?.src,
+          project,
+        }))
+        .filter((s) => Boolean(s.image)) as {
+        image: string;
+        project: ProjectItem;
+      }[],
     [allProjects]
   );
 
-  // Initialize hero images: start in global rotation
+  // Rotate slides depending on mode
   useEffect(() => {
-    if (isGlobalRotation) {
-      setHeroImages(primaryImages as string[]);
-    }
-  }, [isGlobalRotation, primaryImages]);
-
-  // When a project is selected explicitly, switch to project mode and show only its primary image
-  useEffect(() => {
-    if (!selectedProject) return;
-    if (!isGlobalRotation) {
-      const primary =
-        selectedProject.images.find((img) => img.isPrimary)?.src ||
-        selectedProject.images[0]?.src;
-      setHeroImages(primary ? [primary] : []);
-      setHeroIndex(0);
-    }
-  }, [selectedProject, isGlobalRotation]);
+    const interval = setInterval(() => {
+      setCurrentSlideIndex((prev) => {
+        const total = isGlobalRotation
+          ? globalSlides.length
+          : selectedProject?.images.length || 0;
+        if (total === 0) return 0;
+        return (prev + 1) % total;
+      });
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isGlobalRotation, globalSlides.length, selectedProject?.images.length]);
 
   // Handle unique project selection
   const handleUniqueProjectSelect = useCallback(
@@ -74,8 +69,8 @@ export default function ProjectsPage() {
       // index -1 means deselect (toggle off)
       if (index === -1) {
         setIsGlobalRotation(true);
-        setHeroImages(primaryImages as string[]);
-        setHeroIndex(0);
+        setSelectedProject(undefined);
+        setCurrentSlideIndex(0);
         return;
       }
 
@@ -83,26 +78,19 @@ export default function ProjectsPage() {
       if (uniqueProject) {
         const clickedProject = uniqueProject.project as ProjectItem;
         const isSameProject = selectedProject?.slug === clickedProject.slug;
-
-        // Toggle back to global rotation when re-clicking the same featured project
         if (!isGlobalRotation && isSameProject) {
           setIsGlobalRotation(true);
-          setHeroImages(primaryImages as string[]);
-          setHeroIndex(0);
+          setSelectedProject(undefined);
+          setCurrentSlideIndex(0);
           return;
         }
-
-        // Focus on the clicked project and freeze on its primary image
+        // Focus on the clicked project and rotate through its images
         setSelectedProject(clickedProject);
         setIsGlobalRotation(false);
-        const primary =
-          clickedProject.images.find((img) => img.isPrimary)?.src ||
-          clickedProject.images[0]?.src;
-        setHeroImages(primary ? [primary] : []);
-        setHeroIndex(0);
+        setCurrentSlideIndex(0);
       }
     },
-    [isGlobalRotation, primaryImages, selectedProject]
+    [isGlobalRotation, selectedProject]
   );
 
   // Load more projects (infinite scroll simulation)
@@ -137,112 +125,195 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      {/* Hero Section with Image Slider */}
-      <section className="relative h-screen">
-        <ImagesSlider
-          images={heroImages.length > 0 ? heroImages : primaryImages}
-          className="h-full"
-          autoplay={isGlobalRotation}
-          direction="up"
-          overlay={false}
-          onIndexChange={(index) => {
-            setHeroIndex(index);
-            // Sync overlay when in global rotation: map image to project
-            if (isGlobalRotation) {
-              const projectAtIndex = allProjects[index % allProjects.length];
-              setSelectedProject(projectAtIndex as ProjectItem);
-            }
-          }}
-        >
-          <div className="relative z-40 flex flex-col items-center justify-center h-full text-center px-6">
-            <div className="p-8 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="flex items-center justify-center gap-4 mb-6">
-                  {selectedProject?.logoUrl && (
+      {/* Hero Section - custom animated background */}
+      <section className="relative h-screen overflow-hidden">
+        {/* Background images */}
+        <div className="absolute inset-0">
+          <AnimatePresence>
+            {isGlobalRotation
+              ? globalSlides.length > 0 && (
+                  <motion.div
+                    key={`global-${currentSlideIndex}`}
+                    initial={{ opacity: 0, scale: 1.05, rotateX: 15 }}
+                    animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+                    exit={{ opacity: 0, y: "-30%" }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
                     <img
-                      src={selectedProject.logoUrl}
-                      alt={`${selectedProject.name} logo`}
-                      className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
+                      src={globalSlides[currentSlideIndex].image}
+                      alt={`slide ${currentSlideIndex + 1}`}
+                      className="h-full w-full object-cover"
                     />
-                  )}
-                  <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white">
-                    {selectedProject?.name || "All Projects"}
-                  </h1>
-                </div>
-                <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-                  {selectedProject?.quote ||
-                    "Explore my complete portfolio of innovative solutions"}
-                </p>
-                <div className="text-base sm:text-lg text-white/80 mb-8">
-                  {selectedProject?.designation || "Full Stack Development"}
-                </div>
-
-                {/* Action Buttons Overlay */}
-                {selectedProject && (
-                  <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                    <PersonalCTAButton
-                      variant="rounded"
-                      size="md"
-                      href={`/projects/${selectedProject.slug}`}
-                      image="/assets/icons/project-icon.svg"
-                      imageAlt="Project Brief"
-                      imageSize="medium"
-                      className="text-white border-white/30 hover:border-white/50"
-                    >
-                      Project Brief
-                    </PersonalCTAButton>
-
-                    {selectedProject.links?.live && (
-                      <a
-                        href={selectedProject.links.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-red-500/80 backdrop-blur-sm rounded-full text-white hover:bg-red-500 transition-all duration-300 text-sm sm:text-base"
-                      >
-                        <FontAwesomeIcon
-                          icon={faExternalLinkAlt}
-                          className="w-4 h-4"
-                        />
-                        <span>Visit Live</span>
-                      </a>
-                    )}
-
-                    {selectedProject.links?.github && (
-                      <a
-                        href={selectedProject.links.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
-                      >
-                        <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
-                        <span>GitHub</span>
-                      </a>
-                    )}
-
-                    {selectedProject.links?.demo && (
-                      <a
-                        href={selectedProject.links.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-500/80 backdrop-blur-sm rounded-full text-white hover:bg-blue-500 transition-all duration-300 text-sm sm:text-base"
-                      >
-                        <FontAwesomeIcon
-                          icon={faExternalLinkAlt}
-                          className="w-4 h-4"
-                        />
-                        <span>Demo</span>
-                      </a>
-                    )}
-                  </div>
+                  </motion.div>
+                )
+              : selectedProject && (
+                  <motion.div
+                    key={`project-${selectedProject.slug}-${currentSlideIndex}`}
+                    initial={{ opacity: 0, scale: 1.05, rotateX: 15 }}
+                    animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+                    exit={{ opacity: 0, y: "-30%" }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
+                    <img
+                      src={
+                        selectedProject.images[
+                          currentSlideIndex % selectedProject.images.length
+                        ].src
+                      }
+                      alt={`${selectedProject.name} screenshot ${
+                        currentSlideIndex + 1
+                      }`}
+                      className="h-full w-full object-cover"
+                    />
+                  </motion.div>
                 )}
-              </motion.div>
-            </div>
+          </AnimatePresence>
+
+          {/* subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80" />
+        </div>
+
+        {/* Content overlay */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+          <div className="p-8 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center justify-center gap-4 mb-6">
+                {(!isGlobalRotation
+                  ? selectedProject?.logoUrl
+                  : globalSlides[currentSlideIndex]?.project.logoUrl) && (
+                  <img
+                    src={
+                      !isGlobalRotation
+                        ? ((selectedProject as ProjectItem)?.logoUrl as string)
+                        : (globalSlides[currentSlideIndex].project
+                            .logoUrl as string)
+                    }
+                    alt={`$${
+                      !isGlobalRotation
+                        ? selectedProject?.name
+                        : globalSlides[currentSlideIndex].project.name
+                    } logo`}
+                    className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
+                  />
+                )}
+                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white">
+                  {(!isGlobalRotation
+                    ? selectedProject?.name
+                    : globalSlides[currentSlideIndex]?.project.name) ||
+                    "All Projects"}
+                </h1>
+              </div>
+              <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+                {(!isGlobalRotation
+                  ? selectedProject?.quote
+                  : globalSlides[currentSlideIndex]?.project.quote) ||
+                  "Explore my complete portfolio of innovative solutions"}
+              </p>
+              <div className="text-base sm:text-lg text-white/80 mb-8">
+                {(!isGlobalRotation
+                  ? selectedProject?.designation
+                  : globalSlides[currentSlideIndex]?.project.designation) ||
+                  "Full Stack Development"}
+              </div>
+
+              {/* Action Buttons Overlay */}
+              {(!isGlobalRotation
+                ? selectedProject
+                : globalSlides[currentSlideIndex]?.project) && (
+                <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                  <PersonalCTAButton
+                    variant="rounded"
+                    size="md"
+                    href={`/projects/${
+                      (!isGlobalRotation
+                        ? (selectedProject as ProjectItem)
+                        : globalSlides[currentSlideIndex].project
+                      ).slug
+                    }`}
+                    image="/assets/icons/project-icon.svg"
+                    imageAlt="Project Brief"
+                    imageSize="medium"
+                    className="text-white border-white/30 hover:border-white/50"
+                  >
+                    Project Brief
+                  </PersonalCTAButton>
+
+                  {(!isGlobalRotation
+                    ? (selectedProject as ProjectItem)
+                    : globalSlides[currentSlideIndex].project
+                  ).links?.live && (
+                    <a
+                      href={
+                        (!isGlobalRotation
+                          ? (selectedProject as ProjectItem)
+                          : globalSlides[currentSlideIndex].project
+                        ).links?.live as string
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-red-500/80 backdrop-blur-sm rounded-full text-white hover:bg-red-500 transition-all duration-300 text-sm sm:text-base"
+                    >
+                      <FontAwesomeIcon
+                        icon={faExternalLinkAlt}
+                        className="w-4 h-4"
+                      />
+                      <span>Visit Live</span>
+                    </a>
+                  )}
+
+                  {(!isGlobalRotation
+                    ? (selectedProject as ProjectItem)
+                    : globalSlides[currentSlideIndex].project
+                  ).links?.github && (
+                    <a
+                      href={
+                        (!isGlobalRotation
+                          ? (selectedProject as ProjectItem)
+                          : globalSlides[currentSlideIndex].project
+                        ).links?.github as string
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
+                    >
+                      <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
+                      <span>GitHub</span>
+                    </a>
+                  )}
+
+                  {(!isGlobalRotation
+                    ? (selectedProject as ProjectItem)
+                    : globalSlides[currentSlideIndex].project
+                  ).links?.demo && (
+                    <a
+                      href={
+                        (!isGlobalRotation
+                          ? (selectedProject as ProjectItem)
+                          : globalSlides[currentSlideIndex].project
+                        ).links?.demo as string
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-500/80 backdrop-blur-sm rounded-full text-white hover:bg-blue-500 transition-all duration-300 text-sm sm:text-base"
+                    >
+                      <FontAwesomeIcon
+                        icon={faExternalLinkAlt}
+                        className="w-4 h-4"
+                      />
+                      <span>Demo</span>
+                    </a>
+                  )}
+                </div>
+              )}
+            </motion.div>
           </div>
-        </ImagesSlider>
+        </div>
       </section>
 
       {/* Featured Projects Section - Positioned midway between hero and content */}

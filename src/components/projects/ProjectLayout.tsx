@@ -20,7 +20,7 @@ interface ProjectLayoutProps {
   children: React.ReactNode;
 }
 
-const sidebarSections = [
+const allSections = [
   {
     id: "brief",
     label: "Brief",
@@ -52,14 +52,26 @@ export default function ProjectLayout({
   project,
   children,
 }: ProjectLayoutProps) {
-  const [activeSection, setActiveSection] = useState("brief");
+  // Determine which sections exist for this project
+  const availableSections = allSections.filter((section) => {
+    if (section.id === "brief") return Boolean(project.brief);
+    if (section.id === "architecture") return Boolean(project.architecture);
+    if (section.id === "uml") return Boolean(project.uml);
+    if (section.id === "database") return Boolean(project.database);
+    if (section.id === "challenges") return Boolean(project.challenges);
+    return true;
+  });
+
+  const [activeSection, setActiveSection] = useState(
+    availableSections[0]?.id || "brief"
+  );
   const [isScrolling, setIsScrolling] = useState(false);
 
   // Handle scroll to update active section
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolling(true);
-      const sections = sidebarSections.map((section) =>
+      const sections = availableSections.map((section) =>
         document.getElementById(section.id)
       );
       const scrollPosition = window.scrollY + 100;
@@ -67,7 +79,7 @@ export default function ProjectLayout({
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sidebarSections[i].id);
+          setActiveSection(availableSections[i].id);
           break;
         }
       }
@@ -107,9 +119,9 @@ export default function ProjectLayout({
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            {project.webLink && (
+            {project.links.live && (
               <a
-                href={project.webLink}
+                href={project.links.live}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-300 text-xs sm:text-sm"
@@ -123,9 +135,9 @@ export default function ProjectLayout({
               </a>
             )}
 
-            {project.githubLink && (
+            {project.links.github && (
               <a
-                href={project.githubLink}
+                href={project.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-300 text-xs sm:text-sm"
@@ -157,7 +169,7 @@ export default function ProjectLayout({
             </div>
 
             <nav className="space-y-2">
-              {sidebarSections.map((section) => (
+              {availableSections.map((section) => (
                 <motion.button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
@@ -191,32 +203,33 @@ export default function ProjectLayout({
           {/* Previous Section Button */}
           <motion.button
             onClick={() => {
-              const currentIndex = sidebarSections.findIndex(
+              const currentIndex = availableSections.findIndex(
                 (s) => s.id === activeSection
               );
               if (currentIndex > 0) {
-                scrollToSection(sidebarSections[currentIndex - 1].id);
+                scrollToSection(availableSections[currentIndex - 1].id);
               }
             }}
-            disabled={activeSection === sidebarSections[0].id}
+            disabled={activeSection === availableSections[0]?.id}
             className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-300 ${
-              activeSection === sidebarSections[0].id
+              activeSection === availableSections[0]?.id
                 ? "bg-foreground/5 text-foreground/30 cursor-not-allowed"
                 : "bg-card/80 backdrop-blur-sm border border-border/50 text-foreground hover:bg-card/90"
             }`}
             whileHover={
-              activeSection !== sidebarSections[0].id ? { scale: 1.02 } : {}
+              activeSection !== availableSections[0]?.id ? { scale: 1.02 } : {}
             }
             whileTap={
-              activeSection !== sidebarSections[0].id ? { scale: 0.98 } : {}
+              activeSection !== availableSections[0]?.id ? { scale: 0.98 } : {}
             }
           >
             <FontAwesomeIcon icon={faChevronLeft} className="w-4 h-4" />
             <span className="text-sm font-medium">
-              {activeSection === sidebarSections[0].id
+              {activeSection === availableSections[0]?.id
                 ? "Previous"
-                : sidebarSections[
-                    sidebarSections.findIndex((s) => s.id === activeSection) - 1
+                : availableSections[
+                    availableSections.findIndex((s) => s.id === activeSection) -
+                      1
                   ]?.label}
             </span>
           </motion.button>
@@ -224,37 +237,43 @@ export default function ProjectLayout({
           {/* Next Section Button */}
           <motion.button
             onClick={() => {
-              const currentIndex = sidebarSections.findIndex(
+              const currentIndex = availableSections.findIndex(
                 (s) => s.id === activeSection
               );
-              if (currentIndex < sidebarSections.length - 1) {
-                scrollToSection(sidebarSections[currentIndex + 1].id);
+              if (currentIndex < availableSections.length - 1) {
+                scrollToSection(availableSections[currentIndex + 1].id);
               }
             }}
             disabled={
-              activeSection === sidebarSections[sidebarSections.length - 1].id
+              activeSection ===
+              availableSections[availableSections.length - 1]?.id
             }
             className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-300 ${
-              activeSection === sidebarSections[sidebarSections.length - 1].id
+              activeSection ===
+              availableSections[availableSections.length - 1]?.id
                 ? "bg-foreground/5 text-foreground/30 cursor-not-allowed"
                 : "bg-card/80 backdrop-blur-sm border border-border/50 text-foreground hover:bg-card/90"
             }`}
             whileHover={
-              activeSection !== sidebarSections[sidebarSections.length - 1].id
+              activeSection !==
+              availableSections[availableSections.length - 1]?.id
                 ? { scale: 1.02 }
                 : {}
             }
             whileTap={
-              activeSection !== sidebarSections[sidebarSections.length - 1].id
+              activeSection !==
+              availableSections[availableSections.length - 1]?.id
                 ? { scale: 0.98 }
                 : {}
             }
           >
             <span className="text-sm font-medium">
-              {activeSection === sidebarSections[sidebarSections.length - 1].id
+              {activeSection ===
+              availableSections[availableSections.length - 1]?.id
                 ? "Next"
-                : sidebarSections[
-                    sidebarSections.findIndex((s) => s.id === activeSection) + 1
+                : availableSections[
+                    availableSections.findIndex((s) => s.id === activeSection) +
+                      1
                   ]?.label}
             </span>
             <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4" />
