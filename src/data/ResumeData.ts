@@ -1,5 +1,9 @@
-export type Skill = { name: string; icon: string; color: string };
-export type SkillCategories = Record<string, Skill[]>;
+import { technologies } from "@/data/TechnologiesData";
+
+export type SkillCategories = Record<
+  string,
+  (typeof technologies)[keyof typeof technologies][]
+>;
 
 export type Competition = {
   title: string;
@@ -24,42 +28,43 @@ export type Certification = {
 };
 
 export const skillCategories: SkillCategories = {
-  "FRONTEND FRAMEWORKS": [
-    { name: "React", icon: "⚛️", color: "text-blue-400" },
-    { name: "Next.js", icon: "▲", color: "text-white" },
-    { name: "Tailwind", icon: "🎨", color: "text-cyan-400" },
-    { name: "SCSS", icon: "💎", color: "text-pink-400" },
-    { name: "Redux", icon: "🔄", color: "text-purple-400" },
-  ],
   "BACKEND FRAMEWORKS": [
-    { name: "NestJS", icon: "🦅", color: "text-red-500" },
-    { name: "Express", icon: "⚡", color: "text-yellow-400" },
-    { name: "Django", icon: "🐍", color: "text-green-500" },
+    technologies.nestjs,
+    technologies.expressjs,
+    technologies.django,
+  ],
+  "DATABASES / ORMS": [
+    technologies.postgresql,
+    technologies.turso,
+    technologies.mongodb,
+    technologies.redis,
+    technologies.firebase,
+    technologies.supabase,
+    technologies.drizzle,
+    technologies.typeorm,
+    technologies.prisma,
   ],
   "PROGRAMMING LANGUAGE": [
-    { name: "TypeScript", icon: "🔷", color: "text-blue-500" },
-    { name: "JavaScript", icon: "📜", color: "text-yellow-300" },
-    { name: "Python", icon: "🐍", color: "text-yellow-400" },
-    { name: "Java", icon: "☕", color: "text-orange-500" },
+    technologies.typescript,
+    technologies.python,
+    technologies.java,
   ],
   "TESTING & DEBUGGING": [
-    { name: "Jest", icon: "🃏", color: "text-red-400" },
-    { name: "React Testing Library", icon: "🧪", color: "text-blue-300" },
+    technologies.jest,
+    technologies.supertest,
+    technologies.rtl,
   ],
   "BACKEND INTEGRATION": [
-    { name: "REST", icon: "🔗", color: "text-green-400" },
-    { name: "GraphQL", icon: "📊", color: "text-pink-500" },
-    { name: "WebSockets", icon: "🔌", color: "text-purple-300" },
-    { name: "PostgreSQL", icon: "🐘", color: "text-blue-600" },
-    { name: "Supabase", icon: "⚡", color: "text-emerald-400" },
+    technologies.restapi,
+    technologies.graphql,
+    technologies.websockets,
   ],
   OTHERS: [
-    { name: "Node.js", icon: "🟢", color: "text-green-400" },
-    { name: "Git & GitHub", icon: "🐙", color: "text-gray-300" },
-    { name: "Software Architecture", icon: "🏗️", color: "text-blue-300" },
-    { name: "Advanced DSA", icon: "🧮", color: "text-orange-400" },
+    technologies.microservices,
+    technologies.dsa,
+    technologies.docker,
+    technologies.mvc,
   ],
-  LEARNING: [{ name: "Go", icon: "🐹", color: "text-cyan-300" }],
 };
 
 export const competitions: Competition[] = [

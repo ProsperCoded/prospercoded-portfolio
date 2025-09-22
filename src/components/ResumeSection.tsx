@@ -342,11 +342,12 @@ export function ResumeSection() {
                         {category}
                       </h3>
                       <div className="grid grid-cols-2 gap-2">
-                        {skills.map((skill, idx) => {
+                        {skills.map((tech, idx) => {
                           // If odd number of skills and this is the last one, span both columns
                           const isLastOdd =
                             skills.length % 2 === 1 &&
                             idx === skills.length - 1;
+
                           return (
                             <div
                               key={idx}
@@ -358,9 +359,21 @@ export function ResumeSection() {
                                 isLastOdd ? "col-span-2" : ""
                               }`}
                             >
-                              <span className="text-sm">{skill.icon}</span>
-                              <span className={`font-medium ${skill.color}`}>
-                                {skill.name}
+                              {"icon" in tech && tech.icon ? (
+                                <img
+                                  src={tech.icon}
+                                  alt={tech.name}
+                                  className="w-4 h-4 object-contain"
+                                />
+                              ) : (
+                                <div
+                                  className={`w-3 h-3 rounded-sm ${
+                                    tech.color || "bg-gray-400"
+                                  }`}
+                                />
+                              )}
+                              <span className={`font-medium ${tech.color}`}>
+                                {tech.name}
                               </span>
                             </div>
                           );
