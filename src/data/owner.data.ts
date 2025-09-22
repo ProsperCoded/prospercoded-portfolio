@@ -60,7 +60,7 @@ export const OWNER_DETAILS = {
   },
 
   // Professional Information
-  experience: "3+ years",
+  experience: "4+ years",
   specialization: "Node.js ecosystem",
   currentRole: "Lead Backend Engineer at ATC Africa",
   education: "University of Ibadan",
