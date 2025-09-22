@@ -153,6 +153,12 @@ export const organizations: Organization[] = [
 
 export const certifications: Certification[] = [
   {
+    title: "NESTJS MICROSERVICES: BUILD & DEPLOY A SCALEABLE BACKEND",
+    org: "Udemy - Micheal Guay",
+    date: "Learning",
+    link: "https://www.bing.com/ck/a?!&&p=ba27db13a14ba49299128841f7addb3ef4963a580b43904a6f27da03767164abJmltdHM9MTc1ODQxMjgwMA&ptn=3&ver=2&hsh=4&fclid=3d9c62ef-a752-6c4f-123f-748da6f66d81&psq=NESTJS+MICROSERVICES%3a+BUILD+%26+DEPLOY+A+SCALEABLE+BACKEND&u=a1aHR0cHM6Ly93d3cudWRlbXkuY29tL2NvdXJzZS9uZXN0anMtbWljcm9zZXJ2aWNlcy1idWlsZC1kZXBsb3ktYS1zY2FsZWFibGUtYmFja2VuZC8&ntb=1",
+  },
+  {
     title: "ADVANCED DATA MANIPULATION IN SQL",
     org: "DataCamp",
     date: "March 2024",

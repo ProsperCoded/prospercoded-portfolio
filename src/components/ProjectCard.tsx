@@ -197,9 +197,9 @@ export default function ProjectCard({
               <span>Brief</span>
             </div>
 
-            {project.githubLink && (
+            {project.links?.github && (
               <a
-                href={project.githubLink}
+                href={project.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-200 text-xs sm:text-sm flex-1 justify-center"
@@ -212,9 +212,9 @@ export default function ProjectCard({
               </a>
             )}
 
-            {project.webLink && (
+            {project.links?.live && (
               <a
-                href={project.webLink}
+                href={project.links.live}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-imperial-red text-white rounded-lg transition-all duration-200 hover:bg-folly hover:shadow-lg hover:scale-105 text-xs sm:text-sm flex-1 justify-center"
@@ -224,6 +224,21 @@ export default function ProjectCard({
                   className="w-3 h-3 sm:w-4 sm:h-4"
                 />
                 <span>Live</span>
+              </a>
+            )}
+
+            {project.links?.demo && (
+              <a
+                href={project.links.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg transition-all duration-200 hover:bg-blue-600 hover:shadow-lg hover:scale-105 text-xs sm:text-sm flex-1 justify-center"
+              >
+                <FontAwesomeIcon
+                  icon={faExternalLinkAlt}
+                  className="w-3 h-3 sm:w-4 sm:h-4"
+                />
+                <span>Demo</span>
               </a>
             )}
           </div>

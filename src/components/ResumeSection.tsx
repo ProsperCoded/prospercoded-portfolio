@@ -52,14 +52,6 @@ export function ResumeSection() {
     };
   }, []);
 
-  const skillCategories = resumeSkillCategories;
-
-  const competitions = resumeCompetitions;
-
-  const organizations = resumeOrganizations;
-
-  const certifications = resumeCertifications;
-
   return (
     <section className="relative">
       <div className="min-h-screen mt-[18rem] md:mt-[2rem] font-[500] font-sansSerif">
@@ -144,13 +136,16 @@ export function ResumeSection() {
                       Professional Summary
                     </h3>
                     <p className="text-sm text-gray-300 leading-relaxed">
-                      Experienced Backend Engineer specializing in Node.js,
-                      excelling in designing and implementing scalable
-                      server-side applications. Proficient in essential
-                      development tools like Git, caching strategies,
-                      Kubernetes, and various architectural patterns. Passionate
-                      about building systems that make the world easier and
-                      create real impact.
+                      Backend Engineer with 4+ years of experience, specializing
+                      in Nest.js and system architecture, experienced in
+                      designing scalable systems, APIs, and full-stack
+                      applications with a touch of frontend design background. I
+                      excel at Integrating Frontend systems, and streamlining
+                      services to maximize business value.
+                      <br />
+                      <br /> My passion is not just in writing code but in
+                      building systems and solutions that make the world easier
+                      and make a real impact
                     </p>
                   </div>
 
@@ -165,7 +160,7 @@ export function ResumeSection() {
                         className="max-h-[400px] overflow-y-auto pr-2 space-y-4 custom-scrollbar masked-overflow"
                         style={{ paddingBottom: "24px" }}
                       >
-                        {organizations.map((org, idx) => (
+                        {resumeOrganizations.map((org, idx) => (
                           <div key={idx} className="group">
                             <div className="text-accent-purple font-semibold mb-1">
                               {org.period}
@@ -238,7 +233,7 @@ export function ResumeSection() {
                         className="max-h-[280px] overflow-y-auto pr-2 space-y-3 custom-scrollbar masked-overflow"
                         style={{ paddingBottom: "24px" }}
                       >
-                        {certifications.map((cert, idx) => (
+                        {resumeCertifications.map((cert, idx) => (
                           <a
                             key={idx}
                             href={cert.link}
@@ -285,7 +280,7 @@ export function ResumeSection() {
                         className="max-h-[200px] overflow-y-auto pr-2 space-y-3 custom-scrollbar masked-overflow"
                         style={{ paddingBottom: "24px" }}
                       >
-                        {competitions.map((comp, idx) => (
+                        {resumeCompetitions.map((comp, idx) => (
                           <a
                             key={idx}
                             href={comp.link}
@@ -336,51 +331,53 @@ export function ResumeSection() {
                 </h2>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Object.entries(skillCategories).map(([category, skills]) => (
-                    <div key={category} className="space-y-3">
-                      <h3 className="text-lg font-semibold text-white border-b border-gray-600 pb-2">
-                        {category}
-                      </h3>
-                      <div className="grid grid-cols-2 gap-2">
-                        {skills.map((tech, idx) => {
-                          // If odd number of skills and this is the last one, span both columns
-                          const isLastOdd =
-                            skills.length % 2 === 1 &&
-                            idx === skills.length - 1;
+                  {Object.entries(resumeSkillCategories).map(
+                    ([category, skills]) => (
+                      <div key={category} className="space-y-3">
+                        <h3 className="text-lg font-semibold text-white border-b border-gray-600 pb-2">
+                          {category}
+                        </h3>
+                        <div className="grid grid-cols-2 gap-2">
+                          {skills.map((tech, idx) => {
+                            // If odd number of skills and this is the last one, span both columns
+                            const isLastOdd =
+                              skills.length % 2 === 1 &&
+                              idx === skills.length - 1;
 
-                          return (
-                            <div
-                              key={idx}
-                              className={`flex items-center gap-2 text-sm ${
-                                category === "LEARNING"
-                                  ? "bg-gray-800/30 border border-gray-700/50"
-                                  : "bg-gray-800/50"
-                              } rounded-lg px-3 py-2 transition-colors hover:bg-gray-700/50 ${
-                                isLastOdd ? "col-span-2" : ""
-                              }`}
-                            >
-                              {"icon" in tech && tech.icon ? (
-                                <img
-                                  src={tech.icon}
-                                  alt={tech.name}
-                                  className="w-4 h-4 object-contain"
-                                />
-                              ) : (
-                                <div
-                                  className={`w-3 h-3 rounded-sm ${
-                                    tech.color || "bg-gray-400"
-                                  }`}
-                                />
-                              )}
-                              <span className={`font-medium ${tech.color}`}>
-                                {tech.name}
-                              </span>
-                            </div>
-                          );
-                        })}
+                            return (
+                              <div
+                                key={idx}
+                                className={`flex items-center gap-2 text-sm ${
+                                  category === "LEARNING"
+                                    ? "bg-gray-800/30 border border-gray-700/50"
+                                    : "bg-gray-800/50"
+                                } rounded-lg px-3 py-2 transition-colors hover:bg-gray-700/50 ${
+                                  isLastOdd ? "col-span-2" : ""
+                                }`}
+                              >
+                                {"icon" in tech && tech.icon ? (
+                                  <img
+                                    src={tech.icon}
+                                    alt={tech.name}
+                                    className="w-4 h-4 object-contain"
+                                  />
+                                ) : (
+                                  <div
+                                    className={`w-3 h-3 rounded-sm ${
+                                      tech.color || "bg-gray-400"
+                                    }`}
+                                  />
+                                )}
+                                <span className={`font-medium ${tech.color}`}>
+                                  {tech.name}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
               </div>
             </div>

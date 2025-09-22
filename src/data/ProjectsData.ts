@@ -11,11 +11,6 @@ export type ProjectBrief = {
   challenges: string[];
   solutions: string[];
   impact: string;
-  links: {
-    github?: string;
-    live?: string;
-    demo?: string;
-  };
 };
 
 export type ProjectArchitecture = {
@@ -70,9 +65,12 @@ export type ProjectItem = {
   images: ProjectImage[];
   logoUrl?: string; // Optional logo URL for the project
   link: string;
-  githubLink?: string;
-  webLink?: string;
-  techStack: (typeof technologies)[keyof typeof technologies][];
+  links: {
+    github?: string;
+    live?: string;
+    demo?: string;
+  };
+  // techStack: (typeof technologies)[keyof typeof technologies][];
   // Enhanced content for documentation
   brief?: ProjectBrief;
   architecture?: ProjectArchitecture;
@@ -105,25 +103,18 @@ export const projects: Record<string, ProjectItem> = {
         isPrimary: false,
       },
     ],
-    link: "https://github.com/prospercoded/uninav",
-    githubLink: "https://github.com/prospercoded/uninav",
-    webLink: "https://uninav-demo.vercel.app",
-    techStack: [
-      technologies.react,
-      technologies.nextjs,
-      technologies.tailwindcss,
-      technologies.typescript,
-      technologies.nodejs,
-      technologies.expressjs,
-      technologies.postgresql,
-      technologies.docker,
-    ],
+    link: "https://uninav.live",
+    links: {
+      github: "https://github.com/prospercoded/uninav",
+      live: "https://uninav.live",
+      demo: "http://uninav-pitch.vercel.app/",
+    },
     slug: "uninav",
     category: "Full Stack",
     featured: true,
     brief: {
       motivation:
-        "As a student at the University of Ibadan, I experienced firsthand the challenges of accessing and sharing study materials. Traditional methods like scattered Google Drive links and WhatsApp groups were inefficient and disorganized. I wanted to create a centralized platform that would help students access and share essential course-related resources in an organized, scalable way.",
+        "As a student at the University of Ibadan, I experienced firsthand the challenges of accessing and sharing study materials. Traditional methods like scattered Google Drive links and WhatsApp groups were inefficient and disorganized. Some departments had useful materials that weren't accessible to other departments. I wanted to create a centralized platform that would help students access and share essential course-related resources in an organized, scalable way, like github for students",
       challenges: [
         "Scattered study materials across multiple platforms",
         "Difficulty finding relevant resources for specific courses",
@@ -139,16 +130,11 @@ export const projects: Record<string, ProjectItem> = {
         "Added monetization features including blog system and ad management",
       ],
       impact:
-        "UniNav has transformed how students at University of Ibadan access and share study materials. The platform has created a community-driven approach where students actively contribute to a growing knowledge base, making academic resources more accessible and organized than ever before.",
-      links: {
-        github: "https://github.com/prospercoded/uninav",
-        live: "https://uninav-demo.vercel.app",
-        demo: "https://uninav-demo.vercel.app",
-      },
+        "UniNav has transformed how students at University of Ibadan access and share study materials. The platform has created a community-driven approach where students actively contribute to a growing knowledge base, making academic resources more accessible and organized than ever before. Most of all uninav vission is to be more than just a study material plateform, we hope to expand it accommodate all activities that makes up a student life, Simplifying Students Academic journey",
     },
     architecture: {
       overview:
-        "UniNav follows a modern full-stack architecture with a React/Next.js frontend and Node.js/Express backend. The system is designed for scalability and performance, using PostgreSQL for data persistence and Docker for containerization.",
+        "UniNav follows a modern full-stack architecture with a Next.js frontend and NestJS backend. The system is designed for scalability and performance, using PostgreSQL for data persistence and Docker for containerization",
       techChoices: {
         Frontend: [
           {
@@ -371,16 +357,18 @@ export const projects: Record<string, ProjectItem> = {
       },
     ],
     link: "https://github.com/prospercoded/medmap",
-    githubLink: "https://github.com/prospercoded/medmap",
-    webLink: "https://medmap-app.vercel.app",
-    techStack: [
-      technologies.nextjs,
-      technologies.typescript,
-      technologies.mongodb,
-      technologies.restapi,
-      technologies.tailwindcss,
-      technologies.vercel,
-    ],
+    links: {
+      github: "https://github.com/prospercoded/medmap",
+      live: "https://medmap-app.vercel.app",
+    },
+    // techStack: [
+    //   technologies.nextjs,
+    //   technologies.typescript,
+    //   technologies.mongodb,
+    //   technologies.restapi,
+    //   technologies.tailwindcss,
+    //   technologies.vercel,
+    // ],
     slug: "medmap",
     category: "Healthcare",
     featured: true,
@@ -406,16 +394,18 @@ export const projects: Record<string, ProjectItem> = {
       },
     ],
     link: "https://github.com/prospercoded/goalfund",
-    githubLink: "https://github.com/prospercoded/goalfund",
-    webLink: "https://goalfund.vercel.app",
-    techStack: [
-      technologies.react,
-      technologies.nodejs,
-      technologies.postgresql,
-      technologies.stripe,
-      technologies.expressjs,
-      technologies.docker,
-    ],
+    links: {
+      github: "https://github.com/prospercoded/goalfund",
+      live: "https://goalfund.vercel.app",
+    },
+    // techStack: [
+    //   technologies.react,
+    //   technologies.nodejs,
+    //   technologies.postgresql,
+    //   technologies.stripe,
+    //   technologies.expressjs,
+    //   technologies.docker,
+    // ],
     slug: "goalfund",
     category: "Fintech",
     featured: true,
@@ -441,16 +431,18 @@ export const projects: Record<string, ProjectItem> = {
       },
     ],
     link: "https://github.com/prospercoded/party-currency",
-    githubLink: "https://github.com/prospercoded/party-currency",
-    webLink: "https://party-currency.vercel.app",
-    techStack: [
-      technologies.nextjs,
-      technologies.nestjs,
-      technologies.postgresql,
-      technologies.websockets,
-      technologies.prisma,
-      technologies.typescript,
-    ],
+    links: {
+      github: "https://github.com/prospercoded/party-currency",
+      live: "https://party-currency.vercel.app",
+    },
+    // techStack: [
+    //   technologies.nextjs,
+    //   technologies.nestjs,
+    //   technologies.postgresql,
+    //   technologies.websockets,
+    //   technologies.prisma,
+    //   technologies.typescript,
+    // ],
     slug: "party-currency",
     category: "Event Management",
     featured: true,
@@ -476,16 +468,18 @@ export const projects: Record<string, ProjectItem> = {
       },
     ],
     link: "https://github.com/prospercoded/faculty-payment",
-    githubLink: "https://github.com/prospercoded/faculty-payment",
-    webLink: "https://faculty-payment-demo.vercel.app",
-    techStack: [
-      technologies.react,
-      technologies.django,
-      technologies.python,
-      technologies.postgresql,
-      technologies.restapi,
-      technologies.aws,
-    ],
+    links: {
+      github: "https://github.com/prospercoded/faculty-payment",
+      live: "https://faculty-payment-demo.vercel.app",
+    },
+    // techStack: [
+    //   technologies.react,
+    //   technologies.django,
+    //   technologies.python,
+    //   technologies.postgresql,
+    //   technologies.restapi,
+    //   technologies.aws,
+    // ],
     slug: "faculty-payment",
     category: "Educational",
     featured: true,
@@ -511,16 +505,18 @@ export const projects: Record<string, ProjectItem> = {
       },
     ],
     link: "https://atcafrica.com",
-    githubLink: "https://github.com/atc-africa/event-management",
-    webLink: "https://atcafrica.com",
-    techStack: [
-      technologies.nextjs,
-      technologies.nodejs,
-      technologies.typescript,
-      technologies.mongodb,
-      technologies.graphql,
-      technologies.docker,
-    ],
+    links: {
+      github: "https://github.com/atc-africa/event-management",
+      live: "https://atcafrica.com",
+    },
+    // techStack: [
+    //   technologies.nextjs,
+    //   technologies.nodejs,
+    //   technologies.typescript,
+    //   technologies.mongodb,
+    //   technologies.graphql,
+    //   technologies.docker,
+    // ],
     slug: "atc-africa",
     category: "Team Leadership",
     featured: true,

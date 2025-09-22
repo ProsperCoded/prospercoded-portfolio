@@ -43,17 +43,19 @@ const ArchitectureTechChoices = ({
 
 // Project Links Component
 const ProjectLinks = ({
-  githubLink,
-  webLink,
+  links,
 }: {
-  githubLink?: string;
-  webLink?: string;
+  links?: {
+    github?: string;
+    live?: string;
+    demo?: string;
+  };
 }) => {
   return (
     <div className="mt-4 flex gap-3">
-      {githubLink && (
+      {links?.github && (
         <a
-          href={githubLink}
+          href={links.github}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3 py-2 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg border border-gray-600/30 hover:border-gray-500/50 transition-all group"
@@ -67,9 +69,9 @@ const ProjectLinks = ({
           </span>
         </a>
       )}
-      {webLink && (
+      {links?.live && (
         <a
-          href={webLink}
+          href={links.live}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 hover:border-primary/50 transition-all group"
@@ -80,6 +82,22 @@ const ProjectLinks = ({
           />
           <span className="text-sm text-primary group-hover:text-primary-foreground transition-colors">
             Live Demo
+          </span>
+        </a>
+      )}
+      {links?.demo && (
+        <a
+          href={links.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg border border-blue-500/30 hover:border-blue-500/50 transition-all group"
+        >
+          <FontAwesomeIcon
+            icon={faExternalLinkAlt}
+            className="w-4 h-4 text-blue-400 group-hover:text-blue-300 transition-colors"
+          />
+          <span className="text-sm text-blue-400 group-hover:text-blue-300 transition-colors">
+            Demo
           </span>
         </a>
       )}
@@ -94,8 +112,11 @@ type Testimonial = {
   images: { src: string; isPrimary: boolean }[];
   logoUrl?: string; // Add logo URL field
   link?: string;
-  githubLink?: string;
-  webLink?: string;
+  links?: {
+    github?: string;
+    live?: string;
+    demo?: string;
+  };
   architecture?: {
     techChoices: {
       [category: string]: {
@@ -443,10 +464,7 @@ export const ProjectShowcase = ({
                 )}
 
                 {/* Project Links */}
-                <ProjectLinks
-                  githubLink={testimonials[active].githubLink}
-                  webLink={testimonials[active].webLink}
-                />
+                <ProjectLinks links={testimonials[active].links} />
               </motion.div>
             </div>
           </>
@@ -580,10 +598,7 @@ export const ProjectShowcase = ({
                 )}
 
                 {/* Project Links */}
-                <ProjectLinks
-                  githubLink={testimonials[active].githubLink}
-                  webLink={testimonials[active].webLink}
-                />
+                <ProjectLinks links={testimonials[active].links} />
               </motion.div>
             </div>
           </>

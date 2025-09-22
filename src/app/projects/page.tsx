@@ -146,9 +146,9 @@ export default function ProjectsPage() {
                       Project Brief
                     </PersonalCTAButton>
 
-                    {selectedProject.webLink && (
+                    {selectedProject.links?.live && (
                       <a
-                        href={selectedProject.webLink}
+                        href={selectedProject.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-red-500/80 backdrop-blur-sm rounded-full text-white hover:bg-red-500 transition-all duration-300 text-sm sm:text-base"
@@ -161,15 +161,30 @@ export default function ProjectsPage() {
                       </a>
                     )}
 
-                    {selectedProject.githubLink && (
+                    {selectedProject.links?.github && (
                       <a
-                        href={selectedProject.githubLink}
+                        href={selectedProject.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
                       >
                         <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
                         <span>GitHub</span>
+                      </a>
+                    )}
+
+                    {selectedProject.links?.demo && (
+                      <a
+                        href={selectedProject.links.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-500/80 backdrop-blur-sm rounded-full text-white hover:bg-blue-500 transition-all duration-300 text-sm sm:text-base"
+                      >
+                        <FontAwesomeIcon
+                          icon={faExternalLinkAlt}
+                          className="w-4 h-4"
+                        />
+                        <span>Demo</span>
                       </a>
                     )}
                   </div>
