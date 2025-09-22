@@ -1,24 +1,16 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { navLinks } from "./nav.data";
+import { Logo } from "../ui/Logo";
+import Link from "next/link";
 export const Navbar = () => {
   const [activeLink, setActiveLink] = useState<string | null>(null);
 
   return (
     <nav className="hidden md:block fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[90vw] max-w-max">
       <div className="flex items-center justify-between gap-x-3 bg-background/80 backdrop-blur-sm border border-border/20 rounded-lg px-3 py-2">
-        <Link href="/" className="flex items-center gap-x-2">
-          <Image
-            src="/assets/logo.png"
-            alt="Logo"
-            width={32}
-            height={32}
-            className="w-8 h-8 object-cover"
-          />
-        </Link>
+        <Logo />
         <div className="flex items-center gap-x-2">
           <div className="h-6 w-px bg-border/80" />
           <ul

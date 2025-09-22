@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { navLinks } from "./nav.data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Logo from "../ui/Logo";
 
 export const MobileNavbar = () => {
   const [activeLink, setActiveLink] = useState<string | null>(null);
@@ -12,18 +13,7 @@ export const MobileNavbar = () => {
   return (
     <>
       {/* Fixed circular logo top-left on mobile */}
-      <Link
-        href="/"
-        className="md:hidden fixed top-4 left-4 z-[60] h-10 w-10 rounded-full overflow-hidden border border-border/30 shadow-md bg-background/70 backdrop-blur-sm flex items-center justify-center"
-      >
-        <Image
-          src="/assets/logo.png"
-          alt="Logo"
-          width={40}
-          height={40}
-          className="h-full w-full object-cover"
-        />
-      </Link>
+      <Logo className="md:hidden fixed top-4 left-4 z-[60] h-10 w-10" />
 
       {/* Bottom navigation bar */}
       <nav className="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 z-50 w-[92vw] max-w-sm">
@@ -65,7 +55,7 @@ export const MobileNavbar = () => {
                         className={`transition-colors duration-200 relative z-10 ${
                           isActive ? "text-red-500" : "text-foreground/70"
                         }`}
-                        style={{ fontSize: '18px' }}
+                        style={{ fontSize: "18px" }}
                       />
                     )}
                     <span

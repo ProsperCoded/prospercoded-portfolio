@@ -4,6 +4,7 @@ import { GlowBraces } from "@/components/ui/glow-braces";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { OWNER_DETAILS } from "@/data/owner.data";
 
 export function AboutSection() {
   return (
@@ -74,7 +75,7 @@ export function AboutSection() {
                       icon={faMapMarkerAlt}
                       className="w-4 h-4"
                     />
-                    Based in Ibadan, Nigeria
+                    Based in {OWNER_DETAILS.location}
                   </div>
                 </div>
 
@@ -117,7 +118,7 @@ export function AboutSection() {
                     className="text-4xl md:text-5xl"
                   >
                     <span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-imperial-red to-tangelo bg-clip-text text-transparent">
-                      Prosper
+                      {OWNER_DETAILS.name.split(" ")[0]}
                     </span>
                   </GlowBraces>
                   !
@@ -126,18 +127,19 @@ export function AboutSection() {
                 <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
                   <p>
                     <span className="text-white font-semibold">
-                      Prosper Enwerem
+                      {OWNER_DETAILS.fullName}
                     </span>{" "}
                     here, a{" "}
                     <span className="text-accent-yellow font-semibold mr-2">
-                      Backend Software Engineer
+                      {OWNER_DETAILS.title}
                     </span>
-                    with over three years of experience specializing in the{" "}
+                    with {OWNER_DETAILS.experience} of experience specializing
+                    in the{" "}
                     <span className="text-accent-yellow font-semibold mr-2">
-                      Node.js ecosystem
+                      {OWNER_DETAILS.specialization}
                     </span>
-                    . I'm currently a student at the University of Ibadan, where
-                    I've built and led several impactful projects.
+                    . I'm currently a student at {OWNER_DETAILS.education},
+                    where I've built and led several impactful projects.
                   </p>
 
                   <p>
@@ -161,24 +163,26 @@ export function AboutSection() {
 
               {/* Contact Information */}
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 w-full">
-                {/* First Row: Phone, LinkedIn, X */}
+                {/* Phone - Green theme */}
                 <a
-                  href="tel:+2349155004456"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-accent-green/20 border border-accent-green/30 rounded-lg px-4 py-3 text-accent-green hover:bg-accent-green/30 transition-colors col-span-1 sm:col-span-2"
+                  href={`tel:${OWNER_DETAILS.phone}`}
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-green-500/10 backdrop-blur-sm border border-green-500/30 rounded-lg px-4 py-3 text-green-400 hover:bg-green-500/20 transition-all duration-300 col-span-1 sm:col-span-2"
                 >
                   <FontAwesomeIcon
                     icon={faPhone}
                     className="w-8 h-8 sm:w-5 sm:h-5 flex-shrink-0"
                   />
                   <span className="font-medium hidden sm:block">
-                    +234 915 500 4456
+                    {OWNER_DETAILS.phone}
                   </span>
                 </a>
+
+                {/* LinkedIn - Blue theme */}
                 <a
-                  href="https://linkedin.com/in/prospercoded/"
+                  href={OWNER_DETAILS.social.linkedin.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-purple-start/20 border border-purple-start/30 rounded-lg px-4 py-3 text-purple-start hover:bg-purple-start/30 transition-colors col-span-1 sm:col-span-2"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-blue-500/10 backdrop-blur-sm border border-blue-500/30 rounded-lg px-4 py-3 text-blue-400 hover:bg-blue-500/20 transition-all duration-300 col-span-1 sm:col-span-2"
                 >
                   <Image
                     src="/assets/linkedIn.svg"
@@ -191,11 +195,13 @@ export function AboutSection() {
                     @prospercoded
                   </span>
                 </a>
+
+                {/* Twitter/X - Black theme */}
                 <a
-                  href="https://twitter.com/prospercoded"
+                  href={OWNER_DETAILS.social.twitter.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-gray-800/20 border border-gray-600/30 rounded-lg px-4 py-3 text-white hover:bg-gray-800/30 transition-colors col-span-1 sm:col-span-2"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-gray-800/20 backdrop-blur-sm border border-gray-600/30 rounded-lg px-4 py-3 text-white hover:bg-gray-800/30 transition-all duration-300 col-span-1 sm:col-span-2"
                 >
                   <Image
                     src="/assets/x.svg"
@@ -208,10 +214,11 @@ export function AboutSection() {
                     @prospercoded
                   </span>
                 </a>
-                {/* Second Row: Email, LeetCode (span 3 each on desktop) */}
+
+                {/* Email - Red theme */}
                 <a
-                  href="mailto:prospercoded@gmail.com"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-imperial-red/20 border border-imperial-red/30 rounded-lg px-4 py-3 text-imperial-red hover:bg-imperial-red/30 transition-colors col-span-1 sm:col-span-3"
+                  href={`mailto:${OWNER_DETAILS.email}`}
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-red-500/10 backdrop-blur-sm border border-red-500/30 rounded-lg px-4 py-3 text-red-400 hover:bg-red-500/20 transition-all duration-300 col-span-1 sm:col-span-3"
                 >
                   <Image
                     src="/assets/gmail.svg"
@@ -221,14 +228,16 @@ export function AboutSection() {
                     className="w-8 h-8 sm:w-5 sm:h-5 flex-shrink-0"
                   />
                   <span className="font-medium hidden sm:block">
-                    prospercoded@gmail.com
+                    {OWNER_DETAILS.email}
                   </span>
                 </a>
+
+                {/* LeetCode - Orange theme */}
                 <a
                   href="https://leetcode.com/u/prosperCoded/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-tangelo/20 border border-tangelo/30 rounded-lg px-4 py-3 text-tangelo hover:bg-tangelo/30 transition-colors col-span-1 sm:col-span-3"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-orange-500/10 backdrop-blur-sm border border-orange-500/30 rounded-lg px-4 py-3 text-orange-400 hover:bg-orange-500/20 transition-all duration-300 col-span-1 sm:col-span-3"
                 >
                   <Image
                     src="/assets/leetcode.svg"
@@ -241,12 +250,13 @@ export function AboutSection() {
                     leetcode.com/u/prospercoded
                   </span>
                 </a>
-                {/* GitHub: full width on desktop, regular grid item on mobile */}
+
+                {/* GitHub - Gray theme */}
                 <a
-                  href="https://github.com/prospercoded"
+                  href={OWNER_DETAILS.social.github.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start gap-3 bg-gray-600/20 border border-gray-600/30 rounded-lg px-4 py-3 text-gray-300 hover:bg-gray-600/30 transition-colors col-span-1 sm:col-span-6"
+                  className="flex items-center justify-center sm:justify-start gap-3 bg-gray-600/10 backdrop-blur-sm border border-gray-600/30 rounded-lg px-4 py-3 text-gray-300 hover:bg-gray-600/20 transition-all duration-300 col-span-1 sm:col-span-6"
                 >
                   <Image
                     src="/assets/github.svg"

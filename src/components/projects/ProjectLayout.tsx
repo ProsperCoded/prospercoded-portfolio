@@ -13,6 +13,7 @@ import Link from "next/link";
 import { ProjectItem } from "@/data/ProjectsData";
 import ProjectHero from "./ProjectHero";
 import ProjectSection from "./ProjectSection";
+import Logo from "../ui/Logo";
 
 interface ProjectLayoutProps {
   project: ProjectItem;
@@ -90,17 +91,20 @@ export default function ProjectLayout({
       {/* Navigation */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
         <div className="flex items-center justify-between p-4">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors group"
-          >
-            <FontAwesomeIcon
-              icon={faArrowLeft}
-              className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
-            />
-            <span className="hidden sm:inline">Back to Projects</span>
-            <span className="sm:hidden">Back</span>
-          </Link>
+          <div className="flex items-center gap-x-4">
+            <Logo />
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors group"
+            >
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+              />
+              <span className="hidden sm:inline">Back to Projects</span>
+              <span className="sm:hidden">Back</span>
+            </Link>
+          </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
             {project.webLink && (
