@@ -27,6 +27,14 @@ export type Certification = {
   link: string;
 };
 
+export type Contract = {
+  title: string;
+  role: string;
+  period: string;
+  description: string;
+  link: string;
+};
+
 export const skillCategories: SkillCategories = {
   "BACKEND FRAMEWORKS": [
     technologies.nestjs,
@@ -49,11 +57,7 @@ export const skillCategories: SkillCategories = {
     technologies.python,
     technologies.java,
   ],
-  "TESTING & DEBUGGING": [
-    technologies.jest,
-    technologies.supertest,
-    technologies.rtl,
-  ],
+  "TESTING & DEBUGGING": [technologies.jest, technologies.supertest],
   "BACKEND INTEGRATION": [
     technologies.restapi,
     technologies.graphql,
@@ -80,29 +84,11 @@ export const competitions: Competition[] = [
     icon: "🏆",
     link: "#",
   },
-  {
-    title: "2nd Place in Code Jam - GoalFund",
-    event: "Google Code Jam 2024",
-    icon: "🥈",
-    link: "#",
-  },
-  {
-    title: "Finalist in AI Challenge - SmartAssist",
-    event: "Microsoft AI Challenge 2023",
-    icon: "🤖",
-    link: "#",
-  },
-  {
-    title: "3rd Place in Backend Challenge - DataSync",
-    event: "AWS Hackathon 2023",
-    icon: "🥉",
-    link: "#",
-  },
 ];
 
 export const organizations: Organization[] = [
   {
-    period: "April 2025 - Present",
+    period: "April 2025 - Sept 2025",
     role: "Co-Lead Backend Engineer",
     company: "ATC Africa",
     link: "https://atcafrica.com",
@@ -118,36 +104,20 @@ export const organizations: Organization[] = [
       "Developed interactive e-commerce platforms and payment systems, improving user experience and checkout efficiency.",
   },
   {
-    period: "May 2022 - Feb 2023",
-    role: "Technical Operator Manager",
-    company: "Indiana Ventures",
-    link: "#",
+    period: "Jan 2024 - Feb 2025",
+    role: "Lead Fullstack Developer",
+    company: "9jaMarkets",
+    link: "https://9jamarkets.com",
     description:
-      "Led a team of 2-Technical Operators and 5-Desktop Publishers, 3-Designers to deliver high-quality typesetting, editing, graphic design, and printing services without supervision, ensuring client satisfaction.",
+      "Developed interactive e-commerce platforms and payment systems, improving user experience and checkout efficiency.",
   },
   {
-    period: "Jan 2022 - May 2022",
-    role: "Frontend Developer Intern",
-    company: "TechCorp Solutions",
-    link: "#",
+    period: "Jan 2024 - Feb 2025",
+    role: "Lead Fullstack Developer",
+    company: "9jaMarkets",
+    link: "https://9jamarkets.com",
     description:
-      "Collaborated with senior developers to build responsive web applications using React and TypeScript.",
-  },
-  {
-    period: "Aug 2021 - Dec 2021",
-    role: "Junior Web Developer",
-    company: "StartupLab Nigeria",
-    link: "#",
-    description:
-      "Developed landing pages and basic web applications for various startup clients using HTML, CSS, and JavaScript.",
-  },
-  {
-    period: "May 2021 - Aug 2021",
-    role: "Code Instructor",
-    company: "Youth Tech Academy",
-    link: "#",
-    description:
-      "Taught programming fundamentals to high school students, focusing on Python and web development basics.",
+      "Developed interactive e-commerce platforms and payment systems, improving user experience and checkout efficiency.",
   },
 ];
 
@@ -199,5 +169,24 @@ export const certifications: Certification[] = [
     org: "Mosh Hamedani",
     date: "September 2023",
     link: "#",
+  },
+];
+
+export const contracts: Contract[] = [
+  {
+    title: "3YP",
+    role: "Backend Engineer",
+    period: "5 months",
+    description:
+      "Ride-hailing platform with intelligent dispatch optimized for battery efficiency and urban traffic in Nigeria.",
+    link: "/projects/3yp",
+  },
+  {
+    title: "NourishBox",
+    role: "Fullstack Engineer",
+    period: "3 months",
+    description:
+      "Recipe-selling platform for chefs to upload and sell recipes with browsing, ordering, and customer feedback.",
+    link: "/projects/nourishbox",
   },
 ];

@@ -91,8 +91,10 @@ export default function ProjectCard({
     },
   };
 
+  const projectHref = project.links?.projectLink || `/projects/${project.slug}`;
+
   return (
-    <Link href={`/projects/${project.slug}`}>
+    <Link href={projectHref}>
       <motion.div
         className={`group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-imperial-red/50 hover:shadow-xl hover:shadow-imperial-red/10 cursor-pointer ${className}`}
         onHoverStart={() => setIsHovered(true)}

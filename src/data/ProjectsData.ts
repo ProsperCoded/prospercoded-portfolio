@@ -64,9 +64,9 @@ export type ProjectItem = {
   designation: string;
   images: ProjectImage[];
   logoUrl?: string; // Optional logo URL for the project
-  link: string;
   links: {
     github?: string;
+    projectLink?: string;
     live?: string;
     demo?: string;
   };
@@ -88,25 +88,29 @@ export const projects: Record<string, ProjectItem> = {
     quote:
       "A university-wide platform that helps students access and share study materials in an organized, scalable way. Built with Node.js backend and modern frontend technologies to solve real campus challenges.",
     designation: "Full Stack Project",
-    logoUrl: "https://img.icons8.com/color/96/university.png",
+    logoUrl: "/assets/projects/uninav/logo.svg",
     images: [
       {
-        src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
+        src: "/assets/projects/uninav/showcase/image1.png",
         isPrimary: true,
       },
       {
-        src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop",
+        src: "/assets/projects/uninav/showcase/image2.png",
         isPrimary: false,
       },
       {
-        src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+        src: "/assets/projects/uninav/showcase/image3.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/uninav/showcase/image4.png",
         isPrimary: false,
       },
     ],
-    link: "https://uninav.live",
     links: {
       github: "https://github.com/prospercoded/uninav",
       live: "https://uninav.live",
+      projectLink: "/projects/uninav",
       demo: "http://uninav-pitch.vercel.app/",
     },
     slug: "uninav",
@@ -356,19 +360,11 @@ export const projects: Record<string, ProjectItem> = {
         isPrimary: false,
       },
     ],
-    link: "https://github.com/prospercoded/medmap",
     links: {
       github: "https://github.com/prospercoded/medmap",
       live: "https://medmap-app.vercel.app",
+      projectLink: "/projects/medmap",
     },
-    // techStack: [
-    //   technologies.nextjs,
-    //   technologies.typescript,
-    //   technologies.mongodb,
-    //   technologies.restapi,
-    //   technologies.tailwindcss,
-    //   technologies.vercel,
-    // ],
     slug: "medmap",
     category: "Healthcare",
     featured: true,
@@ -393,10 +389,10 @@ export const projects: Record<string, ProjectItem> = {
         isPrimary: false,
       },
     ],
-    link: "https://github.com/prospercoded/goalfund",
     links: {
       github: "https://github.com/prospercoded/goalfund",
       live: "https://goalfund.vercel.app",
+      projectLink: "/projects/goalfund",
     },
     // techStack: [
     //   technologies.react,
@@ -430,10 +426,10 @@ export const projects: Record<string, ProjectItem> = {
         isPrimary: false,
       },
     ],
-    link: "https://github.com/prospercoded/party-currency",
     links: {
       github: "https://github.com/prospercoded/party-currency",
       live: "https://party-currency.vercel.app",
+      projectLink: "/projects/party-currency",
     },
     // techStack: [
     //   technologies.nextjs,
@@ -467,10 +463,10 @@ export const projects: Record<string, ProjectItem> = {
         isPrimary: false,
       },
     ],
-    link: "https://github.com/prospercoded/faculty-payment",
     links: {
       github: "https://github.com/prospercoded/faculty-payment",
       live: "https://faculty-payment-demo.vercel.app",
+      projectLink: "/projects/faculty-payment",
     },
     // techStack: [
     //   technologies.react,
@@ -504,10 +500,10 @@ export const projects: Record<string, ProjectItem> = {
         isPrimary: false,
       },
     ],
-    link: "https://atcafrica.com",
     links: {
       github: "https://github.com/atc-africa/event-management",
       live: "https://atcafrica.com",
+      projectLink: "/projects/atc-africa",
     },
     // techStack: [
     //   technologies.nextjs,

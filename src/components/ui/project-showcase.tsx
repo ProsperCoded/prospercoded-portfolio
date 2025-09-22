@@ -114,6 +114,7 @@ type Testimonial = {
   link?: string;
   links?: {
     github?: string;
+    projectLink?: string;
     live?: string;
     demo?: string;
   };
@@ -372,11 +373,14 @@ export const ProjectShowcase = ({
                         innerRounding={innerRounding}
                         outlineColor={outlineColor}
                         hoverOutlineColor={hoverOutlineColor}
-                        onClick={() =>
-                          isActive(index) &&
-                          onItemClick &&
-                          onItemClick(testimonials[active].link || "")
-                        }
+                        onClick={() => {
+                          if (!isActive(index) || !onItemClick) return;
+                          const link =
+                            testimonials[active].links?.projectLink ||
+                            testimonials[active].link ||
+                            "";
+                          onItemClick(link);
+                        }}
                         showViewIcon={isActive(index)}
                       />
                     </motion.div>
@@ -511,11 +515,14 @@ export const ProjectShowcase = ({
                         innerRounding={innerRounding}
                         outlineColor={outlineColor}
                         hoverOutlineColor={hoverOutlineColor}
-                        onClick={() =>
-                          isActive(index) &&
-                          onItemClick &&
-                          onItemClick(testimonials[active].link || "")
-                        }
+                        onClick={() => {
+                          if (!isActive(index) || !onItemClick) return;
+                          const link =
+                            testimonials[active].links?.projectLink ||
+                            testimonials[active].link ||
+                            "";
+                          onItemClick(link);
+                        }}
                         showViewIcon={isActive(index)}
                       />
                     </motion.div>

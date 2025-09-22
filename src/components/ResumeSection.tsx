@@ -8,6 +8,7 @@ import {
   competitions as resumeCompetitions,
   organizations as resumeOrganizations,
   certifications as resumeCertifications,
+  contracts as resumeContracts,
 } from "@/data/ResumeData";
 
 export function ResumeSection() {
@@ -44,11 +45,22 @@ export function ResumeSection() {
       }
     };
 
+    // Initial check + listen to window resizes
     checkScrollable();
     window.addEventListener("resize", checkScrollable);
 
+    // React to container size/content changes as well
+    const resizeObserver = new ResizeObserver(() => checkScrollable());
+    if (certContainerRef.current)
+      resizeObserver.observe(certContainerRef.current);
+    if (compContainerRef.current)
+      resizeObserver.observe(compContainerRef.current);
+    if (orgContainerRef.current)
+      resizeObserver.observe(orgContainerRef.current);
+
     return () => {
       window.removeEventListener("resize", checkScrollable);
+      resizeObserver.disconnect();
     };
   }, []);
 
@@ -202,6 +214,33 @@ export function ResumeSection() {
                       )}
                     </div>
                   </div>
+
+                  {/* Contracts - one-time jobs delivered excellently */}
+                  <div>
+                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
+                      Contracts
+                    </h2>
+                    <div className="space-y-4">
+                      {resumeContracts.map((con, idx) => (
+                        <a key={idx} href={con.link} className="group block">
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="text-white font-medium group-hover:text-accent-purple transition-colors">
+                              {con.title}
+                            </div>
+                            <div className="text-accent-purple text-xs font-medium whitespace-nowrap">
+                              {con.period}
+                            </div>
+                          </div>
+                          <div className="text-accent-green text-xs font-semibold mb-1">
+                            {con.role}
+                          </div>
+                          <div className="text-sm text-gray-300 leading-relaxed">
+                            {con.description}
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Right Column */}
@@ -337,12 +376,15 @@ export function ResumeSection() {
                         <h3 className="text-lg font-semibold text-white border-b border-gray-600 pb-2">
                           {category}
                         </h3>
-                        <div className="grid grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                           {skills.map((tech, idx) => {
-                            // If odd number of skills and this is the last one, span both columns
+                            // If odd number of skills and this is the last one, span remaining columns
                             const isLastOdd =
-                              skills.length % 2 === 1 &&
+                              skills.length % 3 === 1 &&
                               idx === skills.length - 1;
+                            const isSecondLastOdd =
+                              skills.length % 3 === 2 &&
+                              idx === skills.length - 2;
 
                             return (
                               <div
@@ -352,7 +394,11 @@ export function ResumeSection() {
                                     ? "bg-gray-800/30 border border-gray-700/50"
                                     : "bg-gray-800/50"
                                 } rounded-lg px-3 py-2 transition-colors hover:bg-gray-700/50 ${
-                                  isLastOdd ? "col-span-2" : ""
+                                  isLastOdd
+                                    ? "lg:col-span-3"
+                                    : isSecondLastOdd
+                                    ? "lg:col-span-2"
+                                    : ""
                                 }`}
                               >
                                 {"icon" in tech && tech.icon ? (
