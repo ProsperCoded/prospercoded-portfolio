@@ -55,6 +55,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <ProjectLayout project={project}>
+      {/* Introduction Section */}
+      <div className="max-w-4xl mx-auto px-6 pt-16">
+        <div className="mb-12 text-left">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            {project.designation}
+          </h2>
+          <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed max-w-3xl">
+            {project.quote}
+          </p>
+        </div>
+      </div>
+
       {/* Brief Section */}
       {project.brief && (
         <ProjectSection

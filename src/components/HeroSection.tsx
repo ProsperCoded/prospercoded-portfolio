@@ -3,7 +3,7 @@ import { PersonalCTAButton } from "@/components/ui/personal-cta-button";
 import SplitText from "@/components/ui/split-text";
 import RippleGrid from "@/components/ui/ripple-grid";
 import { cn } from "@/lib/utils";
-
+import { OWNER_DETAILS } from "@/data/owner.data";
 const images = [
   { src: "/assets/icons/technologies/3D/nextjs-3d.png", alt: "Next.js" },
   { src: "/assets/icons/technologies/3D/docker-3d.png", alt: "Docker" },
@@ -63,7 +63,7 @@ export function HeroSection() {
         <div className="mb-8 inline-flex items-center rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground">
           <span className="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse"></span>
           <SplitText
-            text="Prosper Coded"
+            text={OWNER_DETAILS.username}
             className="font-medium text-muted-foreground"
             splitType="chars"
             delay={10}
@@ -87,8 +87,9 @@ export function HeroSection() {
         {/* Subheading */}
         <p className="mx-auto mb-8 max-w-2xl text-base text-zinc-100 md:text-xl relative font-sans">
           <span className="relative text-shadow-2xl z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
-            Hi, I'm Prosper a Fullstack Software Engineer with 3+ years of
-            experience, specializing in Node.js and building systems that solve
+            Hi, I'm {OWNER_DETAILS.fullName} a {OWNER_DETAILS.title} with
+            {OWNER_DETAILS.experience} of experience, specializing in{" "}
+            {OWNER_DETAILS.specialization} and building systems that solve
             real-world problems
           </span>
           {/* Subtle background blur for better readability */}
@@ -100,10 +101,9 @@ export function HeroSection() {
             variant="filled"
             size="lg"
             imageSize="large"
-            // image="/assets/icons/project-icon.svg"
             image="/assets/icons/cooking.svg"
-            // image="https://img.icons8.com/ios-filled/100/salt-bae.png"
             imageAlt="Project icon"
+            href="/projects"
             className="font-semibold tracking-wide"
           >
             Visit my work

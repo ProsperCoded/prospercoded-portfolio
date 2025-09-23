@@ -227,46 +227,6 @@ export default function ProjectsPage() {
                 ? selectedProject
                 : globalSlides[currentSlideIndex]?.project) && (
                 <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                  <PersonalCTAButton
-                    variant="rounded"
-                    size="md"
-                    href={`/projects/${
-                      (!isGlobalRotation
-                        ? (selectedProject as ProjectItem)
-                        : globalSlides[currentSlideIndex].project
-                      ).slug
-                    }`}
-                    image="/assets/icons/project-icon.svg"
-                    imageAlt="Project Brief"
-                    imageSize="medium"
-                    className="text-white border-white/30 hover:border-white/50"
-                  >
-                    Project Brief
-                  </PersonalCTAButton>
-
-                  {(!isGlobalRotation
-                    ? (selectedProject as ProjectItem)
-                    : globalSlides[currentSlideIndex].project
-                  ).links?.live && (
-                    <a
-                      href={
-                        (!isGlobalRotation
-                          ? (selectedProject as ProjectItem)
-                          : globalSlides[currentSlideIndex].project
-                        ).links?.live as string
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-red-500/80 backdrop-blur-sm rounded-full text-white hover:bg-red-500 transition-all duration-300 text-sm sm:text-base"
-                    >
-                      <FontAwesomeIcon
-                        icon={faExternalLinkAlt}
-                        className="w-4 h-4"
-                      />
-                      <span>Visit Live</span>
-                    </a>
-                  )}
-
                   {(!isGlobalRotation
                     ? (selectedProject as ProjectItem)
                     : globalSlides[currentSlideIndex].project
@@ -309,6 +269,46 @@ export default function ProjectsPage() {
                       <span>Demo</span>
                     </a>
                   )}
+
+                  {(!isGlobalRotation
+                    ? (selectedProject as ProjectItem)
+                    : globalSlides[currentSlideIndex].project
+                  ).links?.live && (
+                    <a
+                      href={
+                        (!isGlobalRotation
+                          ? (selectedProject as ProjectItem)
+                          : globalSlides[currentSlideIndex].project
+                        ).links?.live as string
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-red-500/80 backdrop-blur-sm rounded-full text-white hover:bg-red-500 transition-all duration-300 text-sm sm:text-base"
+                    >
+                      <FontAwesomeIcon
+                        icon={faExternalLinkAlt}
+                        className="w-4 h-4"
+                      />
+                      <span>Visit Live</span>
+                    </a>
+                  )}
+
+                  <PersonalCTAButton
+                    variant="rounded"
+                    size="md"
+                    href={`/projects/${
+                      (!isGlobalRotation
+                        ? (selectedProject as ProjectItem)
+                        : globalSlides[currentSlideIndex].project
+                      ).slug
+                    }`}
+                    image="/assets/icons/project-icon.svg"
+                    imageAlt="Project Brief"
+                    imageSize="medium"
+                    className="text-white border-white/30 hover:border-white/50"
+                  >
+                    Project Brief
+                  </PersonalCTAButton>
                 </div>
               )}
             </motion.div>

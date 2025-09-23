@@ -107,37 +107,6 @@ export default function ProjectHero({
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="bg-black/40 backdrop-blur-md rounded-2xl p-8 border border-white/10"
-          >
-            <div className="flex items-center justify-center gap-4 mb-4">
-              {project.logoUrl && (
-                <img
-                  src={project.logoUrl}
-                  alt={`${project.name} logo`}
-                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain"
-                />
-              )}
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white">
-                {project.name}
-              </h1>
-            </div>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-6">
-              {project.designation}
-            </p>
-            <p className="text-base sm:text-lg text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-              {project.quote}
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
       {/* Image Indicators */}
       {loadedImages.length > 1 && (
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
