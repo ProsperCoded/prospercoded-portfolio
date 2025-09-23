@@ -259,6 +259,36 @@ export const technologies = {
     icon: "/assets/icons/technologies/openstreetmap.png",
     category: "tool" as const,
   },
+  paystack: {
+    name: "Paystack",
+    color: "text-green-500",
+    category: "tool" as const,
+  },
+  brevo: {
+    name: "Brevo",
+    color: "text-blue-500",
+    category: "tool" as const,
+  },
+  cloudinary: {
+    name: "Cloudinary",
+    color: "text-blue-400",
+    category: "tool" as const,
+  },
+  framerMotion: {
+    name: "Framer Motion",
+    color: "text-purple-400",
+    category: "frontend" as const,
+  },
+  shadcn: {
+    name: "Shadcn UI",
+    color: "text-gray-300",
+    category: "frontend" as const,
+  },
+  ejs: {
+    name: "EJS",
+    color: "text-orange-400",
+    category: "tool" as const,
+  },
 } as const;
 
 // Type for technology keys

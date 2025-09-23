@@ -645,6 +645,240 @@ export const projects: Record<string, ProjectItem> = {
         "The system now reliably manages events end-to-end with security, automation, and performant content delivery, reducing operational friction for the ATC Africa team.",
     },
   },
+  NourishBox: {
+    name: "NourishBox",
+    quote:
+      "A fully functional meal kit delivery platform that makes healthy cooking accessible and convenient. Features secure payments, real-time order tracking, and comprehensive admin dashboard for managing the entire business workflow.",
+    designation: "E-commerce Platform",
+    logoUrl: "/assets/projects/nourishbox/logo.png",
+    images: [
+      {
+        src: "/assets/projects/nourishbox/showcase/image1.png",
+        isPrimary: true,
+      },
+      {
+        src: "/assets/projects/nourishbox/showcase/image2.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/nourishbox/showcase/image3.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/nourishbox/showcase/image4.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/nourishbox/showcase/image5.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/nourishbox/showcase/image6.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/nourishbox/showcase/image7.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/nourishbox/showcase/image8.png",
+        isPrimary: false,
+      },
+    ],
+    links: {
+      github: "https://github.com/prospercoded/nourish-box",
+      live: "https://nourish-box.vercel.app",
+      projectLink: "/projects/nourishbox",
+    },
+    slug: "nourishbox",
+    category: "E-commerce",
+    featured: true,
+    brief: {
+      motivation:
+        "The meal kit delivery market in Nigeria was fragmented with poor user experiences and limited payment options. I wanted to create a comprehensive platform that would make healthy cooking accessible to busy professionals and families. The goal was to build a full-stack e-commerce solution that handles everything from product catalog to order fulfillment, with a focus on the Nigerian market's specific needs like Paystack integration and location-based delivery pricing.",
+      challenges: [
+        "Complex order management with multiple meal kits and quantities",
+        "Secure payment processing with Paystack integration for Nigerian market",
+        "Location-based delivery pricing across different states and LGAs",
+        "Real-time order tracking and status updates",
+        "Comprehensive admin dashboard for business operations",
+        "Guest checkout support while maintaining order tracking",
+        "Email notification system for order confirmations and updates",
+      ],
+      solutions: [
+        "Built a sophisticated cart system with real-time price calculation and quantity management",
+        "Integrated Paystack payment gateway with proper webhook handling and transaction verification",
+        "Implemented dynamic delivery cost calculation based on state/LGA with configurable business rules",
+        "Created a comprehensive admin dashboard for order management, recipe CRUD, and business analytics",
+        "Developed a robust email notification system using Brevo with EJS templates",
+        "Designed a flexible user system supporting both registered users and guest checkout",
+        "Implemented Firebase Firestore for real-time data synchronization and scalable storage",
+      ],
+      impact:
+        "NourishBox demonstrates a complete e-commerce solution from customer experience to business operations. The platform successfully handles the entire meal kit delivery workflow, from browsing recipes to order fulfillment, with proper payment processing and customer communication. The admin dashboard provides business owners with complete control over their operations, while the customer-facing features ensure a smooth shopping experience.",
+    },
+    architecture: {
+      overview:
+        "NourishBox follows a modern full-stack architecture with Next.js 15 frontend, Firebase backend services, and integrated third-party services. The system is designed for scalability and real-time operations, using Firebase Firestore for data persistence, Firebase Storage for media, and Next.js API routes for server-side logic.",
+      techChoices: {
+        Frontend: [
+          {
+            tech: technologies.nextjs,
+            reason:
+              "Next.js 15 with App Router provides excellent SEO capabilities, server-side rendering, and built-in optimization features crucial for an e-commerce platform",
+          },
+          {
+            tech: technologies.typescript,
+            reason:
+              "Type safety is essential for e-commerce applications to prevent runtime errors in payment processing and order management",
+          },
+          {
+            tech: technologies.tailwindcss,
+            reason:
+              "Rapid development and consistent styling system for building responsive e-commerce interfaces",
+          },
+          {
+            tech: technologies.shadcn,
+            reason:
+              "Pre-built accessible components that accelerate development while maintaining design consistency",
+          },
+          {
+            tech: technologies.framerMotion,
+            reason:
+              "Smooth animations and transitions that enhance user experience in the shopping flow",
+          },
+        ],
+        Backend: [
+          {
+            tech: technologies.firebase,
+            reason:
+              "Firebase provides real-time database, authentication, and storage in one platform, perfect for e-commerce applications requiring real-time updates",
+          },
+          {
+            tech: technologies.restapi,
+            reason:
+              "RESTful API design for predictable integration with payment gateways and third-party services",
+          },
+        ],
+        Database: [
+          {
+            tech: technologies.firebase,
+            reason:
+              "Firestore's real-time capabilities and scalability make it ideal for e-commerce applications with dynamic inventory and order tracking",
+          },
+        ],
+        Payments: [
+          {
+            tech: technologies.paystack,
+            reason:
+              "Paystack is the leading payment gateway in Nigeria, providing secure payment processing with excellent developer experience",
+          },
+        ],
+        Communication: [
+          {
+            tech: technologies.brevo,
+            reason:
+              "Reliable email service for order confirmations, status updates, and customer communication with professional templates",
+          },
+          {
+            tech: technologies.ejs,
+            reason:
+              "Template engine for creating dynamic email templates with order details and customer information",
+          },
+        ],
+        Storage: [
+          {
+            tech: technologies.cloudinary,
+            reason:
+              "Cloud-based image and video management with automatic optimization and transformation for e-commerce media",
+          },
+        ],
+        Deployment: [
+          {
+            tech: technologies.vercel,
+            reason:
+              "Seamless deployment with automatic scaling, perfect for e-commerce applications with variable traffic",
+          },
+        ],
+      },
+      systemFlow:
+        "Customer browses meal kits → adds to cart with quantities → proceeds to checkout (guest or registered) → payment processed via Paystack → order created in Firestore → email confirmations sent → admin processes order → delivery status updated → customer receives notifications → order completed with review system.",
+      keyFeatures: [
+        "Advanced shopping cart with real-time price calculation",
+        "Secure payment processing with Paystack integration",
+        "Location-based delivery pricing system",
+        "Real-time order tracking and status updates",
+        "Comprehensive admin dashboard for business operations",
+        "Guest and registered user checkout flows",
+        "Email notification system with professional templates",
+        "Review and rating system for meal kits",
+        "Media management with Cloudinary integration",
+      ],
+    },
+
+    challenges: {
+      overview:
+        "Building a complete e-commerce platform required solving complex challenges around payment processing, real-time data synchronization, and business operations management. Each challenge required careful consideration of user experience, security, and scalability.",
+      challenges: [
+        {
+          title: "Complex Shopping Cart with Real-time Pricing",
+          description:
+            "Implementing a sophisticated cart system that handles multiple meal kits with different quantities, calculates delivery costs based on location, and applies business rules like taxes and fees in real-time.",
+          impact:
+            "Without proper cart management, customers would experience pricing inconsistencies and checkout failures, leading to abandoned carts and lost revenue.",
+          solution:
+            "Built a React Context-based cart system with real-time price calculation, location-based delivery pricing, and persistent state management for both guest and registered users.",
+        },
+        {
+          title: "Secure Payment Integration with Paystack",
+          description:
+            "Integrating Paystack payment gateway with proper webhook handling, transaction verification, and error handling for the Nigerian market.",
+          impact:
+            "Payment failures or security vulnerabilities could result in financial losses and damage to customer trust.",
+          solution:
+            "Implemented comprehensive Paystack integration with webhook verification, transaction status checking, and proper error handling with user-friendly feedback.",
+        },
+        {
+          title: "Real-time Order Management System",
+          description:
+            "Creating a system where orders are processed in real-time, status updates are synchronized across admin dashboard and customer notifications, and inventory is properly managed.",
+          impact:
+            "Poor order management could lead to overselling, delivery delays, and poor customer experience.",
+          solution:
+            "Leveraged Firebase Firestore's real-time capabilities to create a synchronized order management system with automatic notifications and status tracking.",
+        },
+        {
+          title: "Comprehensive Admin Dashboard",
+          description:
+            "Building a complete admin interface for managing recipes, orders, users, business rules, and analytics while maintaining security and usability.",
+          impact:
+            "Without proper admin tools, business operations would be inefficient and error-prone.",
+          solution:
+            "Created a comprehensive admin dashboard with role-based access control, real-time data updates, and intuitive interfaces for all business operations.",
+        },
+        {
+          title: "Location-based Delivery Pricing",
+          description:
+            "Implementing dynamic delivery cost calculation based on Nigerian states and LGAs with configurable business rules.",
+          impact:
+            "Incorrect delivery pricing could result in financial losses or poor customer experience.",
+          solution:
+            "Built a flexible delivery pricing system with state/LGA-based calculations and admin-configurable business rules for fees and taxes.",
+        },
+        {
+          title: "Email Notification System",
+          description:
+            "Creating a reliable email system for order confirmations, status updates, and customer communication with professional templates.",
+          impact:
+            "Poor communication could lead to customer confusion and support issues.",
+          solution:
+            "Integrated Brevo email service with EJS templates to create professional, dynamic email notifications for all order lifecycle events.",
+        },
+      ],
+      summary:
+        "These challenges required deep understanding of e-commerce workflows, payment processing, real-time data management, and user experience design. The solutions implemented provide a robust foundation for a scalable meal kit delivery business.",
+    },
+  },
 };
 
 // Helper function to get a project by name
@@ -677,8 +911,8 @@ export const UniqueProjects = [
     project: projects["MedMap"],
   },
   {
-    quote: "Best Event Management Project",
-    project: projects["Party Currency"],
+    quote: "Best E-commerce Project",
+    project: projects["NourishBox"],
   },
   {
     quote: "Best Educational Project",

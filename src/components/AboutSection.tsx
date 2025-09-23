@@ -132,7 +132,7 @@ export function AboutSection() {
                   <GlowBraces
                     type="square"
                     size="xl"
-                    glowColor="var(--accent-purple)"
+                    glowColor="black"
                     className="text-4xl md:text-5xl"
                   >
                     <span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-imperial-red to-tangelo bg-clip-text text-transparent">
