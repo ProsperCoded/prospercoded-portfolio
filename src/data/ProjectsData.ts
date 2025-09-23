@@ -721,6 +721,18 @@ export const projects: Record<string, ProjectItem> = {
       overview:
         "NourishBox follows a modern full-stack architecture with Next.js 15 frontend, Firebase backend services, and integrated third-party services. The system is designed for scalability and real-time operations, using Firebase Firestore for data persistence, Firebase Storage for media, and Next.js API routes for server-side logic.",
       techChoices: {
+        Backend: [
+          {
+            tech: technologies.firebase,
+            reason:
+              "Firebase provides real-time database, authentication, and storage in one platform, perfect for e-commerce applications requiring real-time updates",
+          },
+          {
+            tech: technologies.restapi,
+            reason:
+              "RESTful API design for predictable integration with payment gateways and third-party services",
+          },
+        ],
         Frontend: [
           {
             tech: technologies.nextjs,
@@ -746,18 +758,6 @@ export const projects: Record<string, ProjectItem> = {
             tech: technologies.framerMotion,
             reason:
               "Smooth animations and transitions that enhance user experience in the shopping flow",
-          },
-        ],
-        Backend: [
-          {
-            tech: technologies.firebase,
-            reason:
-              "Firebase provides real-time database, authentication, and storage in one platform, perfect for e-commerce applications requiring real-time updates",
-          },
-          {
-            tech: technologies.restapi,
-            reason:
-              "RESTful API design for predictable integration with payment gateways and third-party services",
           },
         ],
         Database: [
