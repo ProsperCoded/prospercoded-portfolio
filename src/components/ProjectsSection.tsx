@@ -47,7 +47,7 @@ export const ProjectsSection = () => {
       <div>
         <div className="max-w-6xl mx-auto relative">
           <div className="text-center mb-4 relative">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-imperial-red via-folly to-tangelo bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-imperial-red via-folly  to-imperial-red bg-clip-text text-transparent">
               Featured Projects
             </h2>
 

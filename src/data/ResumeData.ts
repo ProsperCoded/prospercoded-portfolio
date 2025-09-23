@@ -103,22 +103,6 @@ export const organizations: Organization[] = [
     description:
       "Developed interactive e-commerce platforms and payment systems, improving user experience and checkout efficiency.",
   },
-  {
-    period: "Jan 2024 - Feb 2025",
-    role: "Lead Fullstack Developer",
-    company: "9jaMarkets",
-    link: "https://9jamarkets.com",
-    description:
-      "Developed interactive e-commerce platforms and payment systems, improving user experience and checkout efficiency.",
-  },
-  {
-    period: "Jan 2024 - Feb 2025",
-    role: "Lead Fullstack Developer",
-    company: "9jaMarkets",
-    link: "https://9jamarkets.com",
-    description:
-      "Developed interactive e-commerce platforms and payment systems, improving user experience and checkout efficiency.",
-  },
 ];
 
 export const certifications: Certification[] = [

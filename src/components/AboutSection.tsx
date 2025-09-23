@@ -2,8 +2,14 @@ import Image from "next/image";
 import GridBackground from "@/components/ui/grid-background";
 import { GlowBraces } from "@/components/ui/glow-braces";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
+import { DynamicQRCode } from "@/components/ui/dynamic-qr-code";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPhone,
+  faMapMarkerAlt,
+  faQrcode,
+  faMousePointer,
+} from "@fortawesome/free-solid-svg-icons";
 import { OWNER_DETAILS } from "@/data/owner.data";
 
 export function AboutSection() {
@@ -79,20 +85,32 @@ export function AboutSection() {
                   </div>
                 </div>
 
-                {/* QR Code with Resume */}
-                <div className="absolute -bottom-8 -right-6 bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl p-3 shadow-xl border border-orange-200 hidden sm:block">
+                {/* Dynamic QR Code with Resume */}
+                <div className="absolute -bottom-8 -right-6 bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl p-3 shadow-xl border border-orange-200 hidden sm:block group">
                   <div className="relative size-32 mb-2">
-                    <Image
-                      src="/assets/resume-qrcode.png"
-                      alt="Resume QR Code"
-                      fill
-                      className="object-contain rounded-lg"
+                    <DynamicQRCode
+                      size={128}
+                      className="rounded-lg"
+                      fallbackText="CV QR"
+                      showClickIcon={true}
                     />
                   </div>
                   <div className="text-center">
                     <div className="w-16 h-1 bg-gradient-to-r from-orange-400 to-red-400 mx-auto mb-1 rounded-full"></div>
-                    <p className="text-xs font-medium text-gray-800">
-                      Scan to see my CV
+                    <div className="flex items-center justify-center gap-2 text-xs font-medium text-gray-800">
+                      <FontAwesomeIcon icon={faQrcode} className="w-3 h-3" />
+                      <span>Scan</span>
+                      <span className="text-gray-500">or</span>
+                      <FontAwesomeIcon
+                        icon={faMousePointer}
+                        className="w-3 h-3 group-hover:animate-pulse"
+                      />
+                      <span className="group-hover:text-orange-600 transition-colors">
+                        Click
+                      </span>
+                    </div>
+                    <p className="text-xs font-medium text-gray-700 mt-1">
+                      to see my CV
                     </p>
                   </div>
                 </div>
