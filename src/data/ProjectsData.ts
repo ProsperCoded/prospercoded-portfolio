@@ -561,7 +561,7 @@ export const projects: Record<string, ProjectItem> = {
     uml: {
       description:
         "Sequence of event creation, approval, lifecycle monitoring, and conclusion with media submission and publication.",
-      imageUrl: "/assets/projects/atcafrica/showcase/image1.png",
+      imageUrl: "/assets/projects/atcafrica/uml/image.jpeg",
       flowExplanation:
         "Create/approve event → scheduler checks event date → if exceeded, email reminders are sent → organizer submits outcomes → API validates and persists → status = Concluded → frontend displays in concluded section.",
       components: [
@@ -576,7 +576,7 @@ export const projects: Record<string, ProjectItem> = {
       overview:
         "Normalized schema around events, roles, and media artifacts. Event status and timestamps support automation; audit fields enable governance.",
       schema: {
-        imageUrl: "/assets/projects/atcafrica/showcase/image1.png",
+        imageUrl: "/assets/projects/atcafrica/database/image.jpg",
         description:
           "Core entities include events, users, roles/permissions, speakers, sponsors, media assets, and audit trails. Status fields drive lifecycle transitions.",
       },
@@ -902,21 +902,25 @@ export const getAllProjectSlugs = (): string[] => {
 };
 
 export const UniqueProjects = [
+  // {
+  //   quote: "Best Vibe Coded Project",
+  //   project: projects["UniNav"], //Jira Clone
+  // },
   {
-    quote: "Best Vibe Coded Project",
+    quote: "Edu Tech Project",
     project: projects["UniNav"],
   },
   {
-    quote: "Best Fullstack Project",
+    quote: "Health Tech Project",
+    project: projects["MedMap"],
+  },
+  {
+    quote: "Best AI Integration Project",
     project: projects["MedMap"],
   },
   {
     quote: "Best E-commerce Project",
     project: projects["NourishBox"],
-  },
-  {
-    quote: "Best Educational Project",
-    project: projects["UniNav"],
   },
   {
     quote: "Best Team Leadership Project",
