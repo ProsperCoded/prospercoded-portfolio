@@ -123,12 +123,12 @@ export function AboutSection() {
               <div className="mb-8">
                 <h2 className="text-7xl md:text-8xl lg:text-8xl font-bold mb-4 text-shadow-white">
                   <span className="bg-gradient-to-r from-imperial-red to-tangelo bg-clip-text text-transparent">
-                    Intro
+                    Hello
                   </span>
-                  ducing
+                  There
                 </h2>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  hello, I'm{" "}
+                  I'm{" "}
                   <GlowBraces
                     type="square"
                     size="xl"
@@ -136,7 +136,7 @@ export function AboutSection() {
                     className="text-4xl md:text-5xl"
                   >
                     <span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-imperial-red to-tangelo bg-clip-text text-transparent">
-                      {OWNER_DETAILS.name.split(" ")[0]}
+                      {OWNER_DETAILS.name}
                     </span>
                   </GlowBraces>
                   !
@@ -144,10 +144,7 @@ export function AboutSection() {
 
                 <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
                   <p>
-                    <span className="text-white font-semibold">
-                      {OWNER_DETAILS.fullName}
-                    </span>{" "}
-                    here, a{" "}
+                    A{" "}
                     <span className="text-accent-yellow font-semibold mr-2">
                       {OWNER_DETAILS.title}
                     </span>
@@ -156,16 +153,17 @@ export function AboutSection() {
                     <span className="text-accent-yellow font-semibold mr-2">
                       {OWNER_DETAILS.specialization}
                     </span>
-                    . I'm currently a student at {OWNER_DETAILS.education},
-                    where I've built and led several impactful projects.
+                    I excel at Integrating Frontend systems, and streamlining
+                    services to maximize business value.
                   </p>
 
                   <p>
                     My passion is not just in writing code but in{" "}
                     <span className="text-accent-purple font-semibold mr-2">
-                      building systems that solve real-world problems
+                      building systems that makes life easier, everywhere i find
+                      myself
                     </span>
-                    and make a tangible impact. From{" "}
+                    I've led several impactful from{" "}
                     <span className="text-accent-green font-semibold">
                       GoalFund
                     </span>{" "}

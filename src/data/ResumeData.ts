@@ -35,6 +35,14 @@ export type Contract = {
   link: string;
 };
 
+export type Volunteering = {
+  period: string;
+  role: string;
+  organization: string;
+  description: string;
+  link?: string;
+};
+
 export const skillCategories: SkillCategories = {
   "BACKEND FRAMEWORKS": [
     technologies.nestjs,
@@ -172,5 +180,23 @@ export const contracts: Contract[] = [
     description:
       "Recipe-selling platform for chefs to upload and sell recipes with browsing, ordering, and customer feedback.",
     link: "/projects/nourishbox",
+  },
+  {
+    title: "PartyCurrency",
+    role: "Fullstack Engineer",
+    period: "2 months",
+    description:
+      "A web app to safely and legally experience Nigerian party traditions, enabling celebrants and guests to engage in “spraying money” without violating regulations.",
+    link: "#",
+  },
+];
+
+export const volunteering: Volunteering[] = [
+  {
+    period: "2024 - Present",
+    role: "Assistant General Secretary",
+    organization: "NACOS University of Ibadan",
+    description: "",
+    link: "https://www.instagram.com/p/DM5GorHqpix/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
   },
 ];

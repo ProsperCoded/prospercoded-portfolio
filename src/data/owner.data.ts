@@ -4,7 +4,7 @@ export const OWNER_DETAILS = {
   name: "Prosper Enwerem",
   fullName: "Prosper Enwerem Tochukwu",
   username: "Prosper Coded",
-  title: "Fullstack Software Engineer",
+  title: "Backend Software Engineer",
   bio: "I'm passionate about building scalable solutions that solve real-world problems. Let's discuss how we can work together to create something amazing.",
   location: "Nigeria",
 

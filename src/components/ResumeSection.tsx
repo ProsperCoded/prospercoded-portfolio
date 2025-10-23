@@ -9,6 +9,7 @@ import {
   organizations as resumeOrganizations,
   certifications as resumeCertifications,
   contracts as resumeContracts,
+  volunteering as resumeVolunteering,
 } from "@/data/ResumeData";
 
 export function ResumeSection() {
@@ -142,25 +143,6 @@ export function ResumeSection() {
               <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
                 {/* Left Column */}
                 <div className="space-y-6 lg:space-y-8">
-                  {/* Professional Summary */}
-                  <div className="bg-gradient-to-br from-imperial-red/20 to-folly/20 rounded-xl p-4 border border-imperial-red/20">
-                    <h3 className="text-lg font-semibold text-white mb-3">
-                      Professional Summary
-                    </h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      Backend Engineer with 4+ years of experience, specializing
-                      in Nest.js and system architecture, experienced in
-                      designing scalable systems, APIs, and full-stack
-                      applications with a touch of frontend design background. I
-                      excel at Integrating Frontend systems, and streamlining
-                      services to maximize business value.
-                      <br />
-                      <br /> My passion is not just in writing code but in
-                      building systems and solutions that make the world easier
-                      and make a real impact
-                    </p>
-                  </div>
-
                   {/* Organizations - Updated with new scroll effects */}
                   <div>
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
@@ -251,10 +233,13 @@ export function ResumeSection() {
                       Education
                     </h2>
                     <div className="text-accent-purple font-semibold mb-1">
-                      2021 - 2025
+                      2024 - In Progress
                     </div>
                     <div className="text-white font-medium mb-1">
-                      University of Ibadan
+                      University of Ibadan{" "}
+                      <span className="text-accent-green text-xs font-semibold">
+                        (Nigeria's best university)
+                      </span>
                     </div>
                     <div className="text-gray-300 text-sm">
                       B.Sc Computer Science
@@ -358,6 +343,46 @@ export function ResumeSection() {
                           </div>
                         </>
                       )}
+                    </div>
+                  </div>
+
+                  {/* Volunteering */}
+                  <div>
+                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
+                      Volunteering
+                    </h2>
+                    <div className="space-y-4">
+                      {resumeVolunteering.map((vol, idx) => (
+                        <div key={idx} className="group">
+                          <div className="text-accent-purple font-semibold mb-1">
+                            {vol.period}
+                          </div>
+                          <div className="text-white font-medium mb-1">
+                            {vol.role}
+                          </div>
+                          {vol.link ? (
+                            <a
+                              href={vol.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-accent-green hover:text-accent-green/80 font-medium text-sm mb-2 transition-colors"
+                            >
+                              {vol.organization}
+                              <FontAwesomeIcon
+                                icon={faExternalLinkAlt}
+                                className="w-3 h-3"
+                              />
+                            </a>
+                          ) : (
+                            <div className="text-accent-green font-medium text-sm mb-2">
+                              {vol.organization}
+                            </div>
+                          )}
+                          <div className="text-sm text-gray-300 leading-relaxed">
+                            {vol.description}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
