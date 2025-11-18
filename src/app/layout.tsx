@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Titillium_Web, Geist_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import { FloatingContactButton } from "@/components/ui/FloatingContactButton";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { OWNER_DETAILS } from "@/data/owner.data";
 
 const geistSans = Geist({
@@ -85,6 +86,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${titilliumWeb.variable} antialiased font-sans`}
       >
+        <SmoothScroll />
         {children}
         <FloatingContactButton />
       </body>

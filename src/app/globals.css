@@ -175,10 +175,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scrolling */
-html {
+/* Smooth scrolling - Handled by Butter.js for momentum/inertia effect */
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 /* Focus styles for accessibility */
 *:focus-visible {

@@ -879,6 +879,280 @@ export const projects: Record<string, ProjectItem> = {
         "These challenges required deep understanding of e-commerce workflows, payment processing, real-time data management, and user experience design. The solutions implemented provide a robust foundation for a scalable meal kit delivery business.",
     },
   },
+  "FiftyFirst Wellness": {
+    name: "FiftyFirst Wellness",
+    quote:
+      "A comprehensive wellness web application for a UK startup featuring blogs powered by Strapi CMS, podcasts, webinars with Mux video streaming, and Stripe integrations for subscriptions and store purchases.",
+    designation: "Wellness Platform",
+    logoUrl: "/assets/projects/fiftyfirts_wellness/logo.png",
+    images: [
+      {
+        src: "/assets/projects/fiftyfirts_wellness/showcase/image1.png",
+        isPrimary: true,
+      },
+      {
+        src: "/assets/projects/fiftyfirts_wellness/showcase/image2.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/fiftyfirts_wellness/showcase/image3.png",
+        isPrimary: false,
+      },
+      {
+        src: "/assets/projects/fiftyfirts_wellness/showcase/image4.png",
+        isPrimary: false,
+      },
+    ],
+    links: {
+      live: "https://fiftyfirstswellness.co.uk",
+      projectLink: "/projects/fiftyfirst-wellness",
+    },
+    slug: "fiftyfirst-wellness",
+    category: "Wellness Platform",
+    featured: true,
+    brief: {
+      motivation:
+        "Built a comprehensive wellness platform for a UK startup that needed a scalable solution for content delivery, subscriptions, and e-commerce. The platform combines multiple content types (blogs, podcasts, webinars) with subscription management and a store, requiring seamless integration of various third-party services.",
+      challenges: [
+        "Integrating Prisma ORM with Turso DB (LibSQL) faced significant compatibility issues",
+        "Building a scalable blogging system that could handle content management efficiently",
+        "Implementing video streaming for webinars with proper playback and management",
+        "Creating a unified payment system for both subscriptions and one-time store purchases",
+        "Managing complex user access control across different content types and subscription tiers",
+      ],
+      solutions: [
+        "Migrated from Prisma to Drizzle ORM which had native support for Turso DB, resolving integration issues",
+        "Integrated Strapi as a headless CMS for blogs, providing a customizable content management experience",
+        "Implemented Mux for video streaming, handling video uploads, processing, and playback for webinars",
+        "Built a unified Stripe integration supporting both subscription billing and store checkout flows",
+        "Designed a flexible access control system that manages user permissions based on subscription status and product purchases",
+      ],
+      impact:
+        "FiftyFirst Wellness provides a complete wellness platform that seamlessly combines content delivery, subscription management, and e-commerce. The migration to Drizzle ORM enabled reliable database operations with Turso, while Strapi integration offers scalable content management. The platform is currently in testing phase with core features operational.",
+    },
+    architecture: {
+      overview:
+        "The platform follows a modern full-stack architecture with NestJS backend, React frontend, and multiple integrated services. Turso DB (LibSQL) provides distributed database capabilities, Strapi serves as the headless CMS for blogs, Mux handles video streaming, and Stripe manages all payment operations.",
+      techChoices: {
+        Backend: [
+          {
+            tech: technologies.nestjs,
+            reason:
+              "Modular architecture with dependency injection, perfect for managing multiple integrated services and complex business logic",
+          },
+          {
+            tech: technologies.restapi,
+            reason:
+              "RESTful API design for predictable integration with Strapi CMS, Mux, and Stripe services",
+          },
+        ],
+        Frontend: [
+          {
+            tech: technologies.react,
+            reason:
+              "Modern React 19 with hooks and context for managing complex state across content types and user sessions",
+          },
+          {
+            tech: technologies.typescript,
+            reason:
+              "Type safety essential for payment processing, subscription management, and content type handling",
+          },
+          {
+            tech: technologies.tailwindcss,
+            reason:
+              "Rapid development and consistent styling for a content-rich wellness platform",
+          },
+        ],
+        Database: [
+          {
+            tech: technologies.turso,
+            reason:
+              "Distributed SQLite database providing edge-computing capabilities and low latency for global users",
+          },
+          {
+            tech: technologies.drizzle,
+            reason:
+              "Native support for Turso DB with type-safe queries and migrations, solving Prisma compatibility issues",
+          },
+        ],
+        CMS: [
+          {
+            tech: technologies.strapi,
+            reason:
+              "Headless CMS providing flexible content management for blogs with customizable content types and media handling",
+          },
+        ],
+        Video: [
+          {
+            tech: technologies.mux,
+            reason:
+              "Professional video streaming platform handling upload, processing, and adaptive playback for webinars",
+          },
+        ],
+        Payments: [
+          {
+            tech: technologies.stripe,
+            reason:
+              "Comprehensive payment processing for both subscription billing and one-time store purchases with webhook support",
+          },
+        ],
+        Deployment: [
+          {
+            tech: technologies.vercel,
+            reason:
+              "Seamless frontend deployment with automatic scaling and CI/CD integration",
+          },
+          {
+            tech: technologies.railway,
+            reason:
+              "Backend hosting with easy database integration and environment management",
+          },
+        ],
+        Tools: [
+          {
+            tech: technologies.cloudinary,
+            reason:
+              "Media storage and optimization for product images and content assets",
+          },
+          {
+            tech: technologies.brevo,
+            reason:
+              "Email service for transactional emails including order confirmations and subscription notifications",
+          },
+        ],
+      },
+      systemFlow:
+        "Users browse content (blogs from Strapi, podcasts, webinars from Mux) → subscribe or purchase via Stripe → access granted based on subscription/product ownership → content delivered with proper access control. Admin manages content through Strapi CMS and product catalog through the platform.",
+      keyFeatures: [
+        "Blog system powered by Strapi headless CMS",
+        "Podcast library with episode management",
+        "Webinar platform with Mux video streaming",
+        "Stripe subscription management for recurring billing",
+        "E-commerce store with one-time purchases",
+        "Role-based access control for content and features",
+        "User dashboard for subscriptions and orders",
+        "Admin management interface for content and products",
+      ],
+    },
+    uml: {
+      description:
+        "System architecture showing the integration between NestJS backend, React frontend, Strapi CMS, Mux video streaming, Stripe payments, and Turso database. The diagram illustrates the flow of content delivery, subscription management, and e-commerce operations.",
+      imageUrl: "/assets/projects/fiftyfirts_wellness/uml/image.jpg",
+      flowExplanation:
+        "User requests flow through React frontend → NestJS API processes business logic → Content fetched from Strapi CMS (blogs) or Mux (webinars) → Payment processing via Stripe → Access control verified against Turso database → Content delivered based on subscription/product ownership.",
+      components: [
+        "React Frontend (Vite)",
+        "NestJS Backend API",
+        "Strapi CMS (Blog Content)",
+        "Mux (Video Streaming)",
+        "Stripe (Payment Processing)",
+        "Turso DB (Drizzle ORM)",
+        "Cloudinary (Media Storage)",
+        "Brevo (Email Service)",
+      ],
+    },
+    database: {
+      overview:
+        "The database uses Turso (LibSQL) for distributed edge computing with Drizzle ORM. Schema supports users, subscriptions, products, orders, payments, and content access tracking.",
+      schema: {
+        imageUrl: "/assets/projects/fiftyfirts_wellness/uml/image.jpg",
+        description:
+          "Schema includes tables for users, subscriptions, subscription plans, products (store/programme/podcast), orders, payments, reviews, bookmarks, and delivery addresses. Relationships support complex access control and subscription management.",
+      },
+      designDecisions: [
+        "Migrated from Prisma to Drizzle ORM for native Turso DB support",
+        "Normalized schema for users, products, and orders with clear relationships",
+        "Separate tables for subscription plans and active subscriptions",
+        "Flexible product types (STORE, PROGRAMME, PODCAST) with unified catalog",
+        "Payment tracking with support for multiple providers (Stripe, PayPal)",
+        "Review system with moderation status for content quality control",
+      ],
+      tables: [
+        {
+          name: "users",
+          purpose:
+            "User accounts with authentication, profiles, and role management",
+        },
+        {
+          name: "subscription_plans",
+          purpose:
+            "Subscription plan definitions with pricing, duration, and access levels",
+        },
+        {
+          name: "subscriptions",
+          purpose:
+            "Active user subscriptions linked to plans with start/end dates and status",
+        },
+        {
+          name: "products",
+          purpose:
+            "Unified product catalog supporting store items, programmes, and podcasts",
+        },
+        {
+          name: "orders",
+          purpose:
+            "Order records for store purchases with delivery address and status tracking",
+        },
+        {
+          name: "payments",
+          purpose:
+            "Payment records for both subscriptions and store purchases with provider integration",
+        },
+        {
+          name: "reviews",
+          purpose: "Product reviews with moderation status and rating system",
+        },
+        {
+          name: "bookmarks",
+          purpose: "User bookmarks for saved content and products",
+        },
+      ],
+    },
+    challenges: {
+      overview:
+        "Building a comprehensive wellness platform required solving complex integration challenges, database compatibility issues, and creating scalable content management solutions.",
+      challenges: [
+        {
+          title: "Prisma to Drizzle ORM Migration",
+          description:
+            "Faced significant issues integrating Prisma ORM with Turso DB (LibSQL), as Prisma lacked native support for LibSQL driver, causing connection and query failures.",
+          impact:
+            "Development was blocked, unable to perform database operations reliably, and production deployment was at risk.",
+          solution:
+            "Migrated the entire codebase from Prisma to Drizzle ORM, which has native support for Turso DB. This enabled seamless database operations, type-safe queries, and proper migration management.",
+        },
+        {
+          title: "Scalable Blogging System",
+          description:
+            "Needed a blogging system that could scale with content growth, support rich media, and provide a flexible content management experience without building a custom CMS.",
+          impact:
+            "Building a custom CMS would be time-consuming and maintenance-heavy, while basic solutions wouldn't scale or provide the flexibility needed.",
+          solution:
+            "Integrated Strapi as a headless CMS, providing a customizable content management interface for blogs. This allows content creators to manage articles, media, and metadata independently while the frontend consumes content via API.",
+        },
+        {
+          title: "Video Streaming for Webinars",
+          description:
+            "Implementing reliable video streaming for webinars with proper upload, processing, playback, and access control.",
+          impact:
+            "Poor video quality or unreliable streaming would degrade user experience and reduce engagement with webinar content.",
+          solution:
+            "Integrated Mux for professional video streaming, handling video uploads, automatic processing, adaptive bitrate streaming, and secure playback with access control.",
+        },
+        {
+          title: "Unified Payment System",
+          description:
+            "Creating a payment system that handles both recurring subscriptions and one-time store purchases with proper webhook handling and order management.",
+          impact:
+            "Separate payment flows would create complexity and potential inconsistencies in order processing and user experience.",
+          solution:
+            "Built a unified Stripe integration with a factory pattern supporting both subscription checkout and store checkout, with proper webhook handling for payment verification and order fulfillment.",
+        },
+      ],
+      summary:
+        "These challenges required deep understanding of database systems, content management architectures, video streaming, and payment processing. The solutions implemented provide a robust, scalable foundation for a comprehensive wellness platform.",
+    },
+  },
 };
 
 // Helper function to get a project by name

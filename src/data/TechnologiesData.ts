@@ -289,6 +289,21 @@ export const technologies = {
     color: "text-orange-400",
     category: "tool" as const,
   },
+  strapi: {
+    name: "Strapi",
+    color: "text-purple-500",
+    category: "tool" as const,
+  },
+  mux: {
+    name: "Mux",
+    color: "text-indigo-500",
+    category: "tool" as const,
+  },
+  railway: {
+    name: "Railway",
+    color: "text-white",
+    category: "deployment" as const,
+  },
 } as const;
 
 // Type for technology keys
