@@ -156,7 +156,7 @@ export const DesignProcessCards = () => {
         <Card
           label="Plan"
           title="Planning & Strategy"
-          description="I start by understanding the problem, researching user needs, and mapping out technical requirements to build a solid foundation."
+          description="I start by understanding the core problem, researching user needs, and mapping out the technical architecture to establish a solid foundation."
           icon={
             <FontAwesomeIcon
               icon={faLightbulb}
@@ -178,7 +178,7 @@ export const DesignProcessCards = () => {
         <Card
           label="Execute"
           title="Development & Testing"
-          description="With a clear plan, I code iteratively, implement features with clean architecture, and ensure robust testing throughout the process."
+          description="With a clear plan in place, I develop iteratively, enforce clean architecture, and conduct rigorous testing to ensure reliability."
           icon={
             <FontAwesomeIcon
               icon={faCode}
@@ -201,7 +201,7 @@ export const DesignProcessCards = () => {
         <Card
           label="Deploy"
           title="Deploy & Optimize"
-          description="Finally, I deploy with confidence, monitor performance, gather feedback, and continuously optimize for better user experience."
+          description="I deploy securely, monitor system performance, and continually optimize the product based on feedback and real-world usage."
           icon={
             <FontAwesomeIcon
               icon={faRocket}

@@ -151,27 +151,26 @@ export function AboutSection() {
                     with {OWNER_DETAILS.experience} of experience specializing
                     in the{" "}
                     <span className="text-accent-yellow font-semibold mr-2">
-                      {OWNER_DETAILS.specialization}
+                      {OWNER_DETAILS.specialization}.
                     </span>
-                    I excel at Integrating Frontend systems, and streamlining
+                    I excel at integrating frontend systems and streamlining
                     services to maximize business value.
                   </p>
 
                   <p>
-                    My passion is not just in writing code but in{" "}
+                    My passion isn't just writing code, but{" "}
                     <span className="text-accent-purple font-semibold mr-2">
-                      building systems that makes life easier, everywhere i find
-                      myself
+                      building systems that make life easier.
                     </span>
-                    I've led several impactful from{" "}
+                    I've led several impactful projects—from{" "}
                     <span className="text-accent-green font-semibold">
-                      GoalFund
+                      UniNav
                     </span>{" "}
                     to{" "}
                     <span className="text-accent-yellow font-semibold">
                       MedMap
                     </span>
-                    , I love participating in hackathons and building solutions
+                    —and I love participating in hackathons to build solutions
                     that matter.
                   </p>
                 </div>

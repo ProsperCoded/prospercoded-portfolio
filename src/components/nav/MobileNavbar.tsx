@@ -16,8 +16,8 @@ export const MobileNavbar = () => {
       <Logo className="md:hidden fixed top-4 left-4 z-[60] h-10 w-10" />
 
       {/* Bottom navigation bar */}
-      <nav className="md:hidden fixed bottom-3 left-1/2 -translate-x-1/2 z-50 w-[92vw] max-w-sm">
-        <div className="bg-background/90 backdrop-blur-md border border-border/30 rounded-xl px-3 py-2 shadow-lg">
+      <nav className="md:hidden fixed bottom-2 left-1/2 -translate-x-1/2 z-50 w-[85vw] max-w-[300px]">
+        <div className="bg-gray-500/20 backdrop-blur-md border border-white/10 rounded-full px-2 py-1 shadow mt-2">
           <ul className="flex items-center justify-between">
             {navLinks.map((link) => {
               const icon = link.icon;
@@ -40,7 +40,7 @@ export const MobileNavbar = () => {
                     {isActive && (
                       <motion.div
                         layoutId="mobile-active-indicator"
-                        className="absolute inset-0 bg-red-600/15 rounded-lg"
+                        className="absolute inset-0 bg-white/10 rounded-full"
                         style={{ boxShadow: "0 0 12px 1px rgba(255,0,0,0.25)" }}
                         transition={{
                           type: "spring",
@@ -53,14 +53,14 @@ export const MobileNavbar = () => {
                       <FontAwesomeIcon
                         icon={icon}
                         className={`transition-colors duration-200 relative z-10 ${
-                          isActive ? "text-red-500" : "text-foreground/70"
+                          isActive ? "text-white" : "text-white/60"
                         }`}
                         style={{ fontSize: "18px" }}
                       />
                     )}
                     <span
                       className={`text-[10px] font-medium transition-colors duration-200 relative z-10 ${
-                        isActive ? "text-red-500" : "text-foreground/70"
+                        isActive ? "text-white" : "text-white/60"
                       }`}
                     >
                       {link.name}

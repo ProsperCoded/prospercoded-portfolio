@@ -186,7 +186,7 @@ export const contracts: Contract[] = [
     role: "Fullstack Engineer",
     period: "2 months",
     description:
-      "A web app to safely and legally experience Nigerian party traditions, enabling celebrants and guests to engage in “spraying money” without violating regulations.",
+      "A web app allowing users to safely experience Nigerian party traditions by 'spraying' virtual money compliantly.",
     link: "#",
   },
 ];

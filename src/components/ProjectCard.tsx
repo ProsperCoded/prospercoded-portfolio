@@ -123,12 +123,14 @@ export default function ProjectCard({
             )}
 
             {/* Project Info Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 z-20 p-6">
+            {/* Added a protective gradient behind the text card for better contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none z-10" />
+            <div className="absolute bottom-0 left-0 right-0 z-20 p-4 sm:p-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-black/60 backdrop-blur-sm rounded-lg p-4"
+                className="bg-black/85 backdrop-blur-md rounded-lg p-4 border border-white/10 shadow-2xl"
               >
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 line-clamp-1">
                   {project.name}
@@ -189,14 +191,16 @@ export default function ProjectCard({
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-2 sm:gap-3">
             <div
-              className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-200 text-xs sm:text-sm flex-1 justify-center"
+              className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-200 text-[11px] sm:text-sm flex-1 justify-center cursor-pointer"
               onClick={(e) => e.stopPropagation()}
+              role="button"
+              aria-label={`View Business Brief for ${project.name}`}
             >
               <FontAwesomeIcon
                 icon={faFileAlt}
                 className="w-3 h-3 sm:w-4 sm:h-4"
               />
-              <span>Brief</span>
+              <span className="font-medium whitespace-nowrap">Brief</span>
             </div>
 
             {project.links?.github && (
@@ -204,13 +208,14 @@ export default function ProjectCard({
                 href={project.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-200 text-xs sm:text-sm flex-1 justify-center"
+                aria-label={`View Source Code for ${project.name}`}
+                className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-lg transition-all duration-200 text-[11px] sm:text-sm flex-1 justify-center"
               >
                 <FontAwesomeIcon
                   icon={faGithub}
                   className="w-3 h-3 sm:w-4 sm:h-4"
                 />
-                <span>Code</span>
+                <span className="font-medium whitespace-nowrap">Code</span>
               </a>
             )}
 
@@ -219,13 +224,14 @@ export default function ProjectCard({
                 href={project.links.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-imperial-red text-white rounded-lg transition-all duration-200 hover:bg-folly hover:shadow-lg hover:scale-105 text-xs sm:text-sm flex-1 justify-center"
+                aria-label={`Visit Live Deployment for ${project.name}`}
+                className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-imperial-red text-white rounded-lg transition-all duration-200 hover:bg-folly hover:shadow-lg hover:scale-105 text-[11px] sm:text-sm flex-1 justify-center"
               >
                 <FontAwesomeIcon
                   icon={faExternalLinkAlt}
                   className="w-3 h-3 sm:w-4 sm:h-4"
                 />
-                <span>Live</span>
+                <span className="font-medium whitespace-nowrap">Live</span>
               </a>
             )}
 
@@ -234,13 +240,14 @@ export default function ProjectCard({
                 href={project.links.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg transition-all duration-200 hover:bg-blue-600 hover:shadow-lg hover:scale-105 text-xs sm:text-sm flex-1 justify-center"
+                aria-label={`View Demo for ${project.name}`}
+                className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-blue-500 text-white rounded-lg transition-all duration-200 hover:bg-blue-600 hover:shadow-lg hover:scale-105 text-[11px] sm:text-sm flex-1 justify-center"
               >
                 <FontAwesomeIcon
                   icon={faExternalLinkAlt}
                   className="w-3 h-3 sm:w-4 sm:h-4"
                 />
-                <span>Demo</span>
+                <span className="font-medium whitespace-nowrap">Demo</span>
               </a>
             )}
           </div>

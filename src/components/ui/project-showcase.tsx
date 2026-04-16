@@ -1,17 +1,16 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useState, useCallback, useRef } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronLeft,
   faChevronRight,
-  faEye,
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { technologies } from "@/data/TechnologiesData";
 import TechStack from "./tech-stack";
+import { FeaturedShowcase } from "./featured-showcase";
+
 // Architecture Tech Choices Component
 const ArchitectureTechChoices = ({
   techChoices,
@@ -25,19 +24,12 @@ const ArchitectureTechChoices = ({
 }) => {
   // Flatten all technologies from all categories
   const allTechs = Object.values(techChoices).flat();
-  const displayTechs = allTechs.slice(0, 5);
-  const remainingCount = allTechs.length - displayTechs.length;
 
   return (
-    <div className="mt-4">
-      <h4 className="text-sm font-medium text-white/80 mb-2">Tech Stack</h4>
-      <TechStack techStack={displayTechs.map((tech) => tech.tech)} />
-      {remainingCount > 0 && (
-        <span className="inline-block px-2 py-1 bg-white/10 text-white/70 text-xs rounded-full mt-2">
-          +{remainingCount} more
-        </span>
-      )}
-    </div>
+    <TechStack 
+      techStack={allTechs.map((tech) => tech.tech)} 
+      limit={5} 
+    />
   );
 };
 
@@ -58,7 +50,7 @@ const ProjectLinks = ({
           href={links.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3 py-2 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg border border-gray-600/30 hover:border-gray-500/50 transition-all group"
+          className="flex items-center gap-2 px-3 py-2 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg border border-gray-600/30 hover:border-gray-500/50 transition-all group pointer-events-auto"
         >
           <FontAwesomeIcon
             icon={faGithub}
@@ -74,7 +66,7 @@ const ProjectLinks = ({
           href={links.live}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 hover:border-primary/50 transition-all group"
+          className="flex items-center gap-2 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg border border-primary/30 hover:border-primary/50 transition-all group pointer-events-auto"
         >
           <FontAwesomeIcon
             icon={faExternalLinkAlt}
@@ -90,7 +82,7 @@ const ProjectLinks = ({
           href={links.demo}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg border border-blue-500/30 hover:border-blue-500/50 transition-all group"
+          className="flex items-center gap-2 px-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg border border-blue-500/30 hover:border-blue-500/50 transition-all group pointer-events-auto"
         >
           <FontAwesomeIcon
             icon={faExternalLinkAlt}
@@ -105,12 +97,12 @@ const ProjectLinks = ({
   );
 };
 
-type Testimonial = {
-  quote: string;
+export type Testimonial = {
   name: string;
+  quote: string;
   designation: string;
   images: { src: string; isPrimary: boolean }[];
-  logoUrl?: string; // Add logo URL field
+  logoUrl?: string;
   link?: string;
   links?: {
     github?: string;
@@ -119,12 +111,7 @@ type Testimonial = {
     demo?: string;
   };
   architecture?: {
-    techChoices: {
-      [category: string]: {
-        tech: (typeof technologies)[keyof typeof technologies];
-        reason?: string;
-      }[];
-    };
+    techChoices: any;
   };
 };
 
@@ -144,9 +131,6 @@ type ProjectShowcaseProps = {
     testimonyTop?: string;
     testimonyBottom?: string;
   };
-  desktopVersionBottomThreshold?: number;
-  maxImageWidth?: number;
-  imageWidthPercentage?: number;
   mobile?: {
     fontSizes?: { name?: string; position?: string; testimony?: string };
     spacing?: {
@@ -161,6 +145,7 @@ type ProjectShowcaseProps = {
       testimonyBottom?: string;
     };
   };
+  desktopVersionBottomThreshold?: number;
   imageAspectRatio?: number;
   isRTL?: boolean;
   onItemClick?: (link: string) => void;
@@ -168,22 +153,12 @@ type ProjectShowcaseProps = {
   innerRounding?: string;
   outlineColor?: string;
   hoverOutlineColor?: string;
-  buttonInscriptions?: {
-    previousButton: string;
-    nextButton: string;
-    openWebAppButton: string;
-  };
-  halomotButtonGradient?: string;
-  halomotButtonBackground?: string;
-  halomotButtonTextColor?: string;
-  halomotButtonOuterBorderRadius?: string;
-  halomotButtonInnerBorderRadius?: string;
-  halomotButtonHoverTextColor?: string;
+  [key: string]: any;
 };
 
 export const ProjectShowcase = ({
   testimonials,
-  autoplay = false,
+  autoplay = true,
   colors = { name: "#fff", position: "gray-500", testimony: "gray-500" },
   fontSizes = { name: "2xl", position: "sm", testimony: "lg" },
   spacing = {
@@ -197,508 +172,129 @@ export const ProjectShowcase = ({
     testimonyTop: "1em",
     testimonyBottom: "1em",
   },
-  desktopVersionBottomThreshold = 1024,
   mobile = {},
-  imageAspectRatio = 1.37,
-  isRTL = false,
+  desktopVersionBottomThreshold,
+  imageAspectRatio,
+  isRTL,
   onItemClick,
-  outerRounding = "18.2px",
-  innerRounding = "18px",
-  outlineColor = "#33313d",
-  hoverOutlineColor = "#403d4d",
-  buttonInscriptions = {
-    previousButton: "Previous",
-    nextButton: "Next",
-    openWebAppButton: "Open Web App",
-  },
-  halomotButtonGradient = "linear-gradient(to right, #a123f4, #603dec)",
-  halomotButtonBackground = "#111014",
-  halomotButtonTextColor = "#fff",
-  halomotButtonOuterBorderRadius = "6.34px",
-  halomotButtonInnerBorderRadius = "6px",
-  halomotButtonHoverTextColor,
-}: ProjectShowcaseProps) => {
-  const [active, setActive] = useState(0);
-  const [isMobileView, setIsMobileView] = useState(false);
-  const [componentWidth, setComponentWidth] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const componentRef = useRef<HTMLDivElement>(null);
-
-  // Use Mobile Config (with defaults)
-  const currentFontSizes =
-    isMobileView && mobile.fontSizes ? mobile.fontSizes : fontSizes;
-  const currentSpacing = {
-    ...spacing,
-    ...(isMobileView && mobile.spacing ? mobile.spacing : {}),
-  };
-
-  const handleNext = () => {
-    setActive((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const handlePrev = () => {
-    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const isActive = (index: number) => {
-    return index === active;
-  };
-
-  useEffect(() => {
-    if (autoplay && !isHovered) {
-      const interval = setInterval(handleNext, 8000);
-      return () => clearInterval(interval);
-    }
-  }, [autoplay, isHovered]);
-
-  // Keyboard navigation for accessibility
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") handleNext();
-      if (e.key === "ArrowLeft") handlePrev();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
-  const handleResize = useCallback(() => {
-    if (componentRef.current) {
-      setComponentWidth(componentRef.current.offsetWidth);
-      setIsMobileView(
-        componentRef.current.offsetWidth < desktopVersionBottomThreshold
-      );
-    }
-  }, [desktopVersionBottomThreshold]);
-
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver(handleResize);
-    if (componentRef.current) {
-      resizeObserver.observe(componentRef.current);
-    }
-    handleResize(); // Initial check
-    return () => {
-      if (componentRef.current) {
-        resizeObserver.unobserve(componentRef.current);
-      }
-    };
-  }, [handleResize]);
-
-  const randomRotateY = () => {
-    return Math.floor(Math.random() * 21) - 10;
-  };
-
-  const calculateGap = (width: number) => {
-    const minWidth = 1024;
-    const maxWidth = 1456;
-    const minGap = 60;
-    const maxGap = 86;
-    if (width <= minWidth) return minGap;
-    if (width >= maxWidth)
-      return Math.max(minGap, maxGap + 0.06018 * (width - maxWidth));
-    return (
-      minGap + (maxGap - minGap) * ((width - minWidth) / (maxWidth - minWidth))
-    );
-  };
-
-  // Helper function to get primary image
-  const getPrimaryImage = (testimonial: Testimonial) => {
-    const primaryImage = testimonial.images.find((img) => img.isPrimary);
-    return primaryImage ? primaryImage.src : testimonial.images[0]?.src || "";
-  };
-
-  return (
-    <div
-      ref={componentRef}
-      className={`w-full mx-auto antialiased font-sans py-${currentSpacing.top} pb-${currentSpacing.bottom}`}
-      style={{
-        lineHeight: currentSpacing.lineHeight,
-        backgroundColor: "transparent",
-        direction: isRTL ? "rtl" : "ltr",
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div
-        className="relative"
-        style={{
-          display: "grid",
-          gridTemplateColumns: isMobileView
-            ? "1fr"
-            : isRTL
-            ? "1fr 1fr"
-            : "1fr 1fr",
-          gap: `${calculateGap(componentWidth)}px`,
-        }}
-      >
-        {isRTL && !isMobileView ? (
-          <>
-            <div className="w-full">
-              <div
-                className="relative"
-                style={{ paddingTop: `${(1 / imageAspectRatio) * 100}%` }}
-              >
-                <AnimatePresence>
-                  {testimonials.map((testimonial, index) => (
-                    <motion.div
-                      key={`${testimonial.name}-${index}`}
-                      initial={{
-                        opacity: 0,
-                        scale: 0.9,
-                        z: -100,
-                        rotate: randomRotateY(),
-                      }}
-                      animate={{
-                        opacity: isActive(index) ? 1 : 0.7,
-                        scale: isActive(index) ? 1 : 0.95,
-                        z: isActive(index) ? 0 : -100,
-                        rotate: isActive(index) ? 0 : randomRotateY(),
-                        zIndex: isActive(index)
-                          ? 999
-                          : testimonials.length + 2 - index,
-                        y: isActive(index) ? [0, -80, 0] : 0,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        scale: 0.9,
-                        z: 100,
-                        rotate: randomRotateY(),
-                      }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="absolute inset-0 origin-bottom"
-                    >
-                      <ImageContainer
-                        src={getPrimaryImage(testimonial)}
-                        alt={testimonial.name}
-                        outerRounding={outerRounding}
-                        innerRounding={innerRounding}
-                        outlineColor={outlineColor}
-                        hoverOutlineColor={hoverOutlineColor}
-                        onClick={() => {
-                          if (!isActive(index) || !onItemClick) return;
-                          const link =
-                            testimonials[active].links?.projectLink ||
-                            testimonials[active].link ||
-                            "";
-                          onItemClick(link);
-                        }}
-                        showViewIcon={isActive(index)}
-                      />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
-            <div className="flex justify-between flex-col py-4 w-full">
-              <motion.div
-                key={active}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-              >
-                <div
-                  className="flex items-center gap-3 mb-2"
-                  style={{ textAlign: "right" }}
-                >
-                  {testimonials[active].logoUrl && (
-                    <img
-                      src={testimonials[active].logoUrl}
-                      alt={`${testimonials[active].name} logo`}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
-                    />
-                  )}
-                  <h3
-                    className={`font-bold`}
-                    style={{
-                      fontSize: currentFontSizes.name,
-                      color: colors.name,
-                      marginTop: currentSpacing.nameTop,
-                      marginBottom: currentSpacing.nameBottom,
-                    }}
-                  >
-                    {testimonials[active].name}
-                  </h3>
-                </div>
-                <p
-                  style={{
-                    fontSize: currentFontSizes.position,
-                    color: colors.position,
-                    marginTop: currentSpacing.positionTop,
-                    marginBottom: currentSpacing.positionBottom,
-                    textAlign: "right",
-                  }}
-                >
-                  {testimonials[active].designation}
-                </p>
-                <motion.p
-                  style={{
-                    fontSize: currentFontSizes.testimony,
-                    color: colors.testimony,
-                    marginTop: currentSpacing.testimonyTop,
-                    marginBottom: currentSpacing.testimonyBottom,
-                    textAlign: "right",
-                  }}
-                >
-                  {testimonials[active].quote.split(" ").map((word, index) => (
-                    <motion.span
-                      key={index}
-                      initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
-                      animate={{
-                        filter: "blur(0px)",
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                        delay: 0.02 * index,
-                      }}
-                      className="inline-block"
-                    >
-                      {word}&nbsp;
-                    </motion.span>
-                  ))}
-                </motion.p>
-
-                {/* Tech Stack */}
-                {testimonials[active].architecture?.techChoices && (
-                  <ArchitectureTechChoices
-                    techChoices={testimonials[active].architecture!.techChoices}
-                  />
-                )}
-
-                {/* Project Links */}
-                <ProjectLinks links={testimonials[active].links} />
-              </motion.div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="w-full">
-              <div
-                className="relative"
-                style={{ paddingTop: `${(1 / imageAspectRatio) * 100}%` }}
-              >
-                <AnimatePresence>
-                  {testimonials.map((testimonial, index) => (
-                    <motion.div
-                      key={`${testimonial.name}-${index}`}
-                      initial={{
-                        opacity: 0,
-                        scale: 0.9,
-                        z: -100,
-                        rotate: randomRotateY(),
-                      }}
-                      animate={{
-                        opacity: isActive(index) ? 1 : 0.7,
-                        scale: isActive(index) ? 1 : 0.95,
-                        z: isActive(index) ? 0 : -100,
-                        rotate: isActive(index) ? 0 : randomRotateY(),
-                        zIndex: isActive(index)
-                          ? 999
-                          : testimonials.length + 2 - index,
-                        y: isActive(index) ? [0, -80, 0] : 0,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        scale: 0.9,
-                        z: 100,
-                        rotate: randomRotateY(),
-                      }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="absolute inset-0 origin-bottom"
-                    >
-                      <ImageContainer
-                        src={getPrimaryImage(testimonial)}
-                        alt={testimonial.name}
-                        outerRounding={outerRounding}
-                        innerRounding={innerRounding}
-                        outlineColor={outlineColor}
-                        hoverOutlineColor={hoverOutlineColor}
-                        onClick={() => {
-                          if (!isActive(index) || !onItemClick) return;
-                          const link =
-                            testimonials[active].links?.projectLink ||
-                            testimonials[active].link ||
-                            "";
-                          onItemClick(link);
-                        }}
-                        showViewIcon={isActive(index)}
-                      />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
-            <div className="flex justify-between flex-col py-4 w-full">
-              <motion.div
-                key={active}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  {testimonials[active].logoUrl && (
-                    <img
-                      src={testimonials[active].logoUrl}
-                      alt={`${testimonials[active].name} logo`}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
-                    />
-                  )}
-                  <h3
-                    className={`font-bold`}
-                    style={{
-                      fontSize: currentFontSizes.name,
-                      color: colors.name,
-                      marginTop: currentSpacing.nameTop,
-                      marginBottom: currentSpacing.nameBottom,
-                    }}
-                  >
-                    {testimonials[active].name}
-                  </h3>
-                </div>
-                <p
-                  style={{
-                    fontSize: currentFontSizes.position,
-                    color: colors.position,
-                    marginTop: currentSpacing.positionTop,
-                    marginBottom: currentSpacing.positionBottom,
-                  }}
-                >
-                  {testimonials[active].designation}
-                </p>
-                <motion.p
-                  style={{
-                    fontSize: currentFontSizes.testimony,
-                    color: colors.testimony,
-                    marginTop: currentSpacing.testimonyTop,
-                    marginBottom: currentSpacing.testimonyBottom,
-                  }}
-                >
-                  {testimonials[active].quote.split(" ").map((word, index) => (
-                    <motion.span
-                      key={index}
-                      initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
-                      animate={{
-                        filter: "blur(0px)",
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                        delay: 0.02 * index,
-                      }}
-                      className="inline-block"
-                    >
-                      {word}&nbsp;
-                    </motion.span>
-                  ))}
-                </motion.p>
-
-                {/* Tech Stack */}
-                {testimonials[active].architecture?.techChoices && (
-                  <ArchitectureTechChoices
-                    techChoices={testimonials[active].architecture!.techChoices}
-                  />
-                )}
-
-                {/* Project Links */}
-                <ProjectLinks links={testimonials[active].links} />
-              </motion.div>
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Overlay navigation arrows - desktop & mobile friendly */}
-      <button
-        aria-label="Previous project"
-        onClick={handlePrev}
-        className={`group absolute z-[1000] h-10 w-10 md:h-11 md:w-11 rounded-full border border-white/10 bg-black/40 text-white backdrop-blur flex items-center justify-center transition hover:bg-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-0 ${
-          isMobileView ? "left-3 bottom-3" : "left-3 top-1/2 -translate-y-1/2"
-        }`}
-      >
-        <FontAwesomeIcon icon={faChevronLeft} className="h-5 w-5" />
-      </button>
-      <button
-        aria-label="Next project"
-        onClick={handleNext}
-        className={`group absolute z-[1000] h-10 w-10 md:h-11 md:w-11 rounded-full border border-white/10 bg-black/40 text-white backdrop-blur flex items-center justify-center transition hover:bg-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-0 ${
-          isMobileView ? "right-3 bottom-3" : "right-3 top-1/2 -translate-y-1/2"
-        }`}
-      >
-        <FontAwesomeIcon icon={faChevronRight} className="h-5 w-5" />
-      </button>
-    </div>
-  );
-};
-
-type ImageContainerProps = {
-  src: string;
-  alt: string;
-  outerRounding: string;
-  innerRounding: string;
-  outlineColor: string;
-  hoverOutlineColor: string;
-  onClick?: () => void;
-  showViewIcon?: boolean;
-};
-
-const ImageContainer = ({
-  src,
-  alt,
   outerRounding,
   innerRounding,
   outlineColor,
   hoverOutlineColor,
-  onClick,
-  showViewIcon,
-}: ImageContainerProps) => (
-  <div
-    role={onClick ? "button" : undefined}
-    tabIndex={onClick ? 0 : -1}
-    onClick={onClick}
-    onKeyDown={(e) => {
-      if (!onClick) return;
-      if (e.key === "Enter" || e.key === " ") onClick();
-    }}
-    className="relative h-full w-full project-showcase-image-container group"
-    style={{
-      borderRadius: outerRounding,
-      padding: "1px",
-      backgroundColor: outlineColor,
-      transition: "background-color 0.3s ease-in-out",
-    }}
-  >
-    <div
-      className="relative h-full w-full overflow-hidden"
-      style={{
-        borderRadius: innerRounding,
-      }}
-    >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        style={{ objectFit: "cover" }}
-        draggable={false}
-        className="h-full w-full object-cover object-center"
-      />
+}: ProjectShowcaseProps) => {
 
-      {showViewIcon && (
-        <div className="absolute top-3 right-3 z-10">
-          <div className="flex items-center justify-center h-9 w-9 rounded-full border border-white/10 bg-black/50 text-white backdrop-blur transition group-hover:bg-primary/30">
-            <FontAwesomeIcon icon={faEye} className="h-4 w-4" />
+  const renderContent = (item: Testimonial, isMobileView: boolean, activeIndex: number) => {
+    const currentFontSizes = isMobileView && mobile.fontSizes ? mobile.fontSizes : fontSizes;
+    const currentSpacing = { ...spacing, ...(isMobileView && mobile.spacing ? mobile.spacing : {}) };
+
+    return (
+      <div className="flex flex-col h-full justify-center space-y-2 pointer-events-none">
+        <div className="flex items-center justify-between mb-2 gap-2">
+          <div className="flex items-center gap-3">
+            {item.logoUrl && (
+              <img
+                src={item.logoUrl}
+                alt={`${item.name} logo`}
+                className="w-8 h-8 sm:w-10 sm:h-10 object-contain pointer-events-auto"
+              />
+            )}
+            <h3
+              className={`font-bold pointer-events-auto`}
+              style={{
+                fontSize: currentFontSizes.name,
+                color: colors.name,
+                marginTop: currentSpacing.nameTop,
+                marginBottom: currentSpacing.nameBottom,
+              }}
+            >
+              {item.name}
+            </h3>
           </div>
+          {isMobileView && (
+            <a
+              href="/projects"
+              className="text-[10px] sm:text-xs px-2.5 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 hover:bg-white/20 transition-colors whitespace-nowrap flex items-center gap-1.5 font-medium tracking-wide pointer-events-auto"
+            >
+              View All
+              <FontAwesomeIcon icon={faChevronRight} className="w-2 h-2" />
+            </a>
+          )}
         </div>
-      )}
-    </div>
-    <style jsx>{`
-      .project-showcase-image-container:hover {
-        background-color: ${hoverOutlineColor} !important;
-      }
-    `}</style>
-  </div>
-);
+        <p
+          className="pointer-events-auto"
+          style={{
+            fontSize: currentFontSizes.position,
+            color: colors.position,
+            marginTop: currentSpacing.positionTop,
+            marginBottom: currentSpacing.positionBottom,
+            textAlign: "left",
+          }}
+        >
+          {item.designation}
+        </p>
+        <motion.div
+          className="pointer-events-auto"
+          style={{
+            fontSize: currentFontSizes.testimony,
+            color: colors.testimony,
+            marginTop: currentSpacing.testimonyTop,
+            marginBottom: currentSpacing.testimonyBottom,
+            textAlign: "left",
+          }}
+        >
+          {item.quote.split(" ").map((word, index) => (
+            <motion.span
+                key={index}
+                initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                animate={{
+                filter: "blur(0px)",
+                opacity: 1,
+                y: 0,
+                }}
+                transition={{
+                duration: 0.2,
+                ease: "easeInOut",
+                delay: 0.02 * index,
+                }}
+                className="inline-block"
+            >
+                {word}&nbsp;
+            </motion.span>
+            ))}
+        </motion.div>
+
+        <div className="pointer-events-auto">
+            {/* Tech Stack */}
+            {item.architecture?.techChoices && (
+            <ArchitectureTechChoices techChoices={item.architecture.techChoices} />
+            )}
+
+            {/* Project Links */}
+            <ProjectLinks links={item.links} />
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <FeaturedShowcase
+      items={testimonials}
+      renderContent={renderContent}
+      autoplay={autoplay}
+      paddingY={`py-${spacing.top}`}
+      desktopVersionBottomThreshold={desktopVersionBottomThreshold}
+      imageAspectRatio={imageAspectRatio}
+      isRTL={isRTL}
+      onImageClick={(item) => {
+        if (!onItemClick) return;
+        const link = item.links?.projectLink || item.link || "";
+        onItemClick(link);
+      }}
+      outerRounding={outerRounding}
+      innerRounding={innerRounding}
+      outlineColor={outlineColor}
+      hoverOutlineColor={hoverOutlineColor}
+      showZoomIconOnHover={false}
+    />
+  );
+};

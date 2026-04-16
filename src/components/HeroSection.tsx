@@ -79,18 +79,18 @@ export function HeroSection() {
         </div>
         {/* Main Heading */}
         <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl font-sans">
-          Powering Innovations through{" "}
+          Architecting{" "}
           <span className="bg-gradient-to-r from-imperial-red to-folly bg-clip-text text-transparent">
-            Scalable Solutions
+            Scalable Backend Solutions
           </span>
         </h1>
         {/* Subheading */}
         <p className="mx-auto mb-8 max-w-2xl text-base text-zinc-100 md:text-xl relative font-sans">
           <span className="relative text-shadow-2xl z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
-            Hi, I'm {OWNER_DETAILS.fullName} a {OWNER_DETAILS.title} with {"  "}
-            {OWNER_DETAILS.experience} of experience, specializing in{" "}
-            {OWNER_DETAILS.specialization} and building systems that solve
-            real-world problems
+            Hi, I'm {OWNER_DETAILS.name}. As a {OWNER_DETAILS.title} with{" "}
+            {OWNER_DETAILS.experience} of experience, I specialize in the{" "}
+            {OWNER_DETAILS.specialization} and build robust systems that solve
+            real-world problems.
           </span>
           {/* Subtle background blur for better readability */}
           <span className="absolute inset-0 -z-10 bg-black/20 backdrop-blur-[2px] rounded-lg"></span>

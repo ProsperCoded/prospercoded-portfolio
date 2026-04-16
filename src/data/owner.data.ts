@@ -5,7 +5,7 @@ export const OWNER_DETAILS = {
   fullName: "Prosper Enwerem Tochukwu",
   username: "Prosper Coded",
   title: "Backend Software Engineer",
-  bio: "I'm passionate about building scalable solutions that solve real-world problems. Let's discuss how we can work together to create something amazing.",
+  bio: "My passion isn't just writing code, but building systems that make life easier. I specialize in the Node.js ecosystem and build robust solutions that solve real-world problems.",
   location: "Nigeria",
 
   // Contact Information

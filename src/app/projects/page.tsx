@@ -19,6 +19,7 @@ import HorizontalFeaturedList from "@/components/ui/horizontal-featured-list";
 import ProjectCard from "@/components/ProjectCard";
 import { PersonalCTAButton } from "@/components/ui/personal-cta-button";
 import Logo from "@/components/ui/Logo";
+import { MessageCircle } from "lucide-react";
 
 export default function ProjectsPage() {
   const allProjects = Object.values(projectsData);
@@ -107,19 +108,29 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <div className="relative z-50 p-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Logo size="md" className="text-white" />
+      <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
+        <div className="flex items-center justify-between p-4">
+          <div className="flex items-center gap-x-4">
+            <Logo />
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
+              className="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors group"
             >
               <FontAwesomeIcon
                 icon={faArrowLeft}
                 className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
               />
-              <span>Back to Home</span>
+              <span>Back</span>
+            </Link>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-foreground/5 hover:bg-foreground/10 border border-border/50 rounded-full transition-all duration-300 text-xs sm:text-sm text-foreground"
+            >
+              <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span>Let's Chat</span>
             </Link>
           </div>
         </div>
@@ -202,20 +213,20 @@ export default function ProjectsPage() {
                     className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
                   />
                 )}
-                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white">
+                <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white">
                   {(!isGlobalRotation
                     ? selectedProject?.name
                     : globalSlides[currentSlideIndex]?.project.name) ||
                     "All Projects"}
                 </h1>
               </div>
-              <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-white/90 mb-4 sm:mb-8 max-w-2xl mx-auto line-clamp-4 md:line-clamp-none">
                 {(!isGlobalRotation
                   ? selectedProject?.quote
                   : globalSlides[currentSlideIndex]?.project.quote) ||
                   "Explore my complete portfolio of innovative solutions"}
               </p>
-              <div className="text-base sm:text-lg text-white/80 mb-8">
+              <div className="text-sm sm:text-base text-white/80 mb-6 sm:mb-8 font-medium">
                 {(!isGlobalRotation
                   ? selectedProject?.designation
                   : globalSlides[currentSlideIndex]?.project.designation) ||
@@ -240,6 +251,7 @@ export default function ProjectsPage() {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="View on GitHub"
                       className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300 text-sm sm:text-base"
                     >
                       <FontAwesomeIcon icon={faGithub} className="w-4 h-4" />
@@ -260,6 +272,7 @@ export default function ProjectsPage() {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="View Demo"
                       className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-500/80 backdrop-blur-sm rounded-full text-white hover:bg-blue-500 transition-all duration-300 text-sm sm:text-base"
                     >
                       <FontAwesomeIcon
@@ -283,6 +296,7 @@ export default function ProjectsPage() {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Visit Live Site"
                       className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-red-500/80 backdrop-blur-sm rounded-full text-white hover:bg-red-500 transition-all duration-300 text-sm sm:text-base"
                     >
                       <FontAwesomeIcon
@@ -305,7 +319,7 @@ export default function ProjectsPage() {
                     image="/assets/icons/project-icon.svg"
                     imageAlt="Project Brief"
                     imageSize="medium"
-                    className="text-white border-white/30 hover:border-white/50"
+                    className="text-white border-white/30 hover:border-white/50 text-sm sm:text-base lg:text-lg"
                   >
                     Project Brief
                   </PersonalCTAButton>
@@ -317,10 +331,10 @@ export default function ProjectsPage() {
       </section>
 
       {/* Featured Projects Section - Positioned midway between hero and content */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-background/95 backdrop-blur-sm">
+      <section className="py-4 sm:py-8 px-2 sm:px-6 lg:px-8 bg-background/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
-            <h3 className="text-white font-semibold mb-4 text-center">
+          <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-3 sm:p-4 border border-white/10">
+            <h3 className="text-white font-semibold text-sm sm:text-base mb-2 sm:mb-4 text-center">
               Featured Projects
             </h3>
             <HorizontalFeaturedList

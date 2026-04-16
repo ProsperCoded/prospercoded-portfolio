@@ -69,7 +69,7 @@ const HorizontalFeaturedList: React.FC<HorizontalFeaturedListProps> = ({
             <motion.button
               key={`${item}-${index}`}
               onClick={() => handleItemClick(item, originalIndex)}
-              className={`flex-shrink-0 px-6 py-3 rounded-full border transition-all duration-300 ${
+              className={`flex-shrink-0 px-3 sm:px-6 py-1.5 sm:py-3 rounded-full border transition-all duration-300 ${
                 selectedIndex === originalIndex
                   ? "bg-primary/20 border-primary text-primary"
                   : "bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30"
@@ -78,7 +78,7 @@ const HorizontalFeaturedList: React.FC<HorizontalFeaturedListProps> = ({
               whileTap={{ scale: 0.95 }}
             >
               <span
-                className={`text-sm whitespace-nowrap ${
+                className={`text-[11px] sm:text-sm whitespace-nowrap ${
                   selectedIndex === originalIndex ? "font-bold" : "font-medium"
                 }`}
               >

@@ -14,34 +14,39 @@ export function FloatingContactButton() {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-16 md:bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-imperial-red to-folly text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
-        whileHover={{ scale: 1.1 }}
+        className="fixed top-4 right-4 z-50 bg-gray-500/20 backdrop-blur-md border border-white/10 text-white/90 shadow hover:bg-gray-500/30 md:top-auto md:bottom-6 md:right-6 md:bg-gradient-to-r md:from-imperial-red md:to-folly md:text-white md:shadow-lg md:hover:shadow-xl md:border-0 transition-all duration-300 flex items-center justify-center group rounded-full px-3 py-1.5 md:w-14 md:h-14 md:p-0"
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
       >
-        <motion.div
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          {isOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <MessageCircle className="w-6 h-6" />
-          )}
-        </motion.div>
+        <div className="flex items-center gap-1.5 md:gap-2">
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {isOpen ? (
+              <X className="w-3.5 h-3.5 md:w-6 md:h-6" />
+            ) : (
+              <MessageCircle className="w-3.5 h-3.5 md:w-6 md:h-6" />
+            )}
+          </motion.div>
+          <span className="md:hidden font-medium text-xs tracking-wide">
+            {isOpen ? "Close" : "Let's Chat"}
+          </span>
+        </div>
       </motion.button>
 
       {/* Quick Contact Options */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            initial={{ opacity: 0, scale: 0.8, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            exit={{ opacity: 0, scale: 0.8, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-32 md:bottom-24 right-6 z-40 space-y-3"
+            className="fixed top-14 md:top-auto md:bottom-24 right-4 md:right-6 z-40 space-y-3"
           >
             {/* Contact Form Link */}
             <motion.div

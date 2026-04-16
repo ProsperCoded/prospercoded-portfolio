@@ -1,8 +1,12 @@
 "use client";
 import { DecorativeGlowBraces } from "@/components/ui/decorative-glow-braces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  faExternalLinkAlt,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   skillCategories as resumeSkillCategories,
   competitions as resumeCompetitions,
@@ -11,6 +15,49 @@ import {
   contracts as resumeContracts,
   volunteering as resumeVolunteering,
 } from "@/data/ResumeData";
+
+const CollapsibleSection = ({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  return (
+    <div className="border border-gray-700/50 rounded-xl bg-gray-800/30 overflow-hidden text-left">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-4 sm:p-6 text-left hover:bg-gray-700/30 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-0"
+      >
+        <h2 className="text-xl lg:text-2xl font-bold text-white">{title}</h2>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <FontAwesomeIcon icon={faChevronDown} className="w-5 h-5 text-gray-400" />
+        </motion.div>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="border-t border-gray-700/50 mx-4 sm:mx-6 pt-3 sm:pt-4 pb-4 sm:pb-6">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export function ResumeSection() {
   // Add state to track if scrolling is needed
@@ -142,12 +189,9 @@ export function ResumeSection() {
               {/* Two Column Layout on Desktop, Single Column on Mobile */}
               <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
                 {/* Left Column */}
-                <div className="space-y-6 lg:space-y-8">
-                  {/* Organizations - Updated with new scroll effects */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Organizations
-                    </h2>
+                <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8">
+                  {/* Organizations */}
+                  <CollapsibleSection title="Organizations" defaultOpen={true}>
                     <div className="relative">
                       <div
                         ref={orgContainerRef}
@@ -180,7 +224,6 @@ export function ResumeSection() {
                           </div>
                         ))}
                       </div>
-                      {/* Enhanced visual indicators */}
                       {orgScrollable && (
                         <>
                           <div className="gradient-fade-overlay"></div>
@@ -195,16 +238,13 @@ export function ResumeSection() {
                         </>
                       )}
                     </div>
-                  </div>
+                  </CollapsibleSection>
 
-                  {/* Contracts - one-time jobs delivered excellently */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Contracts
-                    </h2>
+                  {/* Contracts */}
+                  <CollapsibleSection title="Contracts" defaultOpen={false}>
                     <div className="space-y-4">
                       {resumeContracts.map((con, idx) => (
-                        <a key={idx} href={con.link} className="group block">
+                        <a key={idx} href={con.link} className="group block hover:bg-gray-800/30 p-2 -mx-2 rounded-lg transition-colors">
                           <div className="flex items-start justify-between gap-2">
                             <div className="text-white font-medium group-hover:text-accent-purple transition-colors">
                               {con.title}
@@ -222,16 +262,13 @@ export function ResumeSection() {
                         </a>
                       ))}
                     </div>
-                  </div>
+                  </CollapsibleSection>
                 </div>
 
                 {/* Right Column */}
-                <div className="space-y-6 lg:space-y-8">
+                <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8">
                   {/* Education */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Education
-                    </h2>
+                  <CollapsibleSection title="Education" defaultOpen={false}>
                     <div className="text-accent-purple font-semibold mb-1">
                       2024 - In Progress
                     </div>
@@ -244,13 +281,10 @@ export function ResumeSection() {
                     <div className="text-gray-300 text-sm">
                       B.Sc Computer Science
                     </div>
-                  </div>
+                  </CollapsibleSection>
 
-                  {/* Certifications - Updated with new scroll effects */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Certifications
-                    </h2>
+                  {/* Certifications */}
+                  <CollapsibleSection title="Certifications" defaultOpen={false}>
                     <div className="relative">
                       <div
                         ref={certContainerRef}
@@ -261,7 +295,7 @@ export function ResumeSection() {
                           <a
                             key={idx}
                             href={cert.link}
-                            className="block group hover:bg-gray-800/50 rounded-lg p-3 transition-colors border border-gray-700/30 hover:border-accent-purple/50"
+                            className="block group hover:bg-gray-700/50 rounded-lg p-3 transition-colors border border-gray-700/30 hover:border-accent-purple/50"
                           >
                             <div className="text-white font-medium text-sm group-hover:text-accent-purple transition-colors flex items-center gap-1 mb-1">
                               {cert.title}
@@ -281,7 +315,6 @@ export function ResumeSection() {
                           </a>
                         ))}
                       </div>
-                      {/* Enhanced visual indicators */}
                       {certScrollable && (
                         <>
                           <div className="gradient-fade-overlay"></div>
@@ -291,13 +324,10 @@ export function ResumeSection() {
                         </>
                       )}
                     </div>
-                  </div>
+                  </CollapsibleSection>
 
-                  {/* Competitions - Updated with new scroll effects */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Competitions
-                    </h2>
+                  {/* Competitions */}
+                  <CollapsibleSection title="Competitions" defaultOpen={false}>
                     <div className="relative">
                       <div
                         ref={compContainerRef}
@@ -308,7 +338,7 @@ export function ResumeSection() {
                           <a
                             key={idx}
                             href={comp.link}
-                            className="block group hover:bg-gray-800/50 rounded-lg p-2 transition-colors"
+                            className="block group hover:bg-gray-700/50 rounded-lg p-2 transition-colors"
                           >
                             <div className="flex items-start gap-2">
                               <span className="text-lg mt-0.5">
@@ -330,7 +360,6 @@ export function ResumeSection() {
                           </a>
                         ))}
                       </div>
-                      {/* Enhanced visual indicators */}
                       {compScrollable && (
                         <>
                           <div className="gradient-fade-overlay"></div>
@@ -344,13 +373,10 @@ export function ResumeSection() {
                         </>
                       )}
                     </div>
-                  </div>
+                  </CollapsibleSection>
 
                   {/* Volunteering */}
-                  <div>
-                    <h2 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      Volunteering
-                    </h2>
+                  <CollapsibleSection title="Volunteering" defaultOpen={false}>
                     <div className="space-y-4">
                       {resumeVolunteering.map((vol, idx) => (
                         <div key={idx} className="group">
@@ -384,72 +410,70 @@ export function ResumeSection() {
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </CollapsibleSection>
                 </div>
               </div>
 
               {/* Skills Section - Full Width */}
-              <div className="mt-8 lg:mt-12">
-                <h2 className="text-xl lg:text-2xl font-bold text-white mb-6 text-center">
-                  Relevant Skills
-                </h2>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {Object.entries(resumeSkillCategories).map(
-                    ([category, skills]) => (
-                      <div key={category} className="space-y-3">
-                        <h3 className="text-lg font-semibold text-white border-b border-gray-600 pb-2">
-                          {category}
-                        </h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                          {skills.map((tech, idx) => {
-                            // If odd number of skills and this is the last one, span remaining columns
-                            const isLastOdd =
-                              skills.length % 3 === 1 &&
-                              idx === skills.length - 1;
-                            const isSecondLastOdd =
-                              skills.length % 3 === 2 &&
-                              idx === skills.length - 2;
-
-                            return (
-                              <div
-                                key={idx}
-                                className={`flex items-center gap-2 text-sm ${
-                                  category === "LEARNING"
-                                    ? "bg-gray-800/30 border border-gray-700/50"
-                                    : "bg-gray-800/50"
-                                } rounded-lg px-3 py-2 transition-colors hover:bg-gray-700/50 ${
-                                  isLastOdd
-                                    ? "lg:col-span-3"
-                                    : isSecondLastOdd
-                                    ? "lg:col-span-2"
-                                    : ""
-                                }`}
-                              >
-                                {"icon" in tech && tech.icon ? (
-                                  <img
-                                    src={tech.icon}
-                                    alt={tech.name}
-                                    className="w-4 h-4 object-contain"
-                                  />
-                                ) : (
-                                  <div
-                                    className={`w-3 h-3 rounded-sm ${
-                                      tech.color || "bg-gray-400"
-                                    }`}
-                                  />
-                                )}
-                                <span className={`font-medium ${tech.color}`}>
-                                  {tech.name}
-                                </span>
-                              </div>
-                            );
-                          })}
+              <div className="mt-4 sm:mt-6 lg:mt-8">
+                <CollapsibleSection title="Relevant Skills" defaultOpen={false}>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+                    {Object.entries(resumeSkillCategories).map(
+                      ([category, skills]) => (
+                        <div key={category} className="space-y-3">
+                          <h3 className="text-lg font-semibold text-white border-b border-gray-600 pb-2">
+                            {category}
+                          </h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                            {skills.map((tech, idx) => {
+                              // If odd number of skills and this is the last one, span remaining columns
+                              const isLastOdd =
+                                skills.length % 3 === 1 &&
+                                idx === skills.length - 1;
+                              const isSecondLastOdd =
+                                skills.length % 3 === 2 &&
+                                idx === skills.length - 2;
+  
+                              return (
+                                <div
+                                  key={idx}
+                                  className={`flex items-center gap-2 text-sm ${
+                                    category === "LEARNING"
+                                      ? "bg-gray-800/30 border border-gray-700/50"
+                                      : "bg-gray-800/50"
+                                  } rounded-lg px-3 py-2 transition-colors hover:bg-gray-700/50 ${
+                                    isLastOdd
+                                      ? "sm:col-span-2 lg:col-span-3"
+                                      : isSecondLastOdd
+                                      ? "lg:col-span-2"
+                                      : ""
+                                  }`}
+                                >
+                                  {"icon" in tech && tech.icon ? (
+                                    <img
+                                      src={tech.icon}
+                                      alt={tech.name}
+                                      className="w-4 h-4 object-contain"
+                                    />
+                                  ) : (
+                                    <div
+                                      className={`w-3 h-3 rounded-sm ${
+                                        tech.color || "bg-gray-400"
+                                      }`}
+                                    />
+                                  )}
+                                  <span className={`font-medium ${tech.color}`}>
+                                    {tech.name}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    )
-                  )}
-                </div>
+                      )
+                    )}
+                  </div>
+                </CollapsibleSection>
               </div>
             </div>
           </div>

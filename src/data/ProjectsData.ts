@@ -116,7 +116,7 @@ export const projects: Record<string, ProjectItem> = {
     featured: true,
     brief: {
       motivation:
-        "As a student at the University of Ibadan, I experienced firsthand the challenges of accessing and sharing study materials. Traditional methods like scattered Google Drive links and WhatsApp groups were inefficient and disorganized. Some departments had useful materials that weren't accessible to other departments. I wanted to create a centralized platform that would help students access and share essential course-related resources in an organized, scalable way, like github for students",
+        "As a student at the University of Ibadan, I experienced firsthand the challenges of accessing and sharing study materials. Traditional methods like scattered Google Drive links and WhatsApp groups were inefficient and disorganized. Some departments had useful materials that weren't accessible to other departments. I wanted to create a centralized platform that would help students access and share essential course-related resources in an organized, scalable way, acting as a GitHub for students.",
       challenges: [
         "Scattered study materials across multiple platforms",
         "Difficulty finding relevant resources for specific courses",
@@ -132,7 +132,7 @@ export const projects: Record<string, ProjectItem> = {
         "Added monetization features including blog system and ad management",
       ],
       impact:
-        "UniNav has transformed how students at University of Ibadan access and share study materials. The platform has created a community-driven approach where students actively contribute to a growing knowledge base, making academic resources more accessible and organized than ever before. Most of all uninav vission is to be more than just a study material plateform, we hope to expand it accommodate all activities that makes up a student life, Simplifying Students Academic journey",
+        "UniNav has transformed how students at University of Ibadan access and share study materials. The platform has created a community-driven approach where students actively contribute to a growing knowledge base, making academic resources more accessible and organized than ever before. Most importantly, UniNav's vision extends beyond study materials; we aim to accommodate all aspects of student life and simplify the academic journey.",
     },
     architecture: {
       overview:
@@ -323,7 +323,7 @@ export const projects: Record<string, ProjectItem> = {
     featured: true,
     brief: {
       motivation:
-        "Many patients struggle to locate prescribed medications quickly. Lack of real-time drug availability information leads to treatment delays and avoidable complications. MedMap bridges patients to accessible, reliable healthcare by surfacing nearby pharmacies that stock requested medications and offering AI guidance. The software was presented in a state hackathon and took 4th place",
+        "Many patients struggle to locate prescribed medications quickly. Lack of real-time drug availability information leads to treatment delays and avoidable complications. MedMap bridges patients to accessible, reliable healthcare by surfacing nearby pharmacies that stock requested medications and offering AI guidance. The software was presented in a state-wide hackathon, securing 4th place.",
       challenges: [
         "No reliable, real-time visibility into drug availability across pharmacies",
         "Slow manual discovery and navigation to pharmacies that actually stock a drug",

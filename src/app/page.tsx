@@ -4,6 +4,7 @@ import { ResumeSection } from "@/components/ResumeSection";
 import { Navbar } from "@/components/nav/Navbar";
 import { MobileNavbar } from "@/components/nav/MobileNavbar";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { SpecializationsSection } from "@/components/SpecializationsSection";
 import { DesignProcessSection } from "@/components/DesignProcessSection";
 
 // Page component for the home route
@@ -20,6 +21,7 @@ export default function Home() {
         <ResumeSection />
       </div>
       <ProjectsSection />
+      <SpecializationsSection />
       <DesignProcessSection />
     </main>
   );
