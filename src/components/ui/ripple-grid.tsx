@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { Renderer, Program, Triangle, Mesh } from "ogl";
 
 type Props = {
@@ -36,21 +36,9 @@ const RippleGrid: React.FC<Props> = ({
   const targetMouseRef = useRef({ x: 0.5, y: 0.5 });
   const mouseInfluenceRef = useRef(0);
   const uniformsRef = useRef<any>(null);
-  const [hasWebGL, setHasWebGL] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
-
-    // Check for WebGL support
-    const canvas = document.createElement("canvas");
-    const glCheck =
-      canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-    if (!glCheck) {
-      console.warn("RippleGrid: WebGL not supported, falling back to static background.");
-      setHasWebGL(false);
-      return;
-    }
-    setHasWebGL(true);
 
     const hexToRgb = (hex: string): [number, number, number] => {
       const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -70,11 +58,13 @@ const RippleGrid: React.FC<Props> = ({
         alpha: true,
       });
     } catch (e) {
+      console.error("RippleGrid: Unable to create WebGL context", e);
       return;
     }
 
     const gl = oglRenderer.gl;
     if (!gl) {
+      console.error("RippleGrid: WebGL context is null");
       return;
     }
 

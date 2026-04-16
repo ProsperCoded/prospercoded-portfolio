@@ -24,7 +24,7 @@ export const CanvasRevealEffect = ({
   showGradient?: boolean;
 }) => {
   return (
-    <div className={cn("h-full relative bg-white w-full", containerClassName)}>
+    <div className={cn("h-full relative bg-transparent w-full", containerClassName)}>
       <div className="h-full w-full">
         <DotMatrix
           colors={colors ?? [[0, 255, 255]]}
@@ -230,7 +230,7 @@ const ShaderMaterial = ({
         case "uniform3fv":
           preparedUniforms[uniformName] = {
             value: uniform.value.map((v: number[]) =>
-              new THREE.Vector3().fromArray(v),
+              new THREE.Vector3().fromArray(v)
             ),
             type: "3fv",
           };
@@ -290,25 +290,8 @@ const ShaderMaterial = ({
 };
 
 const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
-  const [hasWebGL, setHasWebGL] = React.useState<boolean | null>(null);
-
-  React.useEffect(() => {
-    const canvas = document.createElement("canvas");
-    const gl =
-      canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-    setHasWebGL(!!gl);
-  }, []);
-
-  if (hasWebGL === false) {
-    return <div className="absolute inset-0 h-full w-full bg-slate-900/50" />;
-  }
-
-  if (hasWebGL === null) {
-    return null;
-  }
-
   return (
-    <Canvas className="absolute inset-0 h-full w-full">
+    <Canvas className="absolute inset-0  h-full w-full">
       <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
     </Canvas>
   );

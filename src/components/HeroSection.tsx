@@ -20,8 +20,8 @@ export function HeroSection() {
       {/* Ripple Grid Background */}
       <div className="absolute inset-0 w-full h-full">
         <RippleGrid
-          enableRainbow={true}
-          gridColor="var(--imperial-red)"
+          enableRainbow={false}
+          gridColor="#ff0038"
           rippleIntensity={0.03}
           gridSize={30}
           gridThickness={10}
