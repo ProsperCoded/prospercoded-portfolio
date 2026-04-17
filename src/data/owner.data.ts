@@ -5,7 +5,7 @@ export const OWNER_DETAILS = {
   fullName: "Prosper Enwerem Tochukwu",
   username: "Prosper Coded",
   title: "Backend Software Engineer",
-  bio: "My passion isn't just writing code, but building systems that make life easier. I specialize in the Node.js ecosystem and build robust solutions that solve real-world problems.",
+  bio: "Backend engineer building the systems that power modern apps. .",
   location: "Nigeria",
 
   // Contact Information
@@ -62,7 +62,7 @@ export const OWNER_DETAILS = {
 
   // Professional Information
   experience: "4+ years",
-  specialization: "Node.js ecosystem",
+  specialization: "Node.js, Kubernetes architecture, and AI-powered systems",
   currentRole: "Lead Backend Engineer at ATC Africa",
   education: "University of Ibadan",
 

@@ -51,11 +51,21 @@ const RippleGrid: React.FC<Props> = ({
         : [1, 1, 1];
     };
 
-    const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
-      alpha: true,
-    });
-    const gl = renderer.gl;
+    let renderer: any;
+    try {
+      renderer = new Renderer({
+        dpr: Math.min(window.devicePixelRatio, 2),
+        alpha: true,
+      });
+    } catch (e) {
+      // Catch exceptions thrown by 'ogl' when WebGL contexts are exhausted (e.g., during hot reload)
+      console.warn("RippleGrid: Unable to create WebGL context. Exhausted contexts?");
+      return;
+    }
+
+    const gl = renderer?.gl;
+    if (!gl) return;
+
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     gl.canvas.style.width = "100%";

@@ -149,20 +149,20 @@ export function AboutSection() {
                       {OWNER_DETAILS.title}
                     </span>
                     with {OWNER_DETAILS.experience} of experience specializing
-                    in the{" "}
+                    in{" "}
                     <span className="text-accent-yellow font-semibold mr-2">
                       {OWNER_DETAILS.specialization}.
                     </span>
-                    I excel at integrating frontend systems and streamlining
-                    services to maximize business value.
+                    I build robust, scalable developer systems and excel at
+                    merging AI capabilities with real-world business value.
                   </p>
 
                   <p>
-                    My passion isn't just writing code, but{" "}
-                    <span className="text-accent-purple font-semibold mr-2">
-                      building systems that make life easier.
-                    </span>
-                    I've led several impactful projects—from{" "}
+                    {OWNER_DETAILS.bio.replace(
+                      "Backend engineer building the systems that power modern apps.",
+                      ""
+                    )}{" "}
+                    I've led impactful platforms—from{" "}
                     <span className="text-accent-green font-semibold">
                       UniNav
                     </span>{" "}
@@ -170,8 +170,7 @@ export function AboutSection() {
                     <span className="text-accent-yellow font-semibold">
                       MedMap
                     </span>
-                    —and I love participating in hackathons to build solutions
-                    that matter.
+                    —and love participating in hackathons to build smart automation solutions that matter.
                   </p>
                 </div>
               </div>

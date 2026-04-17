@@ -52,7 +52,7 @@ export function HeroSection() {
             idx === 3 && "bottom-10 right-1/3 rotate-[-8deg]",
             idx === 4 && "top-1/2 left-10 -translate-y-1/2 rotate-[18deg]",
             idx === 5 && "top-1/2 right-10 -translate-y-1/2 rotate-[-18deg]",
-            idx === 6 && "bottom-10 left-1/2 -translate-x-1/2 rotate-[5deg]"
+            idx === 6 && "bottom-10 left-1/2 -translate-x-1/2 rotate-[5deg]",
           )}
           style={{ filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))" }}
         />
@@ -88,9 +88,9 @@ export function HeroSection() {
         <p className="mx-auto mb-8 max-w-2xl text-base text-zinc-100 md:text-xl relative font-sans">
           <span className="relative text-shadow-2xl z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
             Hi, I'm {OWNER_DETAILS.name}. As a {OWNER_DETAILS.title} with{" "}
-            {OWNER_DETAILS.experience} of experience, I specialize in the{" "}
-            {OWNER_DETAILS.specialization} and build robust systems that solve
-            real-world problems.
+            {OWNER_DETAILS.experience} of experience, I specialize in{" "}
+            {OWNER_DETAILS.specialization}. I leverage this stack to build
+            robust applications that solve real-world problems.
           </span>
           {/* Subtle background blur for better readability */}
           <span className="absolute inset-0 -z-10 bg-black/20 backdrop-blur-[2px] rounded-lg"></span>
