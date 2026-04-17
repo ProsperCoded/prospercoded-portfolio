@@ -115,6 +115,30 @@ export const organizations: Organization[] = [
 
 export const certifications: Certification[] = [
   {
+    title: "Building AI Agents and Agentic Workflows Specialization",
+    org: "IBM & Coursera",
+    date: "April 2026",
+    link: "https://coursera.org/verify/specialization/SYJ5XNEC59NC",
+  },
+  {
+    title: "IBM RAG and Agentic AI Professional Certificate",
+    org: "IBM & Coursera",
+    date: "April 2026",
+    link: "https://www.coursera.org/account/accomplishments/professional-cert/XCQM611SNFVX",
+  },
+  {
+    title: "Kubernetes and Cloud Native Essentials",
+    org: "Cloud Native Computing Foundation (CNCF)",
+    date: "2024",
+    link: "#",
+  },
+  {
+    title: "UX Writing & Content Design",
+    org: "Professional Development",
+    date: "2024",
+    link: "#",
+  },
+  {
     title: "NESTJS MICROSERVICES: BUILD & DEPLOY A SCALEABLE BACKEND",
     org: "Udemy - Micheal Guay",
     date: "Learning",

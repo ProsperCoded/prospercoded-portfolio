@@ -98,6 +98,7 @@ export const SpecializationShowcase = ({
 }: SpecializationShowcaseProps) => {
 
   const [zoomedItem, setZoomedItem] = useState<{ src: string; name: string; issuer: string } | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const getPrimaryImage = (spec: SpecializationItem) => {
     const primaryImage = spec.images.find((img) => img.isPrimary);
@@ -150,25 +151,71 @@ export const SpecializationShowcase = ({
             marginBottom: currentSpacing.descriptionBottom,
           }}
         >
-          {item.description.split(" ").map((word, index) => (
-            <motion.span
-                key={index}
-                initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
-                animate={{
-                filter: "blur(0px)",
-                opacity: 1,
-                y: 0,
-                }}
-                transition={{
-                duration: 0.2,
-                ease: "easeInOut",
-                delay: 0.02 * index,
-                }}
-                className="inline-block"
-            >
-                {word}&nbsp;
-            </motion.span>
-            ))}
+          {(() => {
+            const defaultTruncateWords = 18;
+            const words = item.description.split(" ");
+            const isTruncated = isMobileView && !isExpanded && words.length > defaultTruncateWords;
+            const displayWords = isTruncated ? words.slice(0, defaultTruncateWords) : words;
+
+            return (
+              <>
+                {displayWords.map((word, index) => (
+                  <motion.span
+                      key={index}
+                      initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                      animate={{
+                      filter: "blur(0px)",
+                      opacity: 1,
+                      y: 0,
+                      }}
+                      transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                      delay: 0.02 * index,
+                      }}
+                      className="inline-block"
+                  >
+                      {word}&nbsp;
+                  </motion.span>
+                ))}
+                {isTruncated && (
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    ...{" "}
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsExpanded(true);
+                      }}
+                      className="text-primary font-medium hover:underline ml-1 pointer-events-auto"
+                    >
+                      more
+                    </button>
+                  </motion.span>
+                )}
+                {isExpanded && isMobileView && words.length > defaultTruncateWords && (
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                  >
+                    {" "}
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsExpanded(false);
+                      }}
+                      className="text-primary font-medium hover:underline ml-1 pointer-events-auto"
+                    >
+                      less
+                    </button>
+                  </motion.span>
+                )}
+              </>
+            );
+          })()}
         </motion.div>
 
         {/* View Credential */}
