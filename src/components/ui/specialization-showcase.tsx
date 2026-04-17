@@ -152,9 +152,9 @@ export const SpecializationShowcase = ({
           }}
         >
           {(() => {
-            const defaultTruncateWords = 18;
+            const defaultTruncateWords = isMobileView ? 18 : 35;
             const words = item.description.split(" ");
-            const isTruncated = isMobileView && !isExpanded && words.length > defaultTruncateWords;
+            const isTruncated = !isExpanded && words.length > defaultTruncateWords;
             const displayWords = isTruncated ? words.slice(0, defaultTruncateWords) : words;
 
             return (
@@ -196,7 +196,7 @@ export const SpecializationShowcase = ({
                     </button>
                   </motion.span>
                 )}
-                {isExpanded && isMobileView && words.length > defaultTruncateWords && (
+                {isExpanded && words.length > defaultTruncateWords && (
                   <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
