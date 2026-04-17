@@ -51,23 +51,11 @@ const RippleGrid: React.FC<Props> = ({
         : [1, 1, 1];
     };
 
-    let oglRenderer: any;
-    try {
-      oglRenderer = new Renderer({
-        dpr: Math.min(window.devicePixelRatio || 1, 2),
-        alpha: true,
-      });
-    } catch (e) {
-      console.error("RippleGrid: Unable to create WebGL context", e);
-      return;
-    }
-
-    const gl = oglRenderer.gl;
-    if (!gl) {
-      console.error("RippleGrid: WebGL context is null");
-      return;
-    }
-
+    const renderer = new Renderer({
+      dpr: Math.min(window.devicePixelRatio, 2),
+      alpha: true,
+    });
+    const gl = renderer.gl;
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     gl.canvas.style.width = "100%";
@@ -202,7 +190,7 @@ void main() {
 
     const resize = () => {
       const { clientWidth: w, clientHeight: h } = containerRef.current!;
-      oglRenderer.setSize(w, h);
+      renderer.setSize(w, h);
       uniforms.iResolution.value = [w, h];
     };
 
@@ -232,7 +220,6 @@ void main() {
     }
     resize();
 
-    let animationId: number;
     const render = (t: number) => {
       uniforms.iTime.value = t * 0.001;
 
@@ -252,14 +239,13 @@ void main() {
         mousePositionRef.current.y,
       ];
 
-      oglRenderer.render({ scene: mesh });
-      animationId = requestAnimationFrame(render);
+      renderer.render({ scene: mesh });
+      requestAnimationFrame(render);
     };
 
-    animationId = requestAnimationFrame(render);
+    requestAnimationFrame(render);
 
     return () => {
-      cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
       if (mouseInteraction && containerRef.current) {
         containerRef.current.removeEventListener("mousemove", handleMouseMove);
@@ -272,7 +258,7 @@ void main() {
           handleMouseLeave
         );
       }
-      oglRenderer.gl.getExtension("WEBGL_lose_context")?.loseContext();
+      renderer.gl.getExtension("WEBGL_lose_context")?.loseContext();
       containerRef.current?.removeChild(gl.canvas);
     };
   }, []);
