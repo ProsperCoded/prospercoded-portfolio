@@ -160,9 +160,9 @@ export function AboutSection() {
                   <p>
                     {OWNER_DETAILS.bio.replace(
                       "Backend engineer building the systems that power modern apps.",
-                      ""
+                      "",
                     )}{" "}
-                    I've led impactful platforms—from{" "}
+                    I've led impactful platforms, from{" "}
                     <span className="text-accent-green font-semibold">
                       UniNav
                     </span>{" "}
@@ -170,7 +170,8 @@ export function AboutSection() {
                     <span className="text-accent-yellow font-semibold">
                       MedMap
                     </span>
-                    —and love participating in hackathons to build smart automation solutions that matter.
+                    , and love participating in hackathons to build smart
+                    automation solutions that matter.
                   </p>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import { SectionTitle } from "@/components/ui/section-title";
 import { CourseCard } from "@/components/ui/course-card";
 
 export const CoursesSection = () => {
-  const courseItems = Object.values(courses);
+  const courseItems = Object.values(courses).filter((course) => course.isEssential);
 
   return (
     <section id="courses" className="relative pb-24 md:pb-32 -mt-10 md:mt-[4rem]">
@@ -54,6 +54,29 @@ export const CoursesSection = () => {
               defaultTruncateWords={18} // Clamp somewhat short for consistency
             />
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <a
+            href="/certifications"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 transform hover:-translate-y-0.5"
+          >
+            <span>More</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </section>

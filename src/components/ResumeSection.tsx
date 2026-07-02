@@ -11,7 +11,6 @@ import {
   skillCategories as resumeSkillCategories,
   competitions as resumeCompetitions,
   organizations as resumeOrganizations,
-  certifications as resumeCertifications,
   contracts as resumeContracts,
   volunteering as resumeVolunteering,
 } from "@/data/ResumeData";
@@ -61,24 +60,16 @@ const CollapsibleSection = ({
 
 export function ResumeSection() {
   // Add state to track if scrolling is needed
-  const [certScrollable, setCertScrollable] = useState(false);
   const [compScrollable, setCompScrollable] = useState(false);
   const [orgScrollable, setOrgScrollable] = useState(false);
 
   // Refs for the scroll containers
-  const certContainerRef = useRef<HTMLDivElement>(null);
   const compContainerRef = useRef<HTMLDivElement>(null);
   const orgContainerRef = useRef<HTMLDivElement>(null);
 
   // Check if scrolling is needed on mount and resize
   useEffect(() => {
     const checkScrollable = () => {
-      if (certContainerRef.current) {
-        setCertScrollable(
-          certContainerRef.current.scrollHeight >
-            certContainerRef.current.clientHeight
-        );
-      }
       if (compContainerRef.current) {
         setCompScrollable(
           compContainerRef.current.scrollHeight >
@@ -99,8 +90,6 @@ export function ResumeSection() {
 
     // React to container size/content changes as well
     const resizeObserver = new ResizeObserver(() => checkScrollable());
-    if (certContainerRef.current)
-      resizeObserver.observe(certContainerRef.current);
     if (compContainerRef.current)
       resizeObserver.observe(compContainerRef.current);
     if (orgContainerRef.current)
@@ -195,6 +184,7 @@ export function ResumeSection() {
                     <div className="relative">
                       <div
                         ref={orgContainerRef}
+                        data-lenis-prevent
                         className="max-h-[400px] overflow-y-auto pr-2 space-y-4 custom-scrollbar masked-overflow"
                         style={{ paddingBottom: "24px" }}
                       >
@@ -283,54 +273,13 @@ export function ResumeSection() {
                     </div>
                   </CollapsibleSection>
 
-                  {/* Certifications */}
-                  <CollapsibleSection title="Certifications" defaultOpen={false}>
-                    <div className="relative">
-                      <div
-                        ref={certContainerRef}
-                        className="max-h-[280px] overflow-y-auto pr-2 space-y-3 custom-scrollbar masked-overflow"
-                        style={{ paddingBottom: "24px" }}
-                      >
-                        {resumeCertifications.map((cert, idx) => (
-                          <a
-                            key={idx}
-                            href={cert.link}
-                            className="block group hover:bg-gray-700/50 rounded-lg p-3 transition-colors border border-gray-700/30 hover:border-accent-purple/50"
-                          >
-                            <div className="text-white font-medium text-sm group-hover:text-accent-purple transition-colors flex items-center gap-1 mb-1">
-                              {cert.title}
-                              <FontAwesomeIcon
-                                icon={faExternalLinkAlt}
-                                className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
-                              />
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <div className="text-accent-green text-xs font-medium">
-                                {cert.org}
-                              </div>
-                              <div className="text-accent-purple text-xs font-medium">
-                                {cert.date}
-                              </div>
-                            </div>
-                          </a>
-                        ))}
-                      </div>
-                      {certScrollable && (
-                        <>
-                          <div className="gradient-fade-overlay"></div>
-                          <div className="scroll-indicator scroll-indicator-certifications">
-                            <div className="scroll-progress"></div>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </CollapsibleSection>
 
                   {/* Competitions */}
                   <CollapsibleSection title="Competitions" defaultOpen={false}>
                     <div className="relative">
                       <div
                         ref={compContainerRef}
+                        data-lenis-prevent
                         className="max-h-[200px] overflow-y-auto pr-2 space-y-3 custom-scrollbar masked-overflow"
                         style={{ paddingBottom: "24px" }}
                       >

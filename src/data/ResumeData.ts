@@ -101,7 +101,7 @@ export const organizations: Organization[] = [
     company: "ATC Africa",
     link: "https://atcafrica.com",
     description:
-      "Led a team of 5 Backend Engineers to integrate an event management system, optimizing performance and ensuring scalable architecture.",
+      "Led a team of 5 Backend Engineers to integrate an event management system - optimizing performance and ensuring scalable architecture.",
   },
   {
     period: "Jan 2024 - Feb 2025",
@@ -109,7 +109,7 @@ export const organizations: Organization[] = [
     company: "9jaMarkets",
     link: "https://9jamarkets.com",
     description:
-      "Developed interactive e-commerce platforms and payment systems, improving user experience and checkout efficiency.",
+      "Developed interactive e-commerce platforms and payment systems - improving user experience and checkout efficiency.",
   },
 ];
 
@@ -208,7 +208,7 @@ export const contracts: Contract[] = [
     role: "Fullstack Engineer",
     period: "3 months",
     description:
-      "Recipe-selling platform for chefs to upload and sell recipes with browsing, ordering, and customer feedback.",
+      "Recipe-selling platform for chefs to upload and sell recipes with browsing - ordering - and customer feedback.",
     link: "/projects/nourishbox",
   },
   {

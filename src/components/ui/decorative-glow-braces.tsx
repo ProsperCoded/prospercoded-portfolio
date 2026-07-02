@@ -45,11 +45,17 @@ export function DecorativeGlowBraces({
   };
 
   const braceStyle = {
-    filter: glow ? glowIntensityMap[glowIntensity] : "none",
     color: glowColor,
     opacity: opacity,
     transform: `rotate(${rotation}deg)`,
-    textShadow: glow ? `0 0 20px ${glowColor}, 0 0 40px ${glowColor}` : "none",
+    textShadow: glow 
+      ? glowIntensity === "low"
+        ? `0 0 15px ${glowColor}`
+        : glowIntensity === "medium"
+        ? `0 0 20px ${glowColor}, 0 0 40px ${glowColor}`
+        : `0 0 30px ${glowColor}, 0 0 60px ${glowColor}, 0 0 90px ${glowColor}`
+      : "none",
+    willChange: "transform, opacity",
   };
 
   return (

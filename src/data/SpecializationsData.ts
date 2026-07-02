@@ -16,7 +16,7 @@ export type SpecializationItem = {
 export const specializations: Record<string, SpecializationItem> = {
   "Building AI Agents and Agentic Workflows": {
     name: "Building AI Agents and Agentic Workflows",
-    description: "The certificate holder has demonstrated expertise in designing agentic AI systems using LangGraph, CrewAI, and AutoGen. This includes implementing memory, conditional reasoning, self-improving agents, and multi-agent workflows for scalable backend solutions.",
+    description: "The certificate holder has demonstrated expertise in designing agentic AI systems using LangGraph - CrewAI - and AutoGen. This includes implementing memory - conditional reasoning - self-improving agents - and multi-agent workflows for scalable backend solutions.",
     issuer: "IBM & Coursera",
     date: "April 2026",
     images: [
@@ -32,7 +32,7 @@ export const specializations: Record<string, SpecializationItem> = {
   },
   "IBM RAG and Agentic AI": {
     name: "IBM RAG and Agentic AI",
-    description: "The certificate holder is proficient in building generative AI systems using RAG, LangChain, and multi-agent frameworks. This includes designing prompts, orchestrating tools via function calling, and constructing autonomous, collaborative agents for complex problem-solving.",
+    description: "The certificate holder is proficient in building generative AI systems using RAG - LangChain - and multi-agent frameworks. This includes designing prompts - orchestrating tools via function calling - and constructing autonomous and collaborative agents for complex problem-solving.",
     issuer: "IBM & Coursera",
     date: "April 2026",
     images: [
@@ -48,7 +48,7 @@ export const specializations: Record<string, SpecializationItem> = {
   },
   "Kubernetes and Cloud Native Associate": {
     name: "Kubernetes and Cloud Native Associate",
-    description: "The certificate holder has successfully demonstrated a foundational understanding of Kubernetes and the cloud-native ecosystem. This includes container orchestration, Kubernetes architecture, application lifecycle management, observability, telemetry, and cloud-native security principles. Verified under Certificate ID: LF-7s8pdqbvst.",
+    description: "The certificate holder has successfully demonstrated a foundational understanding of Kubernetes and the cloud-native ecosystem. This includes container orchestration - Kubernetes architecture - application lifecycle management - observability - telemetry - and cloud-native security principles. Verified under Certificate ID: LF-7s8pdqbvst.",
     issuer: "Cloud Native Computing Foundation (CNCF)",
     date: "April 30, 2026",
     images: [

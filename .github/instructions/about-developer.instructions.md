@@ -10,11 +10,11 @@ In my recent role as a Lead Backend Engineer at ATC Africa, I led a team of 5 Ba
 Outside of work I love participating in hackathons , building personal projects that solve real problems like Medmap, Uninav, GoalFund, and Solving leetcode challenges, and continuous learning, I also love music.
 Earlier in my journey, I struggled with time management, especially balancing academics and development work. But through mentorship and intentional planning, I’ve developed strong habits around task prioritization and accountability.
 My goal is to do more than just write code; I am driven to build systems and solutions that solve real-world problems and make a tangible impact.
-I’m now looking for a role where I can contribute to innovative backend & frontend systems—focusing on performance, scalability, and real-world impact, while continuing to learn and grow with a forward-thinking team
+I’m now looking for a role where I can contribute to innovative backend & frontend systems, focusing on performance, scalability, and real-world impact, while continuing to learn and grow with a forward-thinking team
 
 WHY YOU SHOULD HIRE ME
 You should select me because I’m not just a backend developer.
 I’m a builder who solves real problems with code.
 From GoalFund to UniNav to MedMap and Party Currency,
 I’ve consistently developed systems that go beyond just CRUD apps -
-I design platforms that impact people, handle real-time data, integrate payments, and prioritize performance and transparency. I understand caching, API security, PostgreSQL indexing, session management—because I go deep, not just wide. And I work fast without sacrificing structure. I lead when needed, I collaborate with purpose, and I learn obsessively. Give me your backend, and I’ll give you reliability, scalability, and innovation.
+I design platforms that impact people, handle real-time data, integrate payments, and prioritize performance and transparency. I understand caching, API security, PostgreSQL indexing, session management, because I go deep, not just wide. And I work fast without sacrificing structure. I lead when needed, I collaborate with purpose, and I learn obsessively. Give me your backend, and I’ll give you reliability, scalability, and innovation.
