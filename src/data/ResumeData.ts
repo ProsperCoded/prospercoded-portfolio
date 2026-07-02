@@ -115,6 +115,12 @@ export const organizations: Organization[] = [
 
 export const certifications: Certification[] = [
   {
+    title: "Kubernetes and Cloud Native Associate (KCNA)",
+    org: "Cloud Native Computing Foundation (CNCF)",
+    date: "April 2026",
+    link: "https://training.linuxfoundation.org/certification/verify",
+  },
+  {
     title: "Building AI Agents and Agentic Workflows Specialization",
     org: "IBM & Coursera",
     date: "April 2026",

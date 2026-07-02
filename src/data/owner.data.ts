@@ -5,7 +5,7 @@ export const OWNER_DETAILS = {
   fullName: "Prosper Enwerem Tochukwu",
   username: "Prosper Coded",
   title: "Backend Software Engineer",
-  bio: "Backend engineer building the systems that power modern apps. .",
+  bio: "Backend engineer building the systems that power modern apps. KCNA (Kubernetes and Cloud Native Associate) certified.",
   location: "Nigeria",
 
   // Contact Information

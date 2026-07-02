@@ -16,7 +16,7 @@ export type SpecializationItem = {
 export const specializations: Record<string, SpecializationItem> = {
   "Building AI Agents and Agentic Workflows": {
     name: "Building AI Agents and Agentic Workflows",
-    description: "The certificate holder has gained practical expertise in designing agentic AI systems using modern frameworks and workflow patterns. Through hands-on labs and projects, they built LangGraph agents supporting memory, iteration, conditional logic, and Agentic RAG, developed self-improving AI agents, designed multi-agent systems with orchestration, and structured modular workflows using CrewAI. They also applied frameworks like IBM BeeAI and AG2 (AutoGen) to conversation-driven applications and scalable workflows, configuring agents, tasks, memory, and tools to enable reasoning, feedback loops, and autonomous behavior.",
+    description: "The certificate holder has demonstrated expertise in designing agentic AI systems using LangGraph, CrewAI, and AutoGen. This includes implementing memory, conditional reasoning, self-improving agents, and multi-agent workflows for scalable backend solutions.",
     issuer: "IBM & Coursera",
     date: "April 2026",
     images: [
@@ -32,7 +32,7 @@ export const specializations: Record<string, SpecializationItem> = {
   },
   "IBM RAG and Agentic AI": {
     name: "IBM RAG and Agentic AI",
-    description: "The certificate holder is proficient in building advanced generative AI applications using RAG, agentic, and multimodal AI technologies. They understand the core concepts and real-world applications of generative AI and agent frameworks. They can design effective prompts, implement function calling, and use tools like LangChain to orchestrate complex reasoning workflows. They can build autonomous and collaborative agents that use memory, feedback, and chaining to solve structured and unstructured problems. They are able to integrate APIs, tools, and multi-step reasoning to create flexible, self-improving systems. They can design multi-agent architectures using frameworks like CrewAI and LangGraph, enabling distributed decision-making, dynamic context switching.",
+    description: "The certificate holder is proficient in building generative AI systems using RAG, LangChain, and multi-agent frameworks. This includes designing prompts, orchestrating tools via function calling, and constructing autonomous, collaborative agents for complex problem-solving.",
     issuer: "IBM & Coursera",
     date: "April 2026",
     images: [
@@ -45,5 +45,21 @@ export const specializations: Record<string, SpecializationItem> = {
       credentialUrl: "https://www.coursera.org/account/accomplishments/professional-cert/XCQM611SNFVX",
     },
     slug: "ibm-rag-and-agentic-ai",
+  },
+  "Kubernetes and Cloud Native Associate": {
+    name: "Kubernetes and Cloud Native Associate",
+    description: "The certificate holder has successfully demonstrated a foundational understanding of Kubernetes and the cloud-native ecosystem. This includes container orchestration, Kubernetes architecture, application lifecycle management, observability, telemetry, and cloud-native security principles. Verified under Certificate ID: LF-7s8pdqbvst.",
+    issuer: "Cloud Native Computing Foundation (CNCF)",
+    date: "April 30, 2026",
+    images: [
+      {
+        src: "/assets/specializations/kubernetes-and-cloud-native-associate.png",
+        isPrimary: true,
+      }
+    ],
+    links: {
+      credentialUrl: "https://training.linuxfoundation.org/certification/verify",
+    },
+    slug: "kubernetes-and-cloud-native-associate",
   }
 };
